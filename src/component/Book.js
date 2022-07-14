@@ -9,7 +9,7 @@ function Product_Books({ book }) {
         
         return (
                 <Link to={`/book/`+book.id}>
-                <div className="mx-auto pt-3 w-60 bg-gray-100">
+                <div className="mx-auto pt-3 w-60 bg-gray-100 py-5 rounded">
                         <img className="object-contain h-52 w-52 mx-auto" src={book.image} alt="" />
                         <div className="grid grid-rows-2 mb-3 px-3">
                                 <p className="pt-4">
@@ -31,7 +31,7 @@ function Product_Books({ book }) {
                                         <span className="text-sm">{book_reviews}</span>
                                 </div>
                         </div>
-                        <button className="text-sm text-center border-yellow-500 bg-amber-200 w-full py-1 rounded hover:bg-amber-300">Add to Cart</button>   
+                        {/* <button className="text-sm text-center border-yellow-500 bg-amber-200 w-full py-1 rounded hover:bg-amber-300">Add to Cart</button>    */}
                 </div>
                 </Link>
 

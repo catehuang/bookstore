@@ -11,9 +11,9 @@ function Header({ department }) {
     <div className="flex gap-2 bg-[#010b18] text-white px-3" >
       {/* Logo */}
       <div className="w-32 my-4 ml-2">
-  
+          <Link to="/">
                 <p className="text-2xl font-extrabold font-serif text-amber-50">Amazon</p>
-        
+        </Link>
       </div>
 
       {/* Search bar */}

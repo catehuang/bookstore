@@ -4,6 +4,7 @@ import Header from "../component/Header";
 import Navigator_Books from "../component/Navigator_Books";
 import Footer from "../component/Footer";
 import { useParams } from "react-router-dom";
+import LockIcon from '@material-ui/icons/Lock';
 
 function Product(props) {
         const { id } = useParams();
@@ -13,15 +14,21 @@ function Product(props) {
         const product_price_fraction = (product.price - Math.floor(product.price)).toFixed(2).substring(2);
         const numberFormat = new Intl.NumberFormat('en-US');
         const product_reviews = numberFormat.format(product.reviews);
+        const obj = {
+                array: []
+        };
+
+        for (var i = 0; i < product.quantity; i++)
+                obj.array[i] = i + 1;
 
         return (
                 <div>
-                        <Header />
+                        <Header department="Books"/>
                         <Navigator_Books />
-                        <div className="flex flex-col mx-auto p-20">
-                                <div className="flex gap-10">
-                                          <img className="object-contain w-60" src={product.image} alt="" />
-                                          <div className="flex flex-col w-1/2">
+                        <div className="flex flex-col gap-5 mx-auto px-10 py-20">
+                                <div className="flex gap-5">
+                                          <img className="object-contain w-60 h-fit" src={product.image} alt="" />
+                                          <div className="flex flex-col w-1/2 grow">
                                                   <p className="text-3xl">{product.name}</p>
                                                   <p className="text-2xl text-gray-600">Paperback</p>
                                                   <p>by<span className="text-cyan-700 px-1">{product.author}</span>(Author)
@@ -37,45 +44,37 @@ function Product(props) {
                                                 <p className="pt-5">{product.description}</p>
                                           </div>
                                           
-                                          <div className="flex flex-col">
+                                          <div className="invisible lg:visible flex flex-col w-72 h-fit border-2 border-gray-300 rounded p-5 gap-3 text-sm">
                                                 <div className="flex justify-between">
-                                                        <p>Buy new</p>
-                                                        <p>${product.price}</p>
+                                                        <p className="font-bold text-base">Buy new</p>
+                                                        <p className="text-red-700 text-lg font-bold">${product.price}</p>
                                                 </div>
-                                                <p>Status</p>
-                                                <p>Quantity</p>
-                                                <p></p>
+                                                <p className="text-sm"><span className="text-sky-800 font-bold">FREE delivery </span><span className=" font-bold">Tuesday, July 19 </span>on your first order. <span className="text-sky-800 font-bold">Details</span></p>
+                                                <p className="text-lg text-green-700 font-bold">In Stcok.</p>
+                                                <p className="text-sm">As an alternative, the <span className="text-sky-800 font-bold">Kindle eBook </span>is available now and can be read on any device with the free Kindle app. Want to Listen? <span className="text-sky-800 font-bold">Try Audible.</span></p>
+                                                <div className="flex">
+                                                        <p className="pr-2">Quantity: </p>
+                                                        <select id="quantity" className="border border-gray-400 rounded">
+                                                                { obj.array.map((num) =>
+                                                                (
+                                                                        <option key={num} value={num}>{num}</option>
+                                                                ))};
+                                                        </select>
+                                                </div>
+                                                <button className="text-sm text-center border-yellow-500 bg-yellow-400 w-full py-1 rounded hover:bg-yellow-500">Add to Cart</button> 
+                                                <div className="flex text-gray-500 gap-3">
+                                                        <LockIcon />
+                                                        <p className="text-sky-800 font-bold">Secure transaction</p>
+                                                </div>
+                                                <p>Ships from and sold by Amazon.ca.</p>
+                                                <div className="flex gap-2">
+                                                        <input type="checkbox" />
+                                                        <p>Add gift options</p>                                          
+                                                </div>
                                           </div>
                                 </div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-
                         </div>
-                        <div className="mx-auto pt-3 w-60 bg-gray-100">
-
-                                <div className="grid grid-rows-2 mb-3 px-3">
-                                        <p className="pt-4">
-                                                <span className="align-top">$</span>
-                                                <span className="text-xl font-bold">{product_price_integer}</span>
-                                                <span className="align-top">{product_price_fraction}</span>
-                                        </p>
-
-                                        
-
-                                        <div className="">
-                                                <div className="text-amber-500 inline pr-2">
-                                                        {Array(Math.floor(product.stars))
-                                                                .fill()
-                                                                .map((_, i) => (
-                                                                        <span key={i}>&#9733;</span>
-                                                                ))}
-                                                </div>
-                                                <span className="text-sm">{product_reviews}</span>
-                                        </div>
-                                </div>
-                                <button className="text-sm text-center border-yellow-500 bg-amber-200 w-full py-1 rounded hover:bg-amber-300">Add to Cart</button>   
-                        </div>        
+     
                         <Footer />                
                 </div>
 
