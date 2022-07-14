@@ -16,19 +16,7 @@ function Nav_Books() {
                                 <li className="font-bold">
                                         <button onClick={ToggleSidebar}>&#9776;</button>
                                 </li>
-                                <li>Advanced Search</li>
-                                <li>Today's Deals</li>
-                                <li>New Releases</li>
-                                <li>Amazon Chart</li>
-                                <li>Best Sellers & More</li>
-                                <li className="hidden lg:inline-block">
-                                        The Globe & Mail Best Sellers
-                                </li>
-                                <li className="hidden md:inline-block">New York Times Best Sellers</li>
-                                <li className="hidden xl:inline-block">Best Books of the Month</li>
-                                <li className="hidden xl:inline-block">Children's Books</li>
-                                <li className="hidden 2xl:inline-block">Textbooks</li>
-                                <li className="hidden 2xl:inline-block">Kindle Books</li>
+                                <li className="font-bold">Books</li>
                         </ul>
                         {isOpen === true && (
                                 <div className="fixed w-80 h-screen left-0 top-16 border-r border-b bg-white rounded text-gray-800">

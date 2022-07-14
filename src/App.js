@@ -1,8 +1,16 @@
-import Home from './template/Home';
+import Home from "./page/Home";
+import Product from "./page/Product";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 
 function App() {
   return (
-      <Home />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/book/:id" element={<Product/>}></Route>
+        <Route path="/" element={<Home />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

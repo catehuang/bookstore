@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 function Product_Books({ book }) {
         const book_price_integer = Math.floor(book.price);
@@ -7,7 +8,8 @@ function Product_Books({ book }) {
         const book_reviews = numberFormat.format(book.reviews);
         
         return (
-                <div className="mx-auto bg-white pt-3 w-60">
+                <Link to={`/book/`+book.id}>
+                <div className="mx-auto pt-3 w-60 bg-gray-100">
                         <img className="object-contain h-52 w-52 mx-auto" src={book.image} alt="" />
                         <div className="grid grid-rows-2 mb-3 px-3">
                                 <p className="pt-4">
@@ -31,6 +33,8 @@ function Product_Books({ book }) {
                         </div>
                         <button className="text-sm text-center border-yellow-500 bg-amber-200 w-full py-1 rounded hover:bg-amber-300">Add to Cart</button>   
                 </div>
+                </Link>
+
         )
 }
 
