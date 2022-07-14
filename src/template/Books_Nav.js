@@ -45,29 +45,14 @@ function Nav_Books() {
                                         <div className="border-t border-gray-300">
                                                 <p className="text-lg font-bold px-5 py-3">Books</p>
                                                 <ul className="px-5 pb-5 leading-8">
-                                                        <li>All Books</li>
-                                                        <li>Books in French</li>
+                                                        <li>Comics & Graphic Novels</li>
+                                                        <li>Science & Math</li>
                                                         <li>Textbooks</li>
                                                         <li>Children's Books</li>
-                                                </ul>
-                                        </div>
-
-                                        <div className="border-t border-gray-300">
-                                                <p className="text-lg font-bold px-5 py-3">Kindle Books</p>
-                                                <ul className="px-5 pb-5 leading-8">
-                                                        <li>Kindle Books</li>
-                                                        <li>Kindle Books in French</li>
-                                                        <li>Kindle Unlimited</li>
-                                                        <li>Prime Reading</li>
-                                                </ul>
-                                        </div>
-
-                                        <div className="border-t border-gray-300">
-                                                <p className="text-lg font-bold px-5 py-3">Audible Audiobooks</p>
-                                                <ul className="px-5 pb-5 leading-8">
-                                                        <li>Audible Membership</li>
-                                                        <li>All Audible Audiobooks</li>
-                                                        <li>Audible Audiobooks in French</li>
+                                                        <li>Professional & Technical</li>
+                                                        <li>Eduaction & Reference</li>
+                                                        <li>Politics & Socail Sciences</li>
+                                                        <li>Arts & Photography</li>
                                                 </ul>
                                         </div>
                                 </div>
