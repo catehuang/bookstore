@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 function Product(props) {
         const { id } = useParams();
         // Doesn't work if you use === this is from frontend
-        const product = data.books.find(x => x.id == id);
+        const product = props.find(x => x.id == id);
 
 
         const product_price_integer = Math.floor(product.price);
