@@ -1,18 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 //import data from "../data";
 import Header from "../components/Header";
-import Navigator_Books from "../components/Navigator_Books";
+import Navigator_Books from "../components/Navigator";
 import Footer from "../components/Footer";
-import { useParams } from "react-router-dom";
+//import { useParams } from "react-router-dom";
 import LockIcon from '@material-ui/icons/Lock';
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 
 function Product(props) {
-        const { id } = useParams();
-        // Doesn't work if you use === this is from frontend
-        const product = props.find(x => x.id == id);
+        console.log(props.product);
+        const productDetails = useSelector(state => state.productDetails);
+        const { product, loading, error } = productDetails;
+        const dispatch = useDispatch;
 
+        useEffect(()=>{
+
+                return () => {
+
+                }
+        }, [])
+
+        //const { id } = useParams();
+        // Doesn't work if you use === this is from frontend
+       // const product = props.find(x => x.id == id);
 
         const product_price_integer = Math.floor(product.price);
         const product_price_fraction = (product.price - Math.floor(product.price)).toFixed(2).substring(2);
@@ -26,7 +38,6 @@ function Product(props) {
                 obj.array[i] = i + 1;
 
 
-
         return (
                 <div>
                         <Header department="Books"/>
@@ -34,6 +45,10 @@ function Product(props) {
                         <Link to="/">
                                 <p className="py-5 px-10 text-sky-800"> &lt; back to result</p>
                         </Link>
+                        {
+                        loading? <div>Loading... </div> :
+                        error? <div>{error.message}</div>:
+                        (
                         <div className="flex flex-col gap-5 mx-auto px-10 py-5">
                                 <div className="flex gap-5">
                                           <img className="object-contain w-60 h-fit" src={product.image} alt="" />
@@ -83,10 +98,9 @@ function Product(props) {
                                           </div>
                                 </div>
                         </div>
-     
+                        )}
                         <Footer />                
-                </div>
-
+                </div>                                                       
         )
 }
 

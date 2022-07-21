@@ -1,48 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux';
-import { listProducts } from '../actions/productActions';
+import React, { useEffect, useState } from 'react';
+//import { useSelector, useDispatch } from 'react-redux';
 import Header from "../components/Header";
-import Books_Nav from "../components/Navigator_Books";
+import Navigator from "../components/Navigator";
 import Footer from "../components/Footer";
-import Product_Books from '../components/Book';
-//import data from "../data";
+import Books from '../components/Book';
+import { publicRequest } from '../publicRequest';
 
 function Home() {
-        //const [ books, setBooks ] = useState([]);
-        const productList = useSelector(state => state.productList);
-        const { products, loading, error } = productList;
-        const dispatch = useDispatch();
+        const [ books, setBooks ] = useState([]);
 
         useEffect(() => {
-                // const fetchData = async () => {
-                //         const  { data }  = await axios.get(`/api/books`);
-                //         setBooks(data);
-                // }
-                //fetchData();
-                dispatchEvent(listProducts())
-
-                
-
-                return () => {
-                       
-                };
+                const getBooks = async () => {
+                        try {
+                                const response   = await publicRequest.get(`/books`);
+                                setBooks(response.data);
+                        }
+                        catch (error)
+                        {
+                               console.log(error.message);
+                        }
+                }
+                getBooks();
         }, []);
   return (
     <div className="h-screen w-full">
-                <header>
-                        <Header department="Books"/>
-                        <Books_Nav />
-                </header>
+               <Header department="Books"/>
+                <Navigator />
 
                 <main className='grid sm:grid-cols-3 md:grid-cols-4  lg:grid-cols-5 xl:grid-cols-6  2xl:grid-cols-7 grid-flow-row gap-x-2 gap-y-10 py-10 px-auto'>
                         {
-                                products.map((product) =>
-                                        <Product_Books key={product.id} />)
+                                books.map((book) =>
+                                        <Books key={book.id} book={book}/>)
                         }
                 </main>
-                <footer><Footer /></footer>
+                <Footer />
     </div>
   )
 }
