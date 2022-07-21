@@ -12,7 +12,9 @@ function Home() {
         useEffect(() => {
                 const getBooks = async () => {
                         try {
+                                // the data set formed in arrays
                                 const response   = await publicRequest.get(`/books`);
+                                //console.log(response.data);
                                 setBooks(response.data);
                         }
                         catch (error)
