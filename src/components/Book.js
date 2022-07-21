@@ -8,7 +8,7 @@ function Product_Books({ book }) {
         const book_reviews = numberFormat.format(book.reviews);
         
         return (
-                <Link to={`/book/`+book.id}>
+                <Link to={`/books/`+book.id}>
                 <div className="mx-auto pt-3 w-60 bg-gray-100 py-5 rounded">
                         <img className="object-contain h-52 w-52 mx-auto" src={book.image} alt="" />
                         <div className="grid grid-rows-2 mb-3 px-3">
