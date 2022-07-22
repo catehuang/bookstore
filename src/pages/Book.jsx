@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Header from "../components/Header";
-import Navigator_Books from "../components/Navigator";
-import Footer from "../components/Footer";
 import { useParams } from "react-router-dom";
 import LockIcon from "@material-ui/icons/Lock";
 import { Link } from "react-router-dom";
 import { publicRequest } from "../publicRequest";
 
 function Book() {
+        // return an object
         const { id } = useParams();
         const [book, setBook] = useState([]);
         useEffect(() => {
@@ -36,8 +34,6 @@ function Book() {
 
         return (
                 <div>
-                        <Header department="Books" />
-                        <Navigator_Books />
                         <Link to="/">
                                 <p className="py-5 px-10 text-[#005e80]"> &lt; back to result</p>
                         </Link>
@@ -73,9 +69,9 @@ function Book() {
                                                         <div className="flex justify-between">
                                                                 <p className="font-bold text-base">Buy new</p>
                                                                 <p className="text-red-700  flex font-bold">
-                                                                        <span className="text-xs">$</span>
+                                                                        <span className="text-xs mt-1">$</span>
                                                                         <span className=" text-xl">{book_price_integer}</span>
-                                                                        <span className="text-xs self-start">{book_price_fraction}</span>
+                                                                        <span className="text-xs mt-1">{book_price_fraction}</span>
                                                                 </p>
                                                         </div>
                                                         <p className="text-sm">
@@ -122,7 +118,6 @@ function Book() {
                                         </div>
                                 </div>
                         }
-                        <Footer />
                 </div>
         );
 }

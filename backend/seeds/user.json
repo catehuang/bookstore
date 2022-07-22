@@ -1,0 +1,22 @@
+{
+        "users": [
+                {
+                        "username":"Noah Johnson",
+                        "email": "noahJohnson@example.com",
+                        "password": "iamadmin",
+                        "isAdmin": true
+                },
+                {
+                        "username":"Liam Williams",
+                        "email": "liamWilliam@example.com",
+                        "password": "password",
+                        "isAdmin": false
+                },
+                {
+                        "username":"Olivia Brown",
+                        "email": "oliviaBrown@example.com",
+                        "password": "password",
+                        "isAdmin": false
+                }
+        ]
+}
