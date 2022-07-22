@@ -8,3 +8,4 @@ This project will use the following libraries
 * Axios
 * Express
 * mongoose
+* bcrypt
