@@ -3,7 +3,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const URL = "mongodb://localhost:27017/books";
 const app = express();
-const booksRoute = require('./routes/book');
+const booksRoute = require('./routes/bookRoute');
 const PORT = 5000;
 
 app.use(cors({ origin: true }));

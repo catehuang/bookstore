@@ -7,7 +7,7 @@ const BookSchema = new mongoose.Schema(
     author:{type:String, required:true},
     categories:{type:Array},
     featuredCategory:{type:Array},
-    stars:{type:String, required:true},
+    stars:{type:Number, required:true},
     reviews:{type:Array},
     description:{type:String, required:true},
     price:{type:Number, required:true},

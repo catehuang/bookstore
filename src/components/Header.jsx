@@ -19,8 +19,16 @@ function Header({ department }) {
             <p className="border-t border-r border-b rounded-r-lg px-1 bg-amber-400 border-none text-[#00131a]"><SearchIcon /></p>
           </div>
         </li>
-        <li className="">Login</li>
-        <li className="flex-none">Sign Up</li>
+        <li className="">
+          <Link to="/login">
+              Login
+          </Link>
+          </li>
+        <li className="flex-none">
+          <Link to="./register">
+             Sign Up
+          </Link>
+         </li>
         <li className="text-2xs">
         <ShoppingCartIcon/>
         </li>

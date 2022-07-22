@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const data = require("./data");
-const Book = require("../models/book");
-const { collection } = require("../models/book");
+const Book = require("../models/bookModel");
+const { collection } = require("../models/bookModel");
 const URL = "mongodb://localhost:27017/books";
 
 // useNewUrlParser , useUnifiedTopology , useFindAndModify , and useCreateIndex are no longer supported options.
