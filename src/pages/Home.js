@@ -14,8 +14,8 @@ function Home() {
                         try {
                                 // the data set formed in arrays
                                 const response   = await publicRequest.get(`/books`);
-                                //console.log(response.data);
-                                setBooks(response.data);
+                                //console.log(response);
+                                setBooks(response.data.docs);
                         }
                         catch (error)
                         {
