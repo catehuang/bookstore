@@ -8,16 +8,25 @@ const router = express.Router();
 // } = require("./verifyToken");
 
 
+
+
+
 // GET ALL Books 
 router.get("/",  async (req, res) => {
+  // Book.find((err, docs) => {
+  //   if (!err)
+  //     res.send({docs});
+  //   else
+  //     console.log("error");  
+  // });
   try {
-    const { books } = await Book.find();
-    // console.log(books);
-    res.status(200).json(books);
+    const docs = await Book.find();
+    res.status(200).json({ docs });
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
 
 // GET the Book 
 router.get("/find/:id", async (req, res) => {

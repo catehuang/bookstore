@@ -6,6 +6,7 @@ const app = express();
 const booksRoute = require('./routes/bookRoute');
 const PORT = 5000;
 
+
 app.use(cors({ origin: true }));
 app.use(express.json());
 
@@ -50,7 +51,6 @@ app.use("/api/books", booksRoute);
 // app.use("/api/carts", cartsRoute);
 // app.use("/api/orders", ordersRoute);
 // app.use("/api/checkout", stripeRoute);
-
 
 
 app.listen(PORT, () => {console.log(`Sever started at http://localhost:` + PORT)});
