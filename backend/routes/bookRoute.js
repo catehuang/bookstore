@@ -2,16 +2,10 @@ const Book = require("../models/bookModel");
 const express = require("express");
 const router = express.Router();
 
-// const {
-//   verifyTokenAndAuthorization,
-//   verifyTokenAndAdmin
-// } = require("./verifyToken");
 
 
 
-
-
-// GET ALL Books 
+// Get ALL Books 
 router.get("/",  async (req, res) => {
   // Book.find((err, docs) => {
   //   if (!err)
@@ -20,15 +14,15 @@ router.get("/",  async (req, res) => {
   //     console.log("error");  
   // });
   try {
-    const docs = await Book.find();
-    res.status(200).json({ docs });
+    const books = await Book.find();
+    res.status(200).json(books);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
 
-// GET the Book 
+// Get the Book 
 router.get("/find/:id", async (req, res) => {
   try {
     const book = await Book.findById(req.params.id);

@@ -1,9 +1,10 @@
 const express =require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const URL = "mongodb://localhost:27017/books";
+const URL = "mongodb://localhost:27017/amazon";
 const app = express();
 const booksRoute = require('./routes/bookRoute');
+const usersRoute = require('./routes/userRoute');
 const PORT = 5000;
 
 
@@ -46,7 +47,7 @@ db.once("open", () => {
 //       });
       
 // app.use("/api/auth", authRoute);
-// app.use("/api/users", usersRoute);
+app.use("/api/users", usersRoute);
 app.use("/api/books", booksRoute);
 // app.use("/api/carts", cartsRoute);
 // app.use("/api/orders", ordersRoute);
