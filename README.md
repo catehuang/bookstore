@@ -9,4 +9,3 @@ This project will use the following libraries
 * Express
 * mongoose
 * bcrypt
-* jsonwebtoken
