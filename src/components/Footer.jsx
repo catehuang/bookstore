@@ -4,9 +4,7 @@ function Footer() {
   return (
     <div className="mx-auto bg-[#002533] text-gray-200">
       <div className="bg-[#005e80] text-center">
-        <a href="#top">
-          <p className="active: text-gray-200 p-2 text-sm">Back to top</p>
-        </a>
+          <p className="text-gray-200 p-1 text-sm"><a href="#top">Back to top</a></p>
       </div>
       <div className="w-2/3 mx-auto mt-5 flex justify-between text-sm">
         <div className="flex flex-col gap-1">
