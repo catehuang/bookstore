@@ -31,15 +31,15 @@ const users = userdata.users;
                 console.log("Failed to create collection books: " + err.message);
          }
 
-         try {
-                await db.collection("users").deleteMany({});
-                await db.collection("users").insertMany(users);
-                console.log("Collection users created");          
-         }
-         catch (err)
-         {
-                console.log("Failed to create collection users: " + err.message);
-         }
+       //   try {
+       //          await db.collection("users").deleteMany({});
+       //          await db.collection("users").insertMany(users);
+       //          console.log("Collection users created");          
+       //   }
+       //   catch (err)
+       //   {
+       //          console.log("Failed to create collection users: " + err.message);
+       //   }
 
 };
 

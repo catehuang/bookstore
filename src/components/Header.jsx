@@ -1,11 +1,10 @@
 import React from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import ArrowDropDownTwoToneIcon from "@material-ui/icons/ArrowDropDownTwoTone";
 import { Link } from "react-router-dom";
 
 
-function Header({ department }) {
+function Header() {
 
   return (
     <div className="px-5 py-3 bg-[#00131a] text-gray-200">
@@ -34,60 +33,6 @@ function Header({ department }) {
         </li>
       </ul>
     </div>
-
-    // <div className="flex gap-5 bg-[#010b18] text-white px-3" >
-    //   {/* Logo */}
-    //   <div className="my-4 ml-2">
-    //       <Link to="/">
-    //             <p className="text-2xl font-extrabold font-serif text-amber-50">BookStore</p>
-    //     </Link>
-    //   </div>
-
-    //   {/* Search bar */}
-    //   <div className="grow flex flex-row h-10 my-auto max-w-7xl">
-    //     <div className="py-2 border-gray-100 border-l rounded-l-xl  border-t border-b bg-gray-100 text-black">
-    //       <span className="pl-3 pr-1">{department}</span>
-    //       <ArrowDropDownTwoToneIcon />
-    //     </div>
-    //     <input className="grow p-3 border py-0 text-black" type="text" />
-    //     <span className="py-2 px-3 border-amber-400 rounded-r-xl border-t border-r border-b bg-amber-400 text-black">
-    //       <SearchIcon />
-    //     </span>
-    //   </div>
-
-    //   {/* country
-    //   <div className="mx-3 pt-4">
-    //     <img
-    //       className="object-scale-down max-w-5 max-h-5 pr-2 inline-flex"
-    //       src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Flag_of_Canada_%28Pantone%29.svg/255px-Flag_of_Canada_%28Pantone%29.svg.png"
-    //       alt=""
-    //     />
-    //     <ArrowDropDownTwoToneIcon />
-    //   </div> */}
-
-    //   <div>
-    //     <span>Login</span>
-    //   </div>
-    
-    //     <div>
-    //       <span>Sigh Up</span>
-    //     </div>
-      
-
-    //     {/* <div className="mx-3 py-2 flex flex-col active: text-white">
-    //       <span>Return</span>
-    //       <span>& Orders</span>
-    //     </div> */}
-     
-
-    //   {/* shoppingcart */}
-     
-    //     <div className="active: text-white">
-    //       <ShoppingCartIcon />
-    //       <span></span>
-    //     </div>
-    // </div>
-  );
-}
+)}
 
 export default Header;

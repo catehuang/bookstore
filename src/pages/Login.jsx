@@ -8,15 +8,15 @@ function Login() {
         const login = e => {
                 e.preventDefault();
 
-                loginWithEmailPassword(auth, email, password)
-                .then((userCredentail) => {
-                        console.log(userCredentail);
-                        const user = userCredentail.user;
+                // loginWithEmailPassword(auth, email, password)
+                // .then((userCredentail) => {
+                //         console.log(userCredentail);
+                //         const user = userCredentail.user;
 
-                        if (auth)
-                                Navigate('/');
-                })
-                .catch((error) => alert(error.message));
+                //         if (auth)
+                //                 Navigate('/');
+                // })
+                // .catch((error) => alert(error.message));
         }
 
   return (

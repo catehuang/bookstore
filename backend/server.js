@@ -1,14 +1,20 @@
-const express =require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
+const express = require("express");
+const cors = require("cors");
+const mongoose = require("mongoose");
 const URL = "mongodb://localhost:27017/amazon";
 const app = express();
-const booksRoute = require('./routes/bookRoute');
-const usersRoute = require('./routes/userRoute');
+const bookRoute = require("./routes/book");
+const userRoute = require("./routes/user");
 const PORT = 5000;
-
+const session = require("express-session");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const flash = require('connect-flash');
+const User = require('./models/user');
 
 app.use(cors({ origin: true }));
+
+// In Express >= 4.16, body parser has been re-added under the methods express.json()
 app.use(express.json());
 
 mongoose.connect(URL);
@@ -16,42 +22,61 @@ const db = mongoose.connection;
 
 db.on("error", console.error.bind(console, "connection error: "));
 db.once("open", () => {
-        console.log("Database connected");
+  console.log("Database connected");
 });
 
-// app.get("/api/books/:id", (req, res) => {
-//         const bookId = req.params.id;
-//         const book = data.books.find(x => x.id === bookId);
-//         if (book)
-//                 res.send(book);
-//         else
-//                 res.status(404).send({msg: "Can't find the book"});
-// });
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true },
+  })
+);
 
-// app.get("/api/books", (req, res) => {
-//         res.send(data.books);
-// });
+// middleware to check if the user is already login
+const requireLogin = (req, res, next) => {
+  if (!req.session.user_id) return res.status(403).json("Please login first");
+  next();
+};
 
+const sessionConfig = {
+  secret: "thisshouldbeabettersecret!",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    httpOnly: true,
+    expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+  },
+};
 
-// app.get("/", (req, res) => {
-//         res.send("Hello from server");
-// });
+// session must before passport.session
+app.use(session(sessionConfig));
+app.use(flash());
 
-// app.get("/api/books",  async (req, res) => {
-//         try {
-//           let books = await Book.find({});
-//           res.status(200).json(books);
-//         } catch (err) {
-//           res.status(500).json(err);
-//         }
-//       });
-      
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.use((req, res, next) => {
+  console.log(req.session);
+  res.locals.currentUser = req.user;
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  next();
+});
+
 // app.use("/api/auth", authRoute);
-app.use("/api/users", usersRoute);
-app.use("/api/books", booksRoute);
+app.use("/api", userRoute);
+app.use("/api/books", bookRoute);
 // app.use("/api/carts", cartsRoute);
 // app.use("/api/orders", ordersRoute);
 // app.use("/api/checkout", stripeRoute);
 
-
-app.listen(PORT, () => {console.log(`Sever started at http://localhost:` + PORT)});
+app.listen(PORT, () => {
+  console.log(`Sever started at http://localhost:` + PORT);
+});

@@ -1,9 +1,6 @@
-const Book = require("../models/bookModel");
+const Book = require("../models/book");
 const express = require("express");
 const router = express.Router();
-
-
-
 
 // Get ALL Books 
 router.get("/",  async (req, res) => {
@@ -20,7 +17,6 @@ router.get("/",  async (req, res) => {
     res.status(500).json(err);
   }
 });
-
 
 // Get the Book 
 router.get("/find/:id", async (req, res) => {
