@@ -1,8 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+
+
+
+
+
 const userSlice = createSlice({
   name: "user",
-  initialSate: {
+  initialState: {
     currentUser: null,
     isFeteching: false,
     loginError: false,
@@ -10,8 +15,9 @@ const userSlice = createSlice({
     registered: false,
   },
   reducers: {
-    registerSuccess: (state) => {
+    registerSuccess: (state, action) => {
       state.registered= true;
+      state.currentUser = action.payload;
     },
     registerFailure: (state) => {
       state.isFeteching = false;
@@ -40,3 +46,4 @@ const userSlice = createSlice({
 export const { registerSuccess, registerFailure, loginStart, loginSuccess, loginFailure, logout } =
   userSlice.actions;
 export default userSlice.reducer;
+
