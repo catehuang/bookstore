@@ -5,9 +5,13 @@ import Book from "./pages/Book";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import { useSelector } from "react-redux";
 
 
 function App() {
+  
+  const user = useSelector(state => state.user.currentUser);
+
   return (
     <BrowserRouter>
     <Header />
