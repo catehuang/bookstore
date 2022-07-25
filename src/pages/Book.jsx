@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import LockIcon from "@material-ui/icons/Lock";
 import { Link } from "react-router-dom";
 import { publicRequest } from "../publicRequest";
+import { Rating } from "@mui/material";
 
 function Book() {
         // return an object
@@ -45,27 +46,35 @@ function Book() {
                                                         src={book.image}
                                                         alt=""
                                                 />
-                                                <div className="flex flex-col w-1/2 grow">
+                                                <div className="flex flex-col w-1/2 grow gap-2">
                                                         <p className="text-3xl">{book.name}</p>
                                                         <p className="text-2xl text-gray-600">Paperback</p>
                                                         <p>
                                                                 by<span className="text-sky-800  px-1">{book.author}</span>
                                                                 (Author)
                                                         </p>
-                                                        {/* <div className="text-amber-500 inline pr-2">
-                                                                {Array(Math.floor(book.stars))
+
+                                                        <div className="text-amber-500 flex gap-2">
+                                                                {/* {Array((book.stars))
                                                                         .fill()
                                                                         .map((_, i) => (
                                                                                 <span key={i}>&#9733;</span>
-                                                                        ))}
-                                                                <span className="text-sm text-sky-800 pl-5">
-                                                                        {book_reviews} ratings
-                                                                </span>
-                                                        </div> */}
-                                                        <p className="pt-5">{book.description}</p>
+                                                                        ))} */}
+                                                                <p>
+                                                                        <Rating
+                                                                                value={ `${book.stars}` }
+                                                                                precision={0.5}
+                                                                                size="small"
+                                                                                readOnly
+                                                                        />
+                                                                </p>
+
+                                                                <p className="text-sm text-sky-800">{book_reviews} ratings</p>
+                                                        </div>
+                                                        <p>{book.description}</p>
                                                 </div>
 
-                                                <div className="invisible lg:visible flex flex-col w-72 h-fit border-2 border-gray-300 rounded p-5 gap-3 text-sm">
+                                                <div className="invisible lg:visible flex flex-col w-80 h-fit border border-gray-300 rounded p-5 gap-3 text-sm">
                                                         <div className="flex justify-between">
                                                                 <p className="font-bold text-base">Buy new</p>
                                                                 <p className="text-red-700  flex font-bold">
