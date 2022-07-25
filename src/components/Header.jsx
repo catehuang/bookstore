@@ -2,9 +2,10 @@ import React from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { Link } from "react-router-dom";
-
+import { useSelector } from "react-redux";
 
 function Header() {
+  const user = useSelector(state => state.user.currentUser);
 
   return (
     <div className="px-5 py-3 bg-[#00131a] text-gray-200">
@@ -19,14 +20,20 @@ function Header() {
           </div>
         </li>
         <li className="">
-          <Link to="/login">
-              Login
-          </Link>
+          <div>
+              {
+                user
+                ? <p>Hello  {user.username}</p>
+                : <Link to="/login"><p>Login</p></Link>
+              }
+          </div>
           </li>
         <li className="flex-none">
-          <Link to="./register">
-             Sign Up
-          </Link>
+        {
+                user
+                ? <Link to="/logout"><p>Logout</p></Link>
+                : <Link to="/register"><p>Sign up</p></Link>
+              }
          </li>
         <li className="text-2xs">
         <ShoppingCartIcon/>
