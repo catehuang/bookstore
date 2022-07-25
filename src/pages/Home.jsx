@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-//import { useSelector, useDispatch } from 'react-redux';
 import Books from '../components/Book';
 import { publicRequest } from '../publicRequest';
 
@@ -20,6 +19,7 @@ function Home() {
                         }
                 }
                 getBooks();
+
         }, []);
   return (
     <div className="w-full">
