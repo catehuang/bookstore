@@ -5,6 +5,7 @@ const URL = "mongodb://localhost:27017/amazon";
 const app = express();
 const bookRoute = require("./routes/book");
 const userRoute = require("./routes/user");
+const cartRoute = require("./routes/cart");
 const PORT = 5000;
 const session = require("express-session");
 const passport = require("passport");
@@ -73,7 +74,7 @@ app.use((req, res, next) => {
 // app.use("/api/auth", authRoute);
 app.use("/api", userRoute);
 app.use("/api/books", bookRoute);
-// app.use("/api/carts", cartsRoute);
+app.use("/api/carts", cartRoute);
 // app.use("/api/orders", ordersRoute);
 // app.use("/api/checkout", stripeRoute);
 
