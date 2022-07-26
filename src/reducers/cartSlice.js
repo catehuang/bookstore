@@ -24,13 +24,13 @@ const cartSlice = createSlice({
                 addProduct: (state, action) => {
                         const existingCartItem = state.products.find(product => product._id === action.payload._id);
                         if (existingCartItem) {
-                          state.products = state.products.map(product => product._id === action.payload._id ? { ...product, quantity: product.quantity + 1 } : product);
+                          state.products = state.products.map(product => product._id === action.payload._id ? { ...product, quantity: product.quantity + Number(action.payload.quantity)} : product);
                           state.total = state.products.reduce((total, product) => total + product.quantity * product.price, 0);
                         }
                         else {
-                          state.quantity += 1; 
+                          state.quantity += Number(action.payload.quantity); 
                           state.products.push(action.payload);
-                          state.total += action.payload.price * action.payload.quantity; 
+                          state.total += action.payload.price * Number(action.payload.quantity); 
                         }
                       },
                       decreaseProduct: (state, action) => {
