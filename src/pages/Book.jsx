@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { publicRequest } from "../publicRequest";
 import { Rating } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../reducers/cartSlice";
-import { UpdateCart } from "../controllers/cart";
 
 function Book() {
   // return an object
@@ -13,7 +12,12 @@ function Book() {
   const [book, setBook] = useState([]);
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
-  const cart = useSelector(state => state.cart);
+  const navigate = useNavigate();
+  const newDate = new Date();
+  const month = newDate.getMonth();
+  const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
 
   useEffect(() => {
     const getBook = async () => {
@@ -28,15 +32,8 @@ function Book() {
   }, [id]);
 
   const handleAddToCart = () => {
-          dispatch(addProduct({...book, quantity}));
-               // console.log(cart);
-        //UpdateCart(cart);
-  }
-  useEffect(() => {
-        console.log(cart);
-
-
-  });
+    dispatch(addProduct({ ...book, quantity }));
+  };
 
   const book_price_integer = Math.floor(book.price);
   const book_price_fraction = (book.price - Math.floor(book.price))
@@ -44,17 +41,12 @@ function Book() {
     .substring(2);
   const numberFormat = new Intl.NumberFormat("en-US");
   const book_reviews = numberFormat.format(book.reviews);
-  const obj = {
-    array: [],
-  };
-
-  for (var i = 0; i < book.quantity; i++) obj.array[i] = i + 1;
 
   return (
     <div>
-      <Link to="/">
-        <p className="py-5 px-10 text-[#005e80]"> &lt; back to result</p>
-      </Link>
+      <p className="py-5 px-10 text-[#005e80]">
+        <Link to="/">&lt; back to result</Link>
+      </p>
 
       <div className="flex flex-col gap-10 mx-auto py-10 px-20">
         <div className="flex gap-10">
@@ -68,17 +60,12 @@ function Book() {
             </p>
 
             <div className="text-amber-500 flex gap-2">
-              {/* {Array((book.stars))
-                                                                        .fill()
-                                                                        .map((_, i) => (
-                                                                                <span key={i}>&#9733;</span>
-                                                                        ))} */}
               <p>
-                <Rating
-                  value={`${book.stars}`}
-                  precision={0.5}
-                  size="small"
-                  readOnly
+                  <Rating
+                    value={Number(`${book.stars}`)}
+                    precision={0.5}
+                    size="small"
+                    readOnly
                 />
               </p>
 
@@ -88,30 +75,30 @@ function Book() {
           </div>
 
           <div className="invisible lg:visible flex flex-col w-72 h-fit border border-gray-300 rounded p-5 gap-5 text-sm">
-            <p className="my-auto text-base font-bold">In Stock</p>
             <div className="flex flex-col gap-5">
-              <p className="text-red-700 flex font-bold">
-                <span className="text-xs mt-1">$</span>
-                <span className=" text-xl">{book_price_integer}</span>
-                <span className="text-xs mt-1">{book_price_fraction}</span>
-              </p>
-
-              <div className="flex gap-3">
-                <p className="my-auto text-base">Quantity: </p>
-                <select
-                  className="border border-gray-400 rounded"
-                  onChange={(e) => setQuantity(e.target.value)}
-                >
-                  {obj.array.map((num) => (
-                    <option key={num} value={num}>
-                      {num}
-                    </option>
-                  ))}
-                </select>
+              <div className="flex justify-between">
+                <p className="my-auto text-base font-bold">In Stock</p>
+                <p className="text-red-700 flex font-bold">
+                  <span className="text-xs mt-1">$</span>
+                  <span className=" text-xl">{book_price_integer}</span>
+                  <span className="text-xs mt-1">{book_price_fraction}</span>
+                </p>                
               </div>
+                <p>FREE delivery {monthNames[month + 1]} 1 - 3 on your first order</p>
+                <p>Usually ships within 1 week.</p>
 
-              <button className="text-sm text-center border-yellow-500 bg-yellow-400 w-full py-1 rounded hover:bg-yellow-500" onClick={handleAddToCart}>
+              <button
+                className="text-sm text-center border-yellow-500 bg-yellow-400 w-full py-1 rounded hover:bg-yellow-500"
+                onClick={handleAddToCart}
+              >
                 Add to Cart
+              </button>
+
+              <button
+                className="text-sm text-center border-yellow-500 bg-orange-400 w-full py-1 rounded hover:bg-orange-500"
+                onClick={() => navigate('/checkout')}
+              >
+                Buy now
               </button>
             </div>
           </div>

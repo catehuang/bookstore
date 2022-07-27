@@ -31,7 +31,7 @@ function Product_Books({ book }) {
                                                 <div className="text-amber-500">
                                                         <Rating
                                                                 name="text-feedback"
-                                                                value={`${book.stars}`}
+                                                                value={Number(`${book.stars}`)}
                                                                 readOnly
                                                                 precision={0.5}
                                                                 size="small"
