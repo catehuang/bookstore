@@ -15,9 +15,20 @@ function Book() {
   const navigate = useNavigate();
   const newDate = new Date();
   const month = newDate.getMonth();
-  const monthNames = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
-];
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
   useEffect(() => {
     const getBook = async () => {
@@ -61,11 +72,11 @@ function Book() {
 
             <div className="text-amber-500 flex gap-2">
               <p>
-                  <Rating
-                    value={Number(`${book.stars}`)}
-                    precision={0.5}
-                    size="small"
-                    readOnly
+                <Rating
+                  value={Number(`${book.stars}`)}
+                  precision={0.5}
+                  size="small"
+                  readOnly
                 />
               </p>
 
@@ -82,11 +93,27 @@ function Book() {
                   <span className="text-xs mt-1">$</span>
                   <span className=" text-xl">{book_price_integer}</span>
                   <span className="text-xs mt-1">{book_price_fraction}</span>
-                </p>                
+                </p>
               </div>
-                <p>FREE delivery {monthNames[month + 1]} 1 - 3 on your first order</p>
-                <p>Usually ships within 1 week.</p>
-
+              <p>
+                FREE delivery {monthNames[month + 1]} 1 - 3 on your first order
+              </p>
+              <p>Usually ships within 1 week.</p>
+              <div className="flex gap-2">
+                <div className="flex gap-5">
+                  <p className="my-auto text-base">Quantity: </p>
+                  <select
+                    className="border border-gray-400 rounded px-1"
+                    onChange={(e) => setQuantity(e.target.value)}
+                  >
+                    {Array.from({ length: 10 }, (_, num) => (
+                      <option key={num + 1} value={num + 1}>
+                        {num + 1}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
               <button
                 className="text-sm text-center border-yellow-500 bg-yellow-400 w-full py-1 rounded hover:bg-yellow-500"
                 onClick={handleAddToCart}
@@ -96,7 +123,7 @@ function Book() {
 
               <button
                 className="text-sm text-center border-yellow-500 bg-orange-400 w-full py-1 rounded hover:bg-orange-500"
-                onClick={() => navigate('/checkout')}
+                onClick={() => navigate("/checkout")}
               >
                 Buy now
               </button>
