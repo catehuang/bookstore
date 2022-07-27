@@ -44,6 +44,7 @@ function Book() {
 
   const handleAddToCart = () => {
     dispatch(addProduct({ ...book, quantity }));
+    navigate('/');
   };
 
   const book_price_integer = Math.floor(book.price);
