@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Books from '../components/Book';
 import { publicRequest } from '../publicRequest';
+import Banner from '../components/Banner';
 
 function Home() {
         const [ books, setBooks ] = useState([]);
@@ -23,6 +24,7 @@ function Home() {
         }, []);
   return (
     <div className="w-full">
+            <Banner />
                 <main className='grid sm:grid-cols-3 md:grid-cols-4  lg:grid-cols-5 xl:grid-cols-6  2xl:grid-cols-7 grid-flow-row gap-x-2 gap-y-10 py-10 px-auto'>
                         {
                                 books.map(book =>
