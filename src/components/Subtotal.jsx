@@ -10,7 +10,7 @@ function Subtotal() {
         const navigate = useNavigate();
 
         return (
-                <div className="w-80 h-fit p-10 invisible lg:visible bg-white rounded-lg flex flex-col gap-5">
+                <div className="w-80 h-fit p-10 bg-white rounded-lg flex flex-col gap-5">
                         <div className="flex text-xs gap-2">
                                 <span className="text-green-700"><CheckCircleIcon /></span>
                                 <p>Your order qualifies for FREE shipping (excludes remote locations). Choose this option at checkout. Details</p>
