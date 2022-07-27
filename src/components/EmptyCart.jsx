@@ -24,7 +24,7 @@ function EmptyCart() {
                                                                 Sign in your account
                                                         </button>
                                                 </Link>
-                                                <Link to="/login">
+                                                <Link to="/register">
                                                         <button className="border border-gray-300 bg-white w-full rounded hover:bg-amber-300 py-1 px-4">
                                                                 Sign up now
                                                         </button>
