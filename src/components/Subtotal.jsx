@@ -1,13 +1,18 @@
-import React from 'react';
-import { useSelector } from "react-redux";
+import React, { useEffect, useState }  from 'react';
+import { useSelector  } from "react-redux";
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import CurrencyFormat from 'react-currency-format';
 import { useNavigate } from 'react-router-dom';
 
 function Subtotal() {
-        const cart = useSelector((state) => state.cart.products.length);
-        const total = useSelector((state) => state.cart.total);
+        const cart = useSelector(state => state.cart);
+        const cartTotal = useSelector(state => state.cart.total);
+        const [total, setTotal] = useState(cartTotal);
         const navigate = useNavigate();
+  
+        useEffect(() => {
+               setTotal(cartTotal);
+        },[cartTotal]);
 
         return (
                 <div className="w-80 h-fit p-10 bg-white rounded-lg flex flex-col gap-5">
@@ -20,7 +25,7 @@ function Subtotal() {
                                 renderText={(value) => (
                                         <div className="text-lg flex flex-col gap-3">
                                                 <div className="flex justify-between">
-                                                        <p className="">Subtotal ({cart} items):</p>
+                                                        <p className="">Subtotal ({cart.quantity} item{cart.quantity > 1? 's)':')'} :</p>
                                                         <p className="font-bold">{value}</p>
                                                 </div>
                                                 <p className="text-sm">
