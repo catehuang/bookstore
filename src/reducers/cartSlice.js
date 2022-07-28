@@ -33,12 +33,12 @@ const cartSlice = createSlice({
       const existingCartItem = state.products.find(
         (product) => product._id === action.payload._id
       );
-      // the adding item is in carr, find the state of existing item in cart
+      // the adding item is in cart, find the state of existing item in cart
       if (existingCartItem) {
         // looping thorugh all items in cart to find the adding item, then update the quantity
         state.products = state.products.map((product) =>
           product._id === action.payload._id
-            ? { ...product, quantity: state.quantity+Number(action.payload.quantity) }
+            ? { ...product, quantity: product.quantity+Number(action.payload.quantity) }
             : product
         );
         // adjust the total price
@@ -48,22 +48,21 @@ const cartSlice = createSlice({
         );
       } else {
         // the adding item isn't in cart, push the adding item into cart
-        state.quantity += Number(action.payload.quantity);
+        state.quantity += 1;
         state.products.push(action.payload);
         state.total += action.payload.price * Number(action.payload.quantity);
       }
     },
     updateProduct: (state, action) => {
+      // find the same item in cart
       const existingCartItem = state.products.find(
         (product) => product._id === action.payload._id
       );
-      // check the updating item is in cart
+      
       if (existingCartItem) {
-        console.log(action.payload.quantity);
-        console.log(state.quantity);
         // looping therough all items in cart to find out the updating item, then update the quantity
         state.products = state.products.map((product) =>
-          product._id !== action.payload._id
+          product._id === action.payload._id
             ? { ...product, quantity: Number(action.payload.quantity) }
             : product
         );
@@ -74,9 +73,6 @@ const cartSlice = createSlice({
       }
     },
     deleteProduct: (state, action) => {
-      // const existingCartItem = state.products.find(
-      //   (product) => product._id === action.payload._id
-      // );
       state.products = state.products.filter(product => product._id !== action.payload._id);
       state.quantity -= 1;
       state.total = state.products.reduce(
