@@ -13,10 +13,11 @@ const LocalStrategy = require("passport-local");
 const flash = require('connect-flash');
 const User = require('./models/user');
 
-app.use(cors({ origin: true }));
-
 // In Express >= 4.16, body parser has been re-added under the methods express.json()
 app.use(express.json());
+app.use(cors({ origin: true, credentials: true }));
+
+
 
 mongoose.connect(URL);
 const db = mongoose.connection;
