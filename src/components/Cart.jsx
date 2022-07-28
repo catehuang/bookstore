@@ -7,15 +7,16 @@ import { updateProduct, deleteProduct } from "../reducers/cartSlice";
 
 function Cart({ cart }) {
         const cartItem = useSelector(state => state.cart.products);
-        const [quantity, setQuantity] = useState(cartItem.find((item => item._id === cart._id)).quantity);
+        const total = useSelector(state => state.cart.total);
+        const [quantity, setQuantity]= useState(cartItem.find((item => item._id === cart._id)).quantity);
         const dispatch = useDispatch();
 
-        useEffect(() => {
-                dispatch(updateProduct({ ...cartItem, quantity }));
-        }, [quantity])
-                
-        console.log(quantity);
         console.log(cartItem);
+        useEffect(() => {
+                dispatch(updateProduct({ ...cart, quantity }));
+                console.log(cartItem);
+                console.log(total);
+        }, [quantity])
 
         return (
                 <div>
