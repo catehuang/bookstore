@@ -18,7 +18,7 @@ function Advertizing() {
                                 </span>
                         </div>
                         <div className="my-auto flex-none">
-                                <p className="border py-1 px-4 rounded-lg bg-gray-300 text-sm">
+                                <p className="border py-1 px-4 rounded bg-gray-300 text-sm">
                                         Learn more
                                 </p>
                         </div>
