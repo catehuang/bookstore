@@ -48,4 +48,6 @@ export const {
   loginFailure,
   logout,
 } = userSlice.actions;
+
 export default userSlice.reducer;
+
