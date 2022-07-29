@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { publicRequest } from "../publicRequest";
 import { Rating } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../reducers/cartSlice";
+import axios from "../axios";
+
 
 function Book() {
   // return an object
@@ -33,7 +34,7 @@ function Book() {
   useEffect(() => {
     const getBook = async () => {
       try {
-        const response = await publicRequest.get(`/books/find/${id}`);
+        const response = await axios.get(`/books/find/${id}`);
         setBook(response.data);
       } catch (error) {
         console.log(error.message);

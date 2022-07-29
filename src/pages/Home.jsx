@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Books from '../components/Book';
-import { publicRequest } from '../publicRequest';
+import axios from "../axios";
 import Banner from '../components/Banner';
 
 function Home() {
@@ -10,7 +10,7 @@ function Home() {
                 const getBooks = async () => {
                         try {
                                 // the data set formed in arrays
-                                const response = await publicRequest.get(`/books`);
+                                const response = await axios.get(`/books`);
                                 //console.log(response);
                                 setBooks(response.data);
                         }

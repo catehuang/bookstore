@@ -2,12 +2,18 @@ import React from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Badge from '@mui/material/Badge';
+import { logout } from '../reducers/userSlice';
 
 function Header() {
   const user = useSelector((state) => state.user.currentUser);
   const cart = useSelector((state) => state.cart.products.length);
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+  }
 
   return (
     <div className="px-10 py-3 bg-[#00131a] text-gray-200">
@@ -26,7 +32,7 @@ function Header() {
         <div className="">
           <div>
             {user ? (
-              <p>Hello {user.username}</p>
+              <p>Hi {user.username}</p>
             ) : (
               <Link to="/login">
                 <p>Login</p>
@@ -36,9 +42,9 @@ function Header() {
         </div>
         <div className="flex-none">
           {user ? (
-            <Link to="/logout">
-              <p>Logout</p>
-            </Link>
+
+          <button onClick={handleLogout}>Logout</button>
+
           ) : (
             <Link to="/register">
               <p>Sign up</p>

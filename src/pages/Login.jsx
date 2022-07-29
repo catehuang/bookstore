@@ -48,12 +48,17 @@ function Login() {
                 e.preventDefault();
 
                 if (formValidated) {
-                        UserLogin(dispatch, {
-                                username,
-                                password,
-                        });
-                        if (!loginError)
-                                navigate('/');
+                        try {
+                                const userData = UserLogin(dispatch, {
+                                        username,
+                                        password,
+                                });
+                                //console.log(userData);
+                        } catch(err)
+                        {
+                                console.log("err");
+                        }
+
                 }
         };
        

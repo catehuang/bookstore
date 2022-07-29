@@ -1,10 +1,16 @@
-import { publicRequest } from "../publicRequest";
+import axios from "../axios";
+import { useContext } from 'react';
+//import AuthContext from '../context/AuthProvider';
 import { loginStart, loginSuccess, loginFailure, registerSuccess, registerFailure  } from "../reducers/userSlice";
 
 export const UserRegister = async (dispatch, user) => {
         try {
-                const response = await publicRequest.post("/register", user);
-                //console.log(response);
+                const response = await axios.post("/register", user,
+                        {
+                        headers: { 'Content-Type': 'application/json' },
+                        withCredentials: true
+                    });
+                console.log(response?.accessToken);
                 dispatch(registerSuccess(response.data));
         } catch (error) {
                 // username or email exists or other problems
@@ -22,14 +28,30 @@ export const UserRegister = async (dispatch, user) => {
 };
 
 export const UserLogin = async (dispatch, user) => {
+        //const { setAuth } = useContext(AuthContext);
         dispatch(loginStart());
         try {
-                const response = await publicRequest.post("/login", user);
-                //console.log(response);
+                const response = await axios.post("/login", user,
+                {
+                        headers: { 'Content-Type': 'application/json' },
+                        withCredentials: true
+                    });
+                    const accessToken = response?.data?.accessToken;
+                   // setAuth({ user, accessToken });
+                console.log(accessToken);
                 dispatch(loginSuccess(response.data));
-                //console.log(response.data);
-        } catch (error) {
+                console.log(response.data);
+        } catch (err) {
+                // if (!err?.originalStatus) {
+                //         // isLoading: true until timeout occurs
+                //         setErrMsg('No Server Response');
+                //     } else if (err.originalStatus === 400) {
+                //         setErrMsg('Missing Username or Password');
+                //     } else if (err.originalStatus === 401) {
+                //         setErrMsg('Unauthorized');
+                //     } else {
+                //         setErrMsg('Login Failed');
+                //     }
                 dispatch(loginFailure());
-                //console.log(error);
         }
 };

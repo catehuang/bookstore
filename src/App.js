@@ -17,12 +17,12 @@ function App() {
     <BrowserRouter>
     <Header />
       <Routes>
-      <Route path="/checkout" element={<Checkout/>}></Route>
-       <Route path="/logout" element={<Home/>}></Route>
-        <Route path="/login" element={ user? <Navigate to="/" /> : <Login/>}></Route>
-        <Route path="/register" element={ user ? <Navigate to="/" /> : <Register/>}></Route>
-        <Route path="/books/:id" element={<Book/>}></Route>
-        <Route path="/" element={<Home />}></Route>
+      <Route path="/checkout" element={<Checkout/>} />
+       <Route path="/logout" element={<Home/>} />
+        <Route path="/login" element={ user? <Navigate to="/" /> : <Login/>} />
+        <Route path="/register" element={ user ? <Navigate to="/" /> : <Register/>} />
+        <Route path="/books/:id" element={<Book/>} />
+        <Route path="/" element={<Home />} />
       </Routes>
       <Footer />
     </BrowserRouter>

@@ -17,8 +17,6 @@ const User = require('./models/user');
 app.use(express.json());
 app.use(cors({ origin: true, credentials: true }));
 
-
-
 mongoose.connect(URL);
 const db = mongoose.connection;
 

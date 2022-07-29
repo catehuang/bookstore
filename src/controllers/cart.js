@@ -1,9 +1,9 @@
-import { publicRequest } from "../publicRequest";
+import axios from "../axios";
 import { newCart, setCart } from "../reducers/cartSlice";
 
 export const CreateCart = async (dispatch, userId) => {
         try {
-                const response = await publicRequest.post(`carts/new/${userId}`, {
+                const response = await axios.post(`carts/new/${userId}`, {
                         userId: userId,
                 });
                 dispatch(newCart(response.data));
@@ -14,7 +14,7 @@ export const CreateCart = async (dispatch, userId) => {
 
 export const LoadCart = async (dispatch, userId) => {
         try {
-                const response = await publicRequest.get(`/carts/find/${userId}`);
+                const response = await axios.get(`/carts/find/${userId}`);
 
                 //console.log(response.data);
                 //console.log(userId);
@@ -31,7 +31,7 @@ export const LoadCart = async (dispatch, userId) => {
 
 export const UpdateCart = async (cart) => {
         try {
-                const response = await publicRequest.put(`/carts/${cart._id}`, {
+                const response = await axios.put(`/carts/${cart._id}`, {
                         body: cart,
                 });
                 console.log(response.data);
