@@ -3,17 +3,16 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { UserRegister, UserLogin } from "../api/user";
+import { UserRegister } from "../api/user";
 
 function Register() {
         const [email, setEmail] = useState("");
         const [username, setUsername] = useState("");
         const [password, setPassword] = useState("");
         const [passwordShown, setPsswordShown] = useState(false);
-        const { registerError, loginError, registerErrorCode } = useSelector(
+        const { registerError, registerErrorCode } = useSelector(
                 (state) => state.user
         );
-        const navigate = useNavigate();
         const dispatch = useDispatch();
         const [validEmail, setValidEmail] = useState(false);
         const [validUsername, setValidUsername] = useState(false);
@@ -64,20 +63,6 @@ function Register() {
                         {
                                 console.log("Failed to register");
                         }
-
-                        // try {
-                        //         UserLogin(dispatch, {
-                        //                 username,
-                        //                 password,
-                        //         }); 
-                        // }
-                        // catch(err)
-                        // {
-                        //         console.log("Failed to login");
-                        // }
-
-                        // if (!loginError && !registerError)
-                        //         navigate('/');
                 }
         };
 

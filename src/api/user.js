@@ -1,6 +1,5 @@
 import axios from "../axios";
-import { useContext } from "react";
-//import AuthContext from '../context/AuthProvider';
+
 import {
         loginStart,
         loginSuccess,
@@ -40,16 +39,6 @@ export const UserLogin = async (dispatch, user) => {
                 console.log(response.data);
                // console.log(response.data);
         } catch (err) {
-                // if (!err?.originalStatus) {
-                //         // isLoading: true until timeout occurs
-                //         setErrMsg('No Server Response');
-                //     } else if (err.originalStatus === 400) {
-                //         setErrMsg('Missing Username or Password');
-                //     } else if (err.originalStatus === 401) {
-                //         setErrMsg('Unauthorized');
-                //     } else {
-                //         setErrMsg('Login Failed');
-                //     }
                 console.log(err);
                 dispatch(loginFailure());
         }

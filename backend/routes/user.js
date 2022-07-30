@@ -133,15 +133,6 @@ router.get("/logout", verifyUser, async (req, res) => {
                 res.json({ success: true })
             }
         })
-
-        //req.logout();
-        
-        //     res.send(400);
-        //   } catch (err) {
-        //     res.status(500).json({ err });
-        //   }
-        //console.log(req.session.user_id);
-        // req.session.user_id = null;
     }
     catch(err)
     {
