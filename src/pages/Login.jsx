@@ -3,9 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
-import { UserLogin } from "../controllers/user";
+import { UserLogin } from "../api/user";
+import { CreateCart, LoadCart } from "../api/cart";
+
 
 function Login() {
+        const cart = useSelector(state => state.cart);
         const [username, setUsername] = useState("");
         const [password, setPassword] = useState("");
         const [passwordShown, setPsswordShown] = useState(false);
@@ -53,12 +56,11 @@ function Login() {
                                         username,
                                         password,
                                 });
-                                //console.log(userData);
-                        } catch(err)
+                        } 
+                        catch(err)
                         {
-                                console.log("err");
+                                console.log(err);
                         }
-
                 }
         };
        
@@ -83,7 +85,7 @@ function Login() {
                                                         type="text"
                                                         value={username}
                                                         onChange={(e) => validateUsername(e.target.value)}
-                                                        className="border rounded-lg py-1 px-2 w-full"
+                                                        className="border rounded py-1 px-2 w-full"
                                                 />
                                         </div>
 
@@ -97,11 +99,11 @@ function Login() {
                                                                 onChange={(e) => validatePassword(e.target.value)}
                                                                 className="py-1 px-2 w-full"
                                                         />
-                                                        <button onClick={togglePassword}>
+                                                        <button onClick={togglePassword} className="pr-1">
                                                                 {passwordShown ? (
-                                                                        <VisibilityIcon color="action" />
+                                                                        <VisibilityIcon color="action" fontSize="small"/>
                                                                 ) : (
-                                                                        <VisibilityOffIcon color="action" />
+                                                                        <VisibilityOffIcon color="action" fontSize="small"/>
                                                                 )}
                                                         </button>
                                                 </div>

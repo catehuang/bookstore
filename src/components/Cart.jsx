@@ -11,7 +11,7 @@ function Cart({ cart }) {
         const [quantity, setQuantity]= useState(cartItem.find((item => item._id === cart._id)).quantity);
         const dispatch = useDispatch();
 
-        console.log(cartItem);
+        //console.log(cartItem);
         useEffect(() => {
                 dispatch(updateProduct({ ...cart, quantity }));
                 console.log(cartItem);

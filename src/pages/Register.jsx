@@ -3,7 +3,7 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { UserRegister } from "../controllers/user";
+import { UserRegister, UserLogin } from "../api/user";
 
 function Register() {
         const [email, setEmail] = useState("");
@@ -53,13 +53,31 @@ function Register() {
                 e.preventDefault();
 
                 if (formValidated) {
-                        UserRegister(dispatch, {
-                                email,
-                                username,
-                                password,
-                        });
-                        if (!loginError && !registerError)
-                                navigate('/');
+                        try {
+                                UserRegister(dispatch, {
+                                        email,
+                                        username,
+                                        password,
+                                }); 
+                        }
+                        catch(err)
+                        {
+                                console.log("Failed to register");
+                        }
+
+                        // try {
+                        //         UserLogin(dispatch, {
+                        //                 username,
+                        //                 password,
+                        //         }); 
+                        // }
+                        // catch(err)
+                        // {
+                        //         console.log("Failed to login");
+                        // }
+
+                        // if (!loginError && !registerError)
+                        //         navigate('/');
                 }
         };
 
@@ -79,7 +97,7 @@ function Register() {
                                                 </p>
                                         </div>
                                 )}
-                                { registerError && registerErrorCode===2 && (
+                                { registerError && registerErrorCode === 2 && (
                                         <div className="text-red-600 text-center bg-red-100 py-1">
                                                 This username exists. Please choose another one.
                                         </div>
@@ -146,9 +164,9 @@ function Register() {
                                                         />
                                                         <button onClick={togglePassword}>
                                                                 {passwordShown ? (
-                                                                        <VisibilityIcon color="action" />
+                                                                        <VisibilityIcon color="action" fontSize="small" className="pr-1" />
                                                                 ) : (
-                                                                        <VisibilityOffIcon color="action" />
+                                                                        <VisibilityOffIcon color="action" fontSize="small" className="pr-1" />
                                                                 )}
                                                         </button>
                                                 </div>

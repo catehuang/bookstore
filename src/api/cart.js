@@ -1,9 +1,15 @@
 import axios from "../axios";
 import { newCart, setCart } from "../reducers/cartSlice";
+const user = JSON.parse(localStorage.getItem("persist:root"))?.user;
+const currentUser = user && JSON.parse(user).currentUser;
+const TOKEN = currentUser?.accessToken;
+const axioAuth = axios.create({
+        headers: { token: `Bearer ${TOKEN}` },
+});
 
 export const CreateCart = async (dispatch, userId) => {
         try {
-                const response = await axios.post(`carts/new/${userId}`, {
+                const response = await axioAuth.post(`carts/new/${userId}`, {
                         userId: userId,
                 });
                 dispatch(newCart(response.data));
@@ -14,7 +20,7 @@ export const CreateCart = async (dispatch, userId) => {
 
 export const LoadCart = async (dispatch, userId) => {
         try {
-                const response = await axios.get(`/carts/find/${userId}`);
+                const response = await axioAuth.get(`/carts/find/${userId}`);
 
                 //console.log(response.data);
                 //console.log(userId);
@@ -31,7 +37,7 @@ export const LoadCart = async (dispatch, userId) => {
 
 export const UpdateCart = async (cart) => {
         try {
-                const response = await axios.put(`/carts/${cart._id}`, {
+                const response = await axioAuth.put(`/carts/${cart._id}`, {
                         body: cart,
                 });
                 console.log(response.data);

@@ -1,23 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Badge from '@mui/material/Badge';
 import { logout } from '../reducers/userSlice';
+import { logoutCart, clearCart } from '../reducers/cartSlice';
+import { UserLogout } from '../api/user';
 
 function Header() {
   const user = useSelector((state) => state.user.currentUser);
-  const cart = useSelector((state) => state.cart.products.length);
+  const cart = useSelector((state) => state.cart.quantity);
   const dispatch = useDispatch();
 
   const handleLogout = () => {
+    try {
+      console.log(user);
+      //UserLogout(user);
+    } catch (err)
+    {
+      console.log(err);
+    }
     dispatch(logout());
+    dispatch(logoutCart());
+    dispatch(clearCart());
+    // dispatch(logoutOrder());
   }
+
 
   return (
     <div className="px-10 py-3 bg-[#00131a] text-gray-200">
-      <div className="flex gap-3">
+      <div className="flex gap-10">
         <div className="text-xl first-letter:font-bold">
           <Link to="/">BookStore</Link>
         </div>
@@ -32,7 +45,7 @@ function Header() {
         <div className="">
           <div>
             {user ? (
-              <p>Hi {user.username}</p>
+              <p>Hi, {user.username}</p>
             ) : (
               <Link to="/login">
                 <p>Login</p>
