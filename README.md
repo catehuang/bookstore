@@ -8,4 +8,4 @@ This project will use the following libraries
 * Axios
 * Express
 * mongoose
-* passport, passport-local, passport-local-mongoose
+* passport, passport-local, passport-local-mongoose, passport-jwt, jsonwebtoken
