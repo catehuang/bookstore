@@ -14,8 +14,8 @@ function Cart({ cart }) {
         //console.log(cartItem);
         useEffect(() => {
                 dispatch(updateProduct({ ...cart, quantity }));
-                console.log(cartItem);
-                console.log(total);
+                //console.log(cartItem);
+                //console.log(total);
         }, [quantity])
 
         return (

@@ -15,16 +15,16 @@ function Header() {
 
   const handleLogout = () => {
     try {
-      console.log(user);
-      //UserLogout(user);
+      UserLogout(user);
+      dispatch(logoutCart());
+      dispatch(clearCart());
+    // dispatch(logoutOrder());
+    console.log("logout successfully")
     } catch (err)
     {
       console.log(err);
     }
-    dispatch(logout());
-    dispatch(logoutCart());
-    dispatch(clearCart());
-    // dispatch(logoutOrder());
+
   }
 
 

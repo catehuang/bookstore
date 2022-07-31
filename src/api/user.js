@@ -1,5 +1,4 @@
-import axios from "../axios";
-
+import { axios }  from "../axios";
 import {
         loginStart,
         loginSuccess,
@@ -9,16 +8,18 @@ import {
         logout,
 } from "../reducers/userSlice";
 
+
 export const UserRegister = async (dispatch, user) => {
         try {
                 const response = await axios.post("/register", user, {
                         headers: { "Content-Type": "application/json" },
                         withCredentials: true,
                 });
-                //console.log("registered");
+                
                 dispatch(registerSuccess(response.data));
                 dispatch(loginSuccess(response.data));
-                //console.log(response);
+                // console.log("registered");
+                // console.log(response.data);
         } catch (err) {
                 //console.log("UserRegister failed");
                 if (err.response.data.err.name === "UserExistsError")
@@ -36,20 +37,26 @@ export const UserLogin = async (dispatch, user) => {
                         withCredentials: true,
                 });
                 dispatch(loginSuccess(response.data));
-                console.log(response.data);
-               // console.log(response.data);
+                // console.log("login");
+                // console.log(response.data);
         } catch (err) {
                 console.log(err);
                 dispatch(loginFailure());
         }
 };
 
-export const UserLogout = async (dispatch, user) => {
+export const UserLogout = async (user) => {
         try {
-                const response = await axios.get("/logout", user, {
-                        headers: { "Content-Type": "application/json" },
-                        withCredentials: true,
+                const token = user.accessToken;
+                //console.log(token);
+                const axiosAuth = axios.create({
+                        headers: { token: `Bearer ${token}` },
                 });
+                //console.log(token);
+                const response = await axiosAuth.get("/logout", user);
+                dispatch(logout());
+                // console.log("logout");
+                // console.log(response);
         } catch (err) {
                 console.log(err);
         }

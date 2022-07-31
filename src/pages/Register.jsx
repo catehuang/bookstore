@@ -3,7 +3,7 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { UserRegister } from "../api/user";
+import { UserRegister, UserLogin } from "../api/user";
 
 function Register() {
         const [email, setEmail] = useState("");
@@ -62,7 +62,7 @@ function Register() {
                         catch(err)
                         {
                                 console.log("Failed to register");
-                        }
+                        }          
                 }
         };
 

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Rating } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../reducers/cartSlice";
-import axios from "../axios";
+import { axios } from "../axios";
 import { UpdateCart } from "../api/cart";
 
 
@@ -48,11 +48,11 @@ function Book() {
 
     const handleAddToCart = () => {
         dispatch(addProduct({ ...book, quantity }));
-        if (user)
-        {
-            UpdateCart(cart);
-            console.log(cart);
-        }
+        // if (user)
+        // {
+        //     UpdateCart(cart);
+        //     console.log(cart);
+        // }
         navigate('/');     
     }
 

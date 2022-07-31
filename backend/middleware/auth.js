@@ -1,28 +1,24 @@
-const passport = require("passport");
 const jwt = require("jsonwebtoken");
-const dev = process.env.NODE_ENV !== "production";
 
-exports.COOKIE_OPTIONS = {
-  httpOnly: true,
-  // Since localhost is not having https protocol,
-  // secure cookies do not work correctly (in postman)
-  secure: !dev,
-  signed: true,
-  maxAge: 1000 * 60 * 60 * 24 * 1000,
-  sameSite: "none",
+const verifyToken = (req, res, next) => {
+    const authHeader = req.headers.token;
+    console.log(req.headers);
+    if (authHeader) {
+        const token = authHeader.split(" ")[1];
+        jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+            if (err) {
+                res.status(403).json("Token is not valid!");
+            } else {
+                req.user = user;
+                //console.log("veryifyToken +" + req.user);
+                next(); //leave this function
+            }
+        });
+    } else {
+        return res.status(401).json("You are not authenticated!");
+    }
 };
 
-exports.getToken = (user) => {
-  return jwt.sign(user, process.env.JWT_SECRET, {
-    expiresIn: eval(process.env.SESSION_EXPIRY),
-  });
+module.exports = {
+    verifyToken,
 };
-
-exports.getRefreshToken = (user) => {
-  const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, {
-    expiresIn: eval(process.env.REFRESH_TOKEN_EXPIRY),
-  });
-  return refreshToken;
-};
-
-exports.verifyUser = passport.authenticate("jwt", { session: false });
