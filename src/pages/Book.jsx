@@ -56,7 +56,7 @@ function Book() {
         navigate('/');     
     }
 
-const book_price_integer = Math.floor(book.price);
+const book_price_integer = Math.floor(book.price).toString();
 const book_price_fraction = (book.price - Math.floor(book.price))
     .toFixed(2)
     .substring(2);
