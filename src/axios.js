@@ -1,7 +1,15 @@
-import axios from "axios";
+import axiosLib from "axios";
+// const user = JSON.parse(localStorage.getItem("persist:root"))?.user;
+// const currentUser = user && JSON.parse(user).currentUser;
+// const token = currentUser?.accessToken;
 
 const BASE_URL = "http://localhost:5000/api";
 
-export default axios.create({
+export const axios = axiosLib.create({
   baseURL: BASE_URL,
 });
+
+// export const axiosAuth = axiosLib.create({
+//   baseURL: BASE_URL,
+//   headers: { token: `Bearer ${token}` },
+// });
