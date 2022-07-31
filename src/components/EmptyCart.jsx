@@ -1,8 +1,12 @@
 
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function EmptyCart() {
+
+        const user = useSelector (state => state.user.currentUser);
+        const navigate = useNavigate();
 
         return (
                 <div className="grow bg-white rounded-lg p-10">
@@ -18,6 +22,7 @@ function EmptyCart() {
                                         <Link to="/">
                                                 <p className="text-cyan-600 mt-2 mb-5">Shop today's deals</p>
                                         </Link>
+                                        {!user &&
                                         <div className="grid grid-cols-2 gap-3">
                                                 <Link to="/login">
                                                         <button className="border border-yellow-300 bg-amber-200 w-full rounded hover:bg-amber-300 py-1 px-4 flex-none">
@@ -30,6 +35,13 @@ function EmptyCart() {
                                                         </button>
                                                 </Link>
                                         </div>
+                                        }
+
+                                        {user && 
+                                                <div>
+                                                        <button className="border border-yellow-300 bg-amber-200 w-full rounded hover:bg-amber-300 py-1 px-4 flex-none" onClick={() => navigate('/')}>Let's go shopping</button>       
+                                                </div>
+                                        }
                                 </div>
                         </div>
                 </div>
