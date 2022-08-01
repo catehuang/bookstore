@@ -9,3 +9,4 @@ This project will use the following libraries
 * Express
 * mongoose
 * passport, passport-local, passport-local-mongoose, passport-jwt, jsonwebtoken
+* react-stripe-checkout
