@@ -10,23 +10,17 @@ const cartSlice = createSlice({
   },
   reducers: {
     newCart: (state, action) => {
-      state.userId = action.payload.userId;
+      state.userId = action.payload._id;
       state.products = [];
       state.quantity = 0;
       state.total = 0;
     },
     setCart: (state, action) => {
-      state.userId = action.payload.userId;
+      state.userId = action.payload._id;
       state.products = action.payload.products;
-      state.quantity = action.payload.products.reduece(
-        (cartItemQuantity) => cartItemQuantity + 1,
-        0
-      );
-      state.total = action.payload.products.reduce(
-        (accumulatedTotal, product) =>
-          accumulatedTotal + product.quantity * product.price,
-        0
-      );
+      state.quantity = action.payload.products.reduce((cartItemQuantity) => cartItemQuantity + 1,0);
+      state.total = action.payload.products.reduce((accumulatedTotal, product) =>
+          accumulatedTotal + product.quantity * product.price,0);        
     },
     addProduct: (state, action) => {
       // does this item in cart

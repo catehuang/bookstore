@@ -6,7 +6,8 @@ const passport = require("passport");
 const session = require('express-session')
 const bookRoute = require("./routes/book");
 const userRoute = require("./routes/user");
-//const cartRoute = require("./routes/cart");
+const cartRoute = require("./routes/cart");
+const orderRoute = require("./routes/order");
 
 if (process.env.NODE_ENV !== "production") {
   // Load environment variables from .env file in non prod environments
@@ -54,8 +55,8 @@ app.use(passport.session())
 
 app.use("/api", userRoute);
 app.use("/api/books", bookRoute);
-//app.use("/api/carts", cartRoute);
-// app.use("/api/orders", ordersRoute);
+app.use("/api/carts", cartRoute);
+app.use("/api/orders", orderRoute);
 
 app.use(cors(corsOptions));
 

@@ -4,10 +4,13 @@ import Books from '../components/Book';
 import { axios } from "../axios";
 import Banner from '../components/Banner';
 import { LoadCart } from '../api/cart';
+import { UpdateCart } from "../api/cart";
 
 function Home() {
         const [ books, setBooks ] = useState([]);
-        const currentUser = useSelector(state => state.user.currentUser );
+        const cart = useSelector(state => state.cart);
+        const user = useSelector(state => state.user.currentUser)
+        //const currentUser = useSelector(state => state.user.currentUser );
 
         useEffect(() => {
                 const getBooks = async () => {
@@ -26,11 +29,24 @@ function Home() {
 
         }, []);
 
-        if (currentUser)
-        {
-               // console.log(currentUser);
-                //LoadCart({ currentUser });        
-        }
+        useEffect(() => {
+                if (user)
+                {
+                        const token = user.accessToken;
+                        UpdateCart({ cart, token });
+                }                   
+        }, [cart]);
+
+        // useEffect(() => {
+        //         if (currentUser)
+        //         {
+        //                 // console.log(currentUser);
+        //                 LoadCart(currentUser);        
+        //         }
+
+        // }, [currentUser])
+
+
 
   return (
     <div className="w-full">

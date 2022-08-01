@@ -5,7 +5,7 @@ import { Rating } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../reducers/cartSlice";
 import { axios } from "../axios";
-import { UpdateCart } from "../api/cart";
+
 
 
 function Book() {
@@ -48,13 +48,14 @@ function Book() {
 
     const handleAddToCart = () => {
         dispatch(addProduct({ ...book, quantity }));
+        // console.log(cart);
         // if (user)
         // {
-        //     UpdateCart(cart);
-        //     console.log(cart);
+        //     UpdateCart({cart, token});
         // }
         navigate('/');     
     }
+
 
 const book_price_integer = Math.floor(book.price).toString();
 const book_price_fraction = (book.price - Math.floor(book.price))

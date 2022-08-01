@@ -1,4 +1,6 @@
 import { axios }  from "../axios";
+import { LoadOrders } from "./order";
+import { LoadCart } from "./cart";
 import {
         loginStart,
         loginSuccess,
@@ -7,7 +9,6 @@ import {
         registerFailure,
         logout,
 } from "../reducers/userSlice";
-
 
 export const UserRegister = async (dispatch, user) => {
         try {
@@ -18,10 +19,10 @@ export const UserRegister = async (dispatch, user) => {
                 
                 dispatch(registerSuccess(response.data));
                 dispatch(loginSuccess(response.data));
-                // console.log("registered");
+                console.log("Registered. Welcome " + response.data.username + " !");
                 // console.log(response.data);
         } catch (err) {
-                //console.log("UserRegister failed");
+                console.log(err);
                 if (err.response.data.err.name === "UserExistsError")
                         dispatch(registerFailure(2));
                 else if (err.response.data.err.code === 11000) dispatch(registerFailure(3));
@@ -36,27 +37,22 @@ export const UserLogin = async (dispatch, user) => {
                         headers: { "Content-Type": "application/json" },
                         withCredentials: true,
                 });
+                
                 dispatch(loginSuccess(response.data));
-                // console.log("login");
                 // console.log(response.data);
+                console.log("Login successfully. Welcome " + response.data.username + " !");
+                LoadCart(dispatch, response.data);
+                LoadOrders(dispatch, response.data);
         } catch (err) {
                 console.log(err);
                 dispatch(loginFailure());
         }
 };
 
-export const UserLogout = async (user) => {
+export const UserLogout = async () => {
         try {
-                const token = user.accessToken;
-                //console.log(token);
-                const axiosAuth = axios.create({
-                        headers: { token: `Bearer ${token}` },
-                });
-                //console.log(token);
-                const response = await axiosAuth.get("/logout", user);
-                dispatch(logout());
-                // console.log("logout");
-                // console.log(response);
+                const response = await axios.get("/logout");
+                console.log("Logout successfully. See you soon!")
         } catch (err) {
                 console.log(err);
         }

@@ -48,15 +48,14 @@ router.post("/login", passport.authenticate("local"), async (req, res) => {
       accessToken,
     });
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(500).json({ err });
   }
 });
 
 // logout
-router.get("/logout", verifyToken, async (req, res) => {
+router.get("/logout", async (req, res) => {
   try {
-    const foundUser = await User.findById(req._id);
     req.session.destroy();
     req.logout;
     res.json({ success: true });

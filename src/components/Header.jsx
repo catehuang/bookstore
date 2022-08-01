@@ -1,30 +1,30 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Badge from '@mui/material/Badge';
-import { logout } from '../reducers/userSlice';
 import { logoutCart, clearCart } from '../reducers/cartSlice';
+import { logout } from "../reducers/userSlice";
 import { UserLogout } from '../api/user';
 
 function Header() {
-  const user = useSelector((state) => state.user.currentUser);
+  const user= useSelector(state => state.user.currentUser);
   const cart = useSelector((state) => state.cart.quantity);
   const dispatch = useDispatch();
-
+ 
   const handleLogout = () => {
     try {
-      UserLogout(user);
-      dispatch(logoutCart());
-      dispatch(clearCart());
+      UserLogout();
     // dispatch(logoutOrder());
-    console.log("logout successfully")
+    //console.log("logout successfully")
     } catch (err)
     {
       console.log(err);
     }
-
+    dispatch(logout());
+    dispatch(logoutCart());
+    dispatch(clearCart());
   }
 
 

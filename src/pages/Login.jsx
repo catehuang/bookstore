@@ -52,7 +52,7 @@ function Login() {
 
                 if (formValidated) {
                         try {
-                                const userData = UserLogin(dispatch, {
+                                UserLogin(dispatch, {
                                         username,
                                         password,
                                 });
@@ -61,6 +61,7 @@ function Login() {
                         {
                                 console.log(err);
                         }
+                        
                 }
         };
        

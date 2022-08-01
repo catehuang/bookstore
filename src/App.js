@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Book from "./pages/Book";
 import Checkout from "./pages/Checkout";
+import Payment from "./pages/Payment";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -17,6 +18,7 @@ function App() {
     <BrowserRouter>
     <Header />
       <Routes>
+        <Route path="/payment" element={user? <Payment /> : <Navigate to="/login" /> } />
       <Route path="/checkout" element={<Checkout/>} />
        <Route path="/logout" element={<Home/>} />
         <Route path="/login" element={ user? <Navigate to="/" /> : <Login/>} />

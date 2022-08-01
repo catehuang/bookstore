@@ -18,7 +18,7 @@ function Checkout() {
                         <div className="my-10 flex gap-5 flex-wrap">
                                 {/* main left window */}
                                 <div className="grow">
-                                        {!user && cartLength === 0 && <EmptyCart />}
+                                        {cartLength === 0 && <EmptyCart />}
                                         {cartLength !== 0 && (
                                                 <div className="flex flex-col gap-5 py-10 bg-white rounded-lg">
                                                         <div className="flex justify-between px-16">
@@ -32,9 +32,7 @@ function Checkout() {
                                         )}
                                 </div>
                                 {/* main right window */}
-                                <div className="">
-                                        <Subtotal />
-                                </div>
+                                 <Subtotal />
                         </div>
 
                         {/* more info on the bottom */}
