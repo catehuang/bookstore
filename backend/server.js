@@ -8,6 +8,7 @@ const bookRoute = require("./routes/book");
 const userRoute = require("./routes/user");
 const cartRoute = require("./routes/cart");
 const orderRoute = require("./routes/order");
+const paymentRoute = require("./routes/payment");
 
 if (process.env.NODE_ENV !== "production") {
   // Load environment variables from .env file in non prod environments
@@ -43,7 +44,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-
 app.use(session({
   secret: "thisisasecret",
   resave: false ,
@@ -57,9 +57,7 @@ app.use("/api", userRoute);
 app.use("/api/books", bookRoute);
 app.use("/api/carts", cartRoute);
 app.use("/api/orders", orderRoute);
-
-app.use(cors(corsOptions));
-
+app.use("/api/payments", paymentRoute);
 
 
 app.listen(process.env.PORT, () => {
