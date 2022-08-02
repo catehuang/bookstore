@@ -21,7 +21,6 @@ export const LoadCart = async (dispatch, user) => {
                 //console.log(user);
                 const token = user.accessToken;
                 const userId = user._id;
-                console.log("load request: " + userId);
 
                 const axiosAuth = axios.create({
                         headers: { token: `Bearer ${token}` },

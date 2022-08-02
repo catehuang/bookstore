@@ -37,17 +37,6 @@ function Home() {
                 }                   
         }, [cart]);
 
-        // useEffect(() => {
-        //         if (currentUser)
-        //         {
-        //                 // console.log(currentUser);
-        //                 LoadCart(currentUser);        
-        //         }
-
-        // }, [currentUser])
-
-
-
   return (
     <div className="w-full">
             <Banner />

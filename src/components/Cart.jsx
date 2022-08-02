@@ -3,9 +3,10 @@ import CurrencyFormat from "react-currency-format";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { updateProduct, deleteProduct } from "../reducers/cartSlice";
-
+import { UpdateCart } from "../api/cart";
 
 function Cart({ cart }) {
+        const user = useSelector(state => state.user.currentUser);
         const cartItem = useSelector(state => state.cart.products);
         const total = useSelector(state => state.cart.total);
         const [quantity, setQuantity]= useState(cartItem.find((item => item._id === cart._id)).quantity);
@@ -23,14 +24,14 @@ function Cart({ cart }) {
                         <div>
                                 <div className="flex gap-10 p-10 mx-5 border-gray-300 border-t">
                                         <img className="h-48" src={cart.image} />
-                                        <div className="grow flex flex-col gap-1 text-sm">
+                                        <div className="grow flex flex-col gap-1 text">
                                                 <p className="text-xl py-2"><Link to={`/books/` + cart._id}>{cart.name}</Link></p>
-                                                <p className="text-base">by {cart.author}</p>
+                                                <p className="">by {cart.author}</p>
                                                 <p className="">Paperback</p>
                                                 <p className="text-cyan-700">In Stock</p>
                                                 <div className="flex my-auto">
                                                         <input className="text-sm" type="checkbox" />
-                                                        <p className="pl-1 text-xs">This will be a gift</p>
+                                                        <p className="pl-1 text-sm">This will be a gift</p>
                                                 </div>
 
                                                 <div className="flex gap-5">
