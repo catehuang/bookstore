@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { UserRegister, UserLogin } from "../api/user";
+import { UserRegister } from "../api/user";
 
 function Register() {
         const [email, setEmail] = useState("");

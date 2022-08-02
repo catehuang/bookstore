@@ -2,16 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Rating } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addProduct } from "../reducers/cartSlice";
 import { axios } from "../axios";
 
-
-
 function Book() {
     // return an object
-    const user = useSelector(state => state.user.currentUser);
-    const cart = useSelector(state => state.cart);
     const { id } = useParams();
     const [book, setBook] = useState([]);
     const [quantity, setQuantity] = useState(1);
@@ -48,12 +44,12 @@ function Book() {
 
     const handleAddToCart = () => {
         dispatch(addProduct({ ...book, quantity }));
-        // console.log(cart);
-        // if (user)
-        // {
-        //     UpdateCart({cart, token});
-        // }
         navigate('/');     
+    }
+
+    const handleBuyNow = () => {
+        dispatch(addProduct({ ...book, quantity }));
+        navigate('/payment');     
     }
 
 
@@ -134,7 +130,7 @@ return (
 
                         <button
                             className="text-sm text-center border-yellow-500 bg-orange-400 w-full py-1 rounded hover:bg-orange-500"
-                            onClick={() => navigate("/checkout")}
+                            onClick={handleBuyNow}
                         >
                             Buy now
                         </button>

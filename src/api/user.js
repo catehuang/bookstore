@@ -1,13 +1,12 @@
 import { axios }  from "../axios";
 import { LoadOrders } from "./order";
-import { LoadCart } from "./cart";
+import { LoadCart, CreateCart } from "./cart";
 import {
         loginStart,
         loginSuccess,
         loginFailure,
         registerSuccess,
         registerFailure,
-        logout,
 } from "../reducers/userSlice";
 
 export const UserRegister = async (dispatch, user) => {
@@ -19,6 +18,7 @@ export const UserRegister = async (dispatch, user) => {
                 
                 dispatch(registerSuccess(response.data));
                 dispatch(loginSuccess(response.data));
+                CreateCart(dispatch, user);
                 console.log("Registered. Welcome " + response.data.username + " !");
                 // console.log(response.data);
         } catch (err) {
@@ -51,7 +51,7 @@ export const UserLogin = async (dispatch, user) => {
 
 export const UserLogout = async () => {
         try {
-                const response = await axios.get("/logout");
+                await axios.get("/logout");
                 console.log("Logout successfully. See you soon!")
         } catch (err) {
                 console.log(err);

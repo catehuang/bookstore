@@ -19,8 +19,10 @@ router.post("/new/:userId", verifyToken, async (req, res) => {
 // find a user cart
 router.get("/find/:userId", verifyToken, async (req, res) => {
   const userId = req.params.userId;
+  
   try {
     const cart = await Cart.findOne({ userId });
+    //console.log(cart);
     // found cart or null
     res.status(200).json(cart);
   } catch (err) {
@@ -31,7 +33,8 @@ router.get("/find/:userId", verifyToken, async (req, res) => {
 // update cart using cart _id
 router.put("/:id", verifyToken, async (req, res) => {
   const cartId = req.params.id;
-
+  //console.log(req.cartId);
+ 
   try {
     const updatedCart = await Cart.findOneAndUpdate(
       cartId ,
@@ -40,6 +43,7 @@ router.put("/:id", verifyToken, async (req, res) => {
       },
       { new: true }
     );
+    //console.log(updatedCart);
     res.status(200).json(updatedCart);
   } catch (err) {
     res.status(500).json(err);

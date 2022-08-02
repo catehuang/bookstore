@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import Books from '../components/Book';
 import { axios } from "../axios";
 import Banner from '../components/Banner';
-import { LoadCart } from '../api/cart';
-import { UpdateCart } from "../api/cart";
 
 function Home() {
         const [ books, setBooks ] = useState([]);
-        const cart = useSelector(state => state.cart);
-        const user = useSelector(state => state.user.currentUser)
-        //const currentUser = useSelector(state => state.user.currentUser );
 
         useEffect(() => {
                 const getBooks = async () => {
@@ -26,16 +20,7 @@ function Home() {
                         }
                 }
                 getBooks();
-
         }, []);
-
-        useEffect(() => {
-                if (user)
-                {
-                        const token = user.accessToken;
-                        UpdateCart({ cart, token });
-                }                   
-        }, [cart]);
 
   return (
     <div className="w-full">

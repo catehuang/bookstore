@@ -9,6 +9,7 @@ export const CreateCart = async (dispatch, user) => {
                         headers: { token: `Bearer ${token}` },
                 });
                 const response = await axiosAuth.post(`carts/new/${userId}`);
+                //console.log(response.data._id);
                 dispatch(newCart(response.data._id));
                 console.log("cart created.");
         } catch (error) {
@@ -32,6 +33,7 @@ export const LoadCart = async (dispatch, user) => {
                         CreateCart(dispatch, user);
                 } else {
                         dispatch(setCart(response.data));
+                        //console.log(response.data);
                         console.log("cart loaded.");
                 }
         } catch (error) {
@@ -45,8 +47,15 @@ export const UpdateCart = async (cart) => {
                         headers: { token: `Bearer ${cart.token}` },
                 });
                 const response = await axiosAuth.put(`/carts/${cart.cart._id}`, cart.cart);
-               //console.log(response.data);
-                //console.log("updated cart on server side.");
+                if (response.data === null)
+                {
+                        console.log("Failed to update cart on server side.");
+                }
+                else{
+                        //console.log(response.data);
+                        console.log("updated cart on server side.");                        
+                }
+
         } catch (error) { 
                 console.log(error);
         }

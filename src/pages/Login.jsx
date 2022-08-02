@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import { UserLogin } from "../api/user";
-import { CreateCart, LoadCart } from "../api/cart";
-
 
 function Login() {
-        const cart = useSelector(state => state.cart);
         const [username, setUsername] = useState("");
         const [password, setPassword] = useState("");
         const [passwordShown, setPsswordShown] = useState(false);
@@ -17,7 +14,7 @@ function Login() {
         const [formValidated, setFormValidated] = useState(false);
         const { loginError } = useSelector((state) => state.user);
         const dispatch = useDispatch();
-        const navigate = useNavigate();
+        const cart = useSelector(state => state.cart);
 
         const validateUsername = (value) => {
                 setUsername(value);

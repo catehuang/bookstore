@@ -1,22 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import Advertizing from "../components/Advertizing";
 import Cart from "../components/Cart";
 import EmptyCart from "../components/EmptyCart";
 import Subtotal from "../components/Subtotal";
-import { UpdateCart } from "../api/cart";
 
 function Checkout() {
-        const user = useSelector((state) => state.user.currentUser);
         const cart = useSelector((state) => state.cart);
-
-        useEffect(() => {
-                if (user)
-                {
-                        const token = user.accessToken;
-                        UpdateCart({ cart, token });
-                }                   
-        }, [cart]);
+        const products = cart.products;
+        console.log(cart);
+        console.log(products);
 
         return (
                 <div className="bg-gray-200 p-10">
@@ -33,8 +26,8 @@ function Checkout() {
                                                                 <p className="text-2xl font-bold">Shopping Cart</p>
                                                                 <p>Price</p>
                                                         </div>
-                                                        {cart.products.map((item) => (
-                                                                <Cart key={item._id} cart={item} />
+                                                        {products.map((item) => (
+                                                                <Cart key={item._id} product={item} />
                                                         ))}
                                                 </div>
                                         )}

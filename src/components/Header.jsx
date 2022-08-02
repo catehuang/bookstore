@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Badge from '@mui/material/Badge';
-import { logoutCart, clearCart } from '../reducers/cartSlice';
-import { logout } from "../reducers/userSlice";
+import { logoutCart, clearCart } from "../reducers/cartSlice";
 import { UserLogout } from '../api/user';
+import { logout } from "../reducers/userSlice";
+import { UpdateCart } from "../api/cart";
 
 function Header() {
   const user= useSelector(state => state.user.currentUser);
-  const cart = useSelector((state) => state.cart.quantity);
+  const cart = useSelector((state) => state.cart);
+  const quantity = cart.quantity;
   const dispatch = useDispatch();
  
   const handleLogout = () => {
     try {
       UserLogout();
-    // dispatch(logoutOrder());
-    //console.log("logout successfully")
     } catch (err)
     {
       console.log(err);
@@ -26,6 +26,14 @@ function Header() {
     dispatch(logoutCart());
     dispatch(clearCart());
   }
+
+  useEffect(() => {
+    if (user)
+    {
+        const token = user.accessToken;
+        UpdateCart({ cart, token });
+    } 
+  })
 
 
   return (
@@ -66,7 +74,7 @@ function Header() {
         </div>
         <div className="text-2xs flex-none flex">
           <Link to="checkout">
-            <Badge badgeContent={ `${cart}` } color="error">
+            <Badge badgeContent={ `${quantity}` } color="error">
               <ShoppingCartIcon />
             </Badge>
           </Link>

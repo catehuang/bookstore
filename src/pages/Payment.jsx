@@ -31,15 +31,6 @@ function Payment() {
     const [error, setError] = useState(null);
     const [disabled, setDisabled] = useState(true);
 
-
-    useEffect(() => {
-        if (user)
-        {
-                const token = user.accessToken;
-                UpdateCart({ cart, token });
-        }                   
-    }, [cart]);
-
     useEffect(() => {
         const getClientSecret = async () => {
             const token = user.accessToken;
@@ -50,12 +41,10 @@ function Payment() {
             const response = await axiosAuth.post(`/payments/create`, {
                 amount: amount,
             });
-            console.log(response.data);
             setClientSecret(response.data.clientSecret);
         };
         getClientSecret();
     }, [cart]);
-
 
 
     console.log("THE SECRET IS >>>", clientSecret);
@@ -69,32 +58,7 @@ function Payment() {
         setDisabled(e.empty);
         setError(e.error ? e.error.message : "");
     };
-    // const getClientSecret = async () => {
-    //     setProcessing(true);
-    //     const token = user.accessToken;
-    //     const amount = (total*100).toFixed(0); //stripe use cent as unit (for CAD)
 
-    //     const MakePayment = async (dispatch, req) => {
-    //         try {
-    //                 const token = req.accessToken;
-    //                 const amount = req.amount;
-
-    //                 const axiosAuth = axios.create({
-    //                         headers: { token: `Bearer ${token}` },
-    //                 });
-
-    //                 const response = await axiosAuth.get(`/payment/create`, {
-    //                         amount: amount
-    //                 });
-    //                 console.log(response);
-    //         }
-    //         catch (err)
-    //         {
-
-    //         }
-    // }
-
-    // }
     useEffect(() => {
         if (receiver && shippingAddress && shippingCity && shippingProvince && shippingPostalCode)
         {
@@ -167,7 +131,7 @@ function Payment() {
                     <div className="flex flex-col gap-5 bg-white rounded-lg">
                         <p className="text-xl font-bold px-5">Review Items and Shipping</p>
                         {itemsInCart.map((item) => (
-                            <Cart key={item._id} cart={item} />
+                            <Cart key={item._id} product={item} />
                         ))}
                     </div>
                     <div>
