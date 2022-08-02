@@ -1,7 +1,7 @@
 const router = require("express").Router();
-const stripe = require("stripe")(``);
-
-console.log(process.env.STRIPE_SECRET);
+const dotenv = require('dotenv');
+dotenv.config();
+const stripe = require("stripe")(process.env.STRIPE_SECRET);
 
 router.post("/create", (req, res) => {
         stripe.paymentIntents.create(
