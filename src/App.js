@@ -4,12 +4,14 @@ import Footer from "./components/Footer";
 import Book from "./pages/Book";
 import Checkout from "./pages/Checkout";
 import Payment from "./pages/Payment";
+import Order from './pages/Order';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { useSelector } from "react-redux";
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
+
 
 
 function App() {
@@ -38,6 +40,10 @@ function App() {
                 <Route
                     path="/register"
                     element={user ? <Navigate to="/" /> : <Register />}
+                />
+                <Route
+                    path="/order"
+                    element={!user ? <Navigate to="/" /> : <Order />}
                 />
                 <Route path="/books/:id" element={<Book />} />
                 <Route path="/" element={<Home />} />

@@ -6,6 +6,7 @@ const { verifyToken } = require("../middleware/auth");
 
 //CREATE
 router.post("/", verifyToken, async (req, res) => {
+        console.log(req.body);
         const newOrder = new Order(req.body);
         try {
                 const savedOrder = await newOrder.save();
