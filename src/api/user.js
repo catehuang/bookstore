@@ -24,9 +24,11 @@ export const UserRegister = async (dispatch, user) => {
         } catch (err) {
                 console.log(err);
                 if (err.response.data.err.name === "UserExistsError")
-                        dispatch(registerFailure(2));
-                else if (err.response.data.err.code === 11000) dispatch(registerFailure(3));
-                else dispatch(registerFailure());
+                        dispatch(registerFailure(2)); // user exists
+                else if (err.response.data.err.code === 11000) 
+                        dispatch(registerFailure(3)); // email exists
+                else 
+                        dispatch(registerFailure()); // other errors
         }
 };
 

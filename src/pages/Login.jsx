@@ -14,7 +14,6 @@ function Login() {
         const [formValidated, setFormValidated] = useState(false);
         const { loginError } = useSelector((state) => state.user);
         const dispatch = useDispatch();
-        const cart = useSelector(state => state.cart);
 
         const validateUsername = (value) => {
                 setUsername(value);

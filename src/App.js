@@ -4,7 +4,7 @@ import Footer from "./components/Footer";
 import Book from "./pages/Book";
 import Checkout from "./pages/Checkout";
 import Payment from "./pages/Payment";
-import Order from './pages/Order';
+import Orders from './pages/Orders';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -42,8 +42,8 @@ function App() {
                     element={user ? <Navigate to="/" /> : <Register />}
                 />
                 <Route
-                    path="/order"
-                    element={!user ? <Navigate to="/" /> : <Order />}
+                    path="/orders"
+                    element={!user ? <Navigate to="/" /> : <Orders />}
                 />
                 <Route path="/books/:id" element={<Book />} />
                 <Route path="/" element={<Home />} />
