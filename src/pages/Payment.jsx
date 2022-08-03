@@ -22,6 +22,12 @@ function Payment() {
     const [shippingCity, setShippingCity] = useState("");
     const [shippingProvince, setShippingProvince] = useState("");
     const [shippingPostalCode, setShippingPostalCode] = useState("");
+
+    const [validReceiver, setValidReceiver] = useState("");
+    const [validShippingAddress, setValidShippingAddress] = useState("");
+    const [validShippingCity, setValidShippingCity] = useState("");
+    const [validShippingProvince, setValidShippingProvince] = useState("");
+    const [validShippingPostalCode, setValidShippingPostalCode] = useState("");
     const [validShippingInfo, setValidShippingInfo] = useState(false);
 
     const [clientSecret, setClientSecret] = useState("");
@@ -36,6 +42,43 @@ function Payment() {
     });
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    const validateReceiver = (value) => {
+        setReceiver(value);
+        if (value.match(/^[a-zA-Z0-9]+$/)) setValidReceiver(true);
+        else setValidReceiver(false);
+    };
+
+    const validateShippingAddress = (value) => {
+        setShippingAddress(value);
+        if (value.match(/^[a-zA-Z0-9]+$/)) setValidShippingAddress(true);
+        else setValidShippingAddress(false);
+    };
+
+    const validateShippingCity = (value) => {
+        setShippingCity(value);
+        if (value.match(/^[a-zA-Z0-9]+$/)) setValidShippingCity(true);
+        else setValidShippingCity(false);
+    };
+
+    const validateShippingProvince = (value) => {
+        setShippingProvince(value);
+        if (value.match(/^[a-zA-Z0-9]+$/)) setValidShippingProvince(true);
+        else setValidShippingProvince(false);
+    };
+
+    const validateShippingPostalCode = (value) => {
+        setShippingPostalCode(value);
+        if (value.match(/^[a-zA-Z0-9]+$/)) setValidShippingPostalCode(true);
+        else setValidShippingPostalCode(false);
+    };
+
+    useEffect(() => {
+        if (validReceiver && validShippingAddress && validShippingCity && validShippingProvince && validShippingPostalCode) {
+            setValidShippingInfo(true);
+        }
+    }, [validReceiver, validShippingAddress, validShippingCity, validShippingProvince, validShippingPostalCode])
+
 
     useEffect(() => {
         const getClientSecret = async () => {
@@ -110,12 +153,6 @@ const handleChange = (e) => {
     setError(e.error ? e.error.message : "");
 };
 
-useEffect(() => {
-    if (receiver && shippingAddress && shippingCity && shippingProvince && shippingPostalCode) {
-        setValidShippingInfo(true);
-    }
-}, [receiver, shippingAddress, shippingCity, shippingProvince, shippingPostalCode])
-
 return (
     <div className="p-10 flex flex-col gap-5">
         <div>
@@ -133,7 +170,7 @@ return (
                             type="text"
                             value={receiver}
                             className="border border-gray-600 rounded px-2"
-                            onChange={(e) => setReceiver(e.target.value)} required
+                            onChange={(e) => validateReceiver(e.target.value)} required
                         />
                     </div>
                     <div className="flex flex-col gap-2">
@@ -142,7 +179,7 @@ return (
                             type="text"
                             value={shippingAddress}
                             className="border border-gray-600 rounded px-2"
-                            onChange={(e) => setShippingAddress(e.target.value)} required
+                            onChange={(e) => validateShippingAddress(e.target.value)} required
                         />
                     </div>
                     <div className="flex flex-col gap-2">
@@ -151,7 +188,7 @@ return (
                             type="text"
                             value={shippingCity}
                             className="border border-gray-600 rounded px-2"
-                            onChange={(e) => setShippingCity(e.target.value)} required
+                            onChange={(e) => validateShippingCity(e.target.value)} required
                         />
                     </div>
                     <div className="flex flex-col gap-2">
@@ -160,7 +197,7 @@ return (
                             type="text"
                             value={shippingProvince}
                             className="border border-gray-600 rounded px-2"
-                            onChange={(e) => setShippingProvince(e.target.value)} required
+                            onChange={(e) => validateShippingProvince(e.target.value)} required
                         />
                     </div>
                     <div className="flex flex-col gap-2">
@@ -169,7 +206,7 @@ return (
                             type="text"
                             value={shippingPostalCode}
                             className="border border-gray-600 rounded px-2"
-                            onChange={(e) => setShippingPostalCode(e.target.value)} required
+                            onChange={(e) => validateShippingPostalCode(e.target.value)} required
                         />
                     </div>
                 </div>
