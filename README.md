@@ -1,7 +1,10 @@
-Based on the previous experience of Amazon_Clone project, this will improve many things 
-including organzing file structures and cleaning code and using MongoDB as the database to store and retrieve data.
+On this BookStore website, there are three main functionalities:
+* Users can register/login their own account
+* All users can put products(books) into their carts. However, only logged-in users can save their carts on the server.
+* Logged-in users can checkout their products in their cart, place their orders, and check their orders (and order history).
 
-This project will use the following libraries
+
+This project uses the following libraries
 * React
 * Tailwind CSS
 * Redux
@@ -9,4 +12,4 @@ This project will use the following libraries
 * Express
 * mongoose
 * passport, passport-local, passport-local-mongoose, passport-jwt, jsonwebtoken
-* react-stripe-checkout
+* react-stripe-js, stripe-js
