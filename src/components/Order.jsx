@@ -45,8 +45,8 @@ function Order({ eachOrder }) {
 
                         <div className="">
                                 {eachOrder.products.map((product) => (
-                                        <div className="py-5 border-b rounded">
-                                                <div className="flex gap-5" key={product._id}>
+                                        <div className="py-5 border-b rounded" key={product._id}>
+                                                <div className="flex gap-5">
                                                         <img
                                                                 src={product.image}
                                                                 alt=""

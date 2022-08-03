@@ -20,8 +20,8 @@ function Orders() {
             <p className="text-2xl text-center font-bold pt-10">Your Orders</p>
 
             {[...orders]?.reverse().map((eachOrder) => (
-                <div className="my-10">
-                    <Order key={eachOrder._id} eachOrder={eachOrder} />
+                <div className="my-10" key={eachOrder._id} >
+                    <Order eachOrder={eachOrder} />
                 </div>
             ))}
             {orders.length === 0 && (
