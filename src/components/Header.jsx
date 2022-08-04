@@ -119,8 +119,8 @@ function Header() {
                                 if (book.name.toLowerCase().includes(searchString.toLowerCase()))
                                     return book;
                                 }).map(book => (
-                                    <p className="flex-wrap" key={book._id} onClick={() => handleClickSearch(`${book._id}`)}>
-                                        {book.name}
+                                    <p className="flex-wrap " key={book._id} onClick={() => handleClickSearch(`${book._id}`)}>
+                                        <span className="cursor-pointer">{book.name}</span>
                                     </p>
                                 ))                            
                         )  
