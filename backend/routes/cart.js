@@ -6,14 +6,20 @@ const { verifyToken } = require("../middleware/auth");
 
 // create a new cart
 router.post("/new/:userId", verifyToken, async (req, res) => {
-  const userId = req.params.userId;
-  try {
-    const newCart = new Cart({ userId });
-    const savedCart = await newCart.save();
-    res.status(200).json(savedCart);
-  } catch (err) {
-    res.status(500).json(err);
-  }
+    const newCart = new Cart({ userId: req.body.userId });
+    console.log(newCart);
+    newCart.save(function(err, result){
+      if (err)
+      {
+        console.log(err);
+        res.status(500).json(err);        
+      }
+      else
+      {
+        console.log(result);
+        res.status(200).json(result);
+      }
+    });
 });
 
 // find a user cart

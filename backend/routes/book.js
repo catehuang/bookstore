@@ -4,12 +4,6 @@ const router = express.Router();
 
 // Get ALL Books 
 router.get("/",  async (req, res) => {
-  // Book.find((err, docs) => {
-  //   if (!err)
-  //     res.send({docs});
-  //   else
-  //     console.log("error");  
-  // });
   try {
     const books = await Book.find();
     res.status(200).json(books);

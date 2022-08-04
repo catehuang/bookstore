@@ -46,7 +46,7 @@ function App() {
                     element={!user ? <Navigate to="/" /> : <Orders />}
                 />
                 <Route path="/books/:id" element={<Book />} />
-                <Route path="/" element={<Home />} />
+                <Route exact path="/" element={<Home />} />
             </Routes>
             <Footer />
         </BrowserRouter>

@@ -44,7 +44,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-
 app.use(session({
   secret: "thisisasecret",
   resave: false ,

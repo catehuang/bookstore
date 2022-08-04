@@ -1,4 +1,4 @@
-import { axios }  from "../axios";
+import { axios } from "../axios";
 import { LoadOrders } from "./order";
 import { LoadCart, CreateCart } from "./cart";
 import {
@@ -10,25 +10,24 @@ import {
 } from "../reducers/userSlice";
 
 export const UserRegister = async (dispatch, user) => {
-        try {
-                const response = await axios.post("/register", user, {
-                        headers: { "Content-Type": "application/json" },
-                        withCredentials: true,
-                });
-                
+        const response = await axios.post("/register", user, {
+                headers: { "Content-Type": "application/json" },
+                withCredentials: true,
+        });
+
+        if (response.data.success === false) {
+                if (response.data.err.name === "UserExistsError")
+                        dispatch(registerFailure(2)); // user exists
+                else if (response.data.err.code === 11000)
+                        dispatch(registerFailure(3)); // email exists
+                else dispatch(registerFailure()); // other errors
+        }
+        else
+        {       
                 dispatch(registerSuccess(response.data));
                 dispatch(loginSuccess(response.data));
-                CreateCart(dispatch, user);
+                CreateCart(dispatch, response.data);
                 console.log("Registered. Welcome " + response.data.username + " !");
-                // console.log(response.data);
-        } catch (err) {
-                console.log(err);
-                if (err.response.data.err.name === "UserExistsError")
-                        dispatch(registerFailure(2)); // user exists
-                else if (err.response.data.err.code === 11000) 
-                        dispatch(registerFailure(3)); // email exists
-                else 
-                        dispatch(registerFailure()); // other errors
         }
 };
 
@@ -39,7 +38,7 @@ export const UserLogin = async (dispatch, user) => {
                         headers: { "Content-Type": "application/json" },
                         withCredentials: true,
                 });
-                
+
                 dispatch(loginSuccess(response.data));
                 // console.log(response.data);
                 console.log("Login successfully. Welcome " + response.data.username + " !");
@@ -54,7 +53,7 @@ export const UserLogin = async (dispatch, user) => {
 export const UserLogout = async () => {
         try {
                 await axios.get("/logout");
-                console.log("Logout successfully. See you soon!")
+                console.log("Logout successfully. See you soon!");
         } catch (err) {
                 console.log(err);
         }

@@ -15,7 +15,7 @@ router.post("/register", async (req, res) => {
     const accessToken = jwt.sign(
       { id: registeredUser._id },
       process.env.JWT_SECRET,
-      { expiresIn: "30m" }
+      { expiresIn: "1d" }
     );
 
     res.json({
@@ -38,7 +38,7 @@ router.post("/login", passport.authenticate("local"), async (req, res) => {
     const accessToken = jwt.sign(
       { id: foundUser._id },
       process.env.JWT_SECRET,
-      { expiresIn: "30m" }
+      { expiresIn: "1d" }
     );
 
     res.json({

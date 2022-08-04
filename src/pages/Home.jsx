@@ -4,7 +4,7 @@ import { axios } from "../axios";
 import Banner from '../components/Banner';
 
 function Home() {
-        const [ books, setBooks ] = useState([]);
+        const [books, setBooks] = useState([]);
 
         useEffect(() => {
                 const getBooks = async () => {
@@ -20,7 +20,7 @@ function Home() {
                         }
                 }
                 getBooks();
-        }, []);
+        },[])
 
   return (
     <div className="w-full">
