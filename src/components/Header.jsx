@@ -16,12 +16,12 @@ function Header() {
     const cart = useSelector(state => state.cart);
     const [books, setBooks] = useState([]);
     const [searchString, setSearchString] = useState("");
-    const [searchResult, setSearchResult] = useState([]);
     const quantity = cart.quantity;
     const dispatch = useDispatch();
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
 
+    //console.log(cart);
     useEffect(() => {
         const getBooks = async () => {
             const response = await axios.get(`/books`);
@@ -32,8 +32,7 @@ function Header() {
 
     useEffect(() => {
         if (user) {
-            const token = user.accessToken;
-            UpdateCart({ cart, token });
+            UpdateCart({ cart, user });
         }
     });
 
@@ -108,6 +107,7 @@ function Header() {
                 </div>
             </div>
 
+            {/* search result */}
             { 
                 isOpen && 
                 (

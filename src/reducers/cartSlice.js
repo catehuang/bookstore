@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const cartSlice = createSlice({
   name: "cart",
   initialState: {
+    cartId: null,
     userId: null,
     products: [],
     quantity: 0,
@@ -10,13 +11,15 @@ const cartSlice = createSlice({
   },
   reducers: {
     newCart: (state, action) => {
-      state.userId = action.payload._id;
+      state.cartId = action.payload._id;
+      state.userId = action.payload.userId;
       state.products = [];
       state.quantity = 0;
       state.total = 0;
     },
     setCart: (state, action) => {
-      state.userId = action.payload._id;
+      state.cartId = action.payload._id;
+      state.userId = action.payload.userId;
       state.products = action.payload.products;
       state.quantity = action.payload.products.reduce((cartItemQuantity) => cartItemQuantity + 1,0);
       state.total = action.payload.products.reduce((accumulatedTotal, product) =>
@@ -80,6 +83,7 @@ const cartSlice = createSlice({
       state.total = 0;
     },
     logoutCart: (state) => {
+      state.cartId = null;
       state.userId = null;
       state.products = [];
       state.quantity = 0;

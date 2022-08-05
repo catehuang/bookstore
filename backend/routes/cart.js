@@ -7,7 +7,6 @@ const { verifyToken } = require("../middleware/auth");
 // create a new cart
 router.post("/new/:userId", verifyToken, async (req, res) => {
     const newCart = new Cart({ userId: req.body.userId });
-    console.log(newCart);
     newCart.save(function(err, result){
       if (err)
       {
@@ -28,28 +27,23 @@ router.get("/find/:userId", verifyToken, async (req, res) => {
   
   try {
     const cart = await Cart.findOne({ userId });
-    //console.log(cart);
-    // found cart or null
     res.status(200).json(cart);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-// update cart using cart _id
+// update cart
 router.put("/:id", verifyToken, async (req, res) => {
-  const cartId = req.params.id;
-  //console.log(req.cartId);
- 
+
   try {
     const updatedCart = await Cart.findOneAndUpdate(
-      cartId ,
+      {userId: req.body.body.userId},
       {
-        $set: req.body,
+        $set: req.body.body
       },
       { new: true }
     );
-    //console.log(updatedCart);
     res.status(200).json(updatedCart);
   } catch (err) {
     res.status(500).json(err);
