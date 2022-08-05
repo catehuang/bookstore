@@ -13,7 +13,7 @@ export const CreateCart = async (dispatch, user) => {
     });
 
     console.log("create cart:")
-    console.log(response.data)
+    //console.log(response.data)
 
     dispatch(newCart(response.data));
     console.log("cart created.");
@@ -32,9 +32,6 @@ export const LoadCart = async (dispatch, user) => {
     });
     const response = await axiosAuth.get(`/carts/find/${userId}`);
 
-    console.log("load cart:")
-    console.log(response.data);
-
     if (response.data === null) {
       CreateCart(dispatch, user);
     } else {
@@ -50,7 +47,6 @@ export const UpdateCart = async (obj) => {
   // passed parameters are cart and user
   const token = obj.user.accessToken;
   const cart = obj.cart;
-  console.log(cart);
 
   try {
     const axiosAuth = axios.create({
@@ -60,12 +56,10 @@ export const UpdateCart = async (obj) => {
     const response = await axiosAuth.put(`/carts/${cart.cartId}`, {
       body: cart
     });
-    //console.log(response.data);
     
     if (response.data === null) {
       console.log("Failed to update cart on server side.");
     } else {
-      //console.log(response.data);
       console.log("updated cart on server side.");
     }
   } catch (error) {

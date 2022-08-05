@@ -8,8 +8,6 @@ import Subtotal from "../components/Subtotal";
 function Checkout() {
         const cart = useSelector((state) => state.cart);
         const products = cart.products;
-        console.log(cart);
-        console.log(products);
 
         return (
                 <div className="bg-gray-200 p-10">

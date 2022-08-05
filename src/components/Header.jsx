@@ -21,7 +21,6 @@ function Header() {
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
 
-    //console.log(cart);
     useEffect(() => {
         const getBooks = async () => {
             const response = await axios.get(`/books`);
@@ -34,7 +33,7 @@ function Header() {
         if (user) {
             UpdateCart({ cart, user });
         }
-    });
+    },[cart]);
 
     const handleLogout = () => {
         try {

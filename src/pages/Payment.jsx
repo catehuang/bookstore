@@ -11,6 +11,7 @@ import CheckIcon from "@material-ui/icons/Check";
 function Payment() {
     const user = useSelector((state) => state.user.currentUser);
     const cart = useSelector((state) => state.cart);
+    const order = useSelector((state) => state.order);
     const cartTotal = cart.total.toFixed(2);
     const shippingFee = (cartTotal * 0.1).toFixed(2);
     const beforeTax = (Number(cartTotal) + Number(shippingFee)).toFixed(2);
@@ -23,12 +24,6 @@ function Payment() {
     const [shippingCity, setShippingCity] = useState("");
     const [shippingProvince, setShippingProvince] = useState("");
     const [shippingPostalCode, setShippingPostalCode] = useState("");
-
-    const [validReceiver, setValidReceiver] = useState("");
-    const [validShippingAddress, setValidShippingAddress] = useState("");
-    const [validShippingCity, setValidShippingCity] = useState("");
-    const [validShippingProvince, setValidShippingProvince] = useState("");
-    const [validShippingPostalCode, setValidShippingPostalCode] = useState("");
     const [validShippingInfo, setValidShippingInfo] = useState(false);
 
     const [clientSecret, setClientSecret] = useState("");
@@ -44,41 +39,139 @@ function Payment() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const validateReceiver = (value) => {
-        setReceiver(value);
-        if (value.match(/[\w]{1,}\s?[\w]{1,}/)) setValidReceiver(true);
-        else setValidReceiver(false);
+    useEffect(() => {
+        if (order) {
+            const latestOrder = order.orders[order.orders.length - 1].address;
+            setReceiver(latestOrder.receiver);
+            setShippingAddress(latestOrder.shippingAddress);
+            setShippingCity(latestOrder.shippingCity);
+            setShippingProvince(latestOrder.shippingProvince);
+            setShippingPostalCode(latestOrder.shippingPostalCode);
+        }
+    }, []);
+
+    const Receiver = () => {
+        return (
+            <div>
+                <p>Recipient's name</p>
+                <div className="flex justify-between">
+                    <input
+                        type="text"
+                        value={receiver}
+                        className="border border-gray-600 rounded px-2 w-full"
+                        onChange={(e) =>
+                            setReceiver(e.target.value.replace(/[^0-9-_.a-z\s]/gi, ""))
+                        }
+                        required
+                    />
+                </div>
+            </div>
+        );
     };
 
-    const validateShippingAddress = (value) => {
-        setShippingAddress(value);
-        if (value.match(/[\w]{1,}\s?[\w]{1,}/)) setValidShippingAddress(true);
-        else setValidShippingAddress(false);
+    const Address = () => {
+        return (
+            <div className="flex flex-col gap-2">
+                <p>Shipping address</p>
+                <div className="flex justify-between">
+                    <input
+                        type="text"
+                        value={shippingAddress}
+                        className="border border-gray-600 rounded px-2 w-full"
+                        onChange={(e) =>
+                            setShippingAddress(e.target.value.replace(/[^0-9-_.a-z\s]/gi, ""))
+                        }
+                        required
+                    />
+                </div>
+            </div>
+        );
     };
 
-    const validateShippingCity = (value) => {
-        setShippingCity(value);
-        if (value.match(/[\w]{1,}\s?[\w]{1,}/))setValidShippingCity(true);
-        else setValidShippingCity(false);
+    const City = () => {
+        return (
+            <div className="flex flex-col gap-2">
+                <p>City</p>
+                <div className="flex justify-between">
+                    <input
+                        type="text"
+                        value={shippingCity}
+                        className="border border-gray-600 rounded px-2 w-full"
+                        onChange={(e) =>
+                            setShippingCity(e.target.value.replace(/[^0-9-_.a-z\s]/gi, ""))
+                        }
+                        required
+                    />
+                </div>
+            </div>
+        );
     };
 
-    const validateShippingProvince = (value) => {
-        setShippingProvince(value);
-        if (value.match(/[\w]{1,}\s?[\w]{1,}/)) setValidShippingProvince(true);
-        else setValidShippingProvince(false);
+    const Province = () => {
+        return (
+            <div className="flex flex-col gap-2">
+                <p>Province/Territory</p>
+                <div className="flex justify-between">
+                    <select
+                        value={shippingProvince}
+                        className="border border-gray-600 rounded px-2 w-full"
+                        onChange={(e) => setShippingProvince(e.target.value)}
+                    >
+                        <option value=""></option>
+                        <option value="Alberta">Alberta</option>
+                        <option value="British Columbia">British Columbia</option>
+                        <option value="Manitoba">Manitoba</option>
+                        <option value="New Brunswick">New Brunswick</option>
+                        <option value="Newfoundland and Labrador">
+                            Newfoundland and Labrador
+                        </option>
+                        <option value="Northwest Territories">Northwest Territories</option>
+                        <option value="Nova Scotia">Nova Scotia</option>
+                        <option value="Nunavut">Nunavut</option>
+                        <option value="Ontario">Ontario</option>
+                        <option value="Prince Edward Island">Prince Edward Island</option>
+                        <option value="Quebec">Quebec</option>
+                        <option value="Saskatchewan">Saskatchewan</option>
+                        <option value="Yukon">Yukon</option>
+                    </select>
+                </div>
+            </div>
+        );
     };
 
-    const validateShippingPostalCode = (value) => {
-        setShippingPostalCode(value);
-        if (value.match(/[\w]{1,}\s?[\w]{1,}/)) setValidShippingPostalCode(true);
-        else setValidShippingPostalCode(false);
+    const PostalCode = () => {
+        return (
+            <div className="flex flex-col gap-2">
+                <p>Postal code</p>
+                <div className="flex justify-between">
+                    <input
+                        type="text"
+                        value={shippingPostalCode}
+                        className="border border-gray-600 rounded px-2 w-full"
+                        onChange={(e) =>
+                            setShippingPostalCode(
+                                e.target.value.replace(/[^0-9-_.a-z\s]/gi, "")
+                            )
+                        }
+                        required
+                    />
+                </div>
+            </div>
+        );
     };
 
     useEffect(() => {
-        if (validReceiver && validShippingAddress && validShippingCity && validShippingProvince && validShippingPostalCode) {
+        if (
+            receiver.length > 2 &&
+            shippingAddress.length > 2   &&
+            shippingCity.length > 2  &&
+            shippingProvince.length > 2  &&
+            shippingPostalCode.length > 2 
+        ) {
             setValidShippingInfo(true);
         }
-    })
+    });
+
 
     useEffect(() => {
         const getClientSecret = async () => {
@@ -92,10 +185,10 @@ function Payment() {
         // eslint-disable-next-line
     }, [amount]);
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setProcessing(true);
-
         try {
             // stripe.confirmCardPayment will return a Promise which resolves with a result object.
             await stripe
@@ -161,73 +254,12 @@ function Payment() {
             </div>
             <div className="px-5 flex flex-col gap-3">
                 <p className="text-xl font-bold">Shipping Information</p>
-                <form>
-                    <div className="flex flex-col gap-2 w-96 px-10">
-                        <div className="flex flex-col gap-2">
-                            <p>Recipient's name</p>
-                            <div className="flex justify-between">
-                                <input
-                                    type="text"
-                                    value={receiver}
-                                    className="border border-gray-600 rounded px-2 w-full"
-                                    onChange={(e) => validateReceiver(e.target.value)}
-                                    required
-                                />
-                            </div>
-                        </div>
-
-                        <div className="flex flex-col gap-2">
-                            <p>Shipping address</p>
-                            <div className="flex justify-between">
-                                <input
-                                    type="text"
-                                    value={shippingAddress}
-                                    className="border border-gray-600 rounded px-2 w-full"
-                                    onChange={(e) => validateShippingAddress(e.target.value)}
-                                    required
-                                />
-                            </div>
-                        </div>
-                        <div className="flex flex-col gap-2">
-                            <p>City</p>
-                            <div className="flex justify-between">
-                                <input
-                                    type="text"
-                                    value={shippingCity}
-                                    className="border border-gray-600 rounded px-2 w-full"
-                                    onChange={(e) => validateShippingCity(e.target.value)}
-                                    required
-                                />
-                            </div>
-                        </div>
-                        <div className="flex flex-col gap-2">
-                            <p>Province/Territory</p>
-                            <div className="flex justify-between">
-                                <input
-                                    type="text"
-                                    value={shippingProvince}
-                                    className="border border-gray-600 rounded px-2 w-full"
-                                    onChange={(e) => validateShippingProvince(e.target.value)}
-                                    required
-                                />
-                            </div>
-
-                        </div>
-                        <div className="flex flex-col gap-2">
-                            <p>Postal code</p>
-                            <div className="flex justify-between">
-                                <input
-                                    type="text"
-                                    value={shippingPostalCode}
-                                    className="border border-gray-600 rounded px-2 w-full"
-                                    onChange={(e) => validateShippingPostalCode(e.target.value)}
-                                    required
-                                />                                                        
-                            </div>
-                            
-
-                        </div>
-                    </div>
+                <form className="flex flex-col gap-2 w-96 px-10">
+                    <Receiver />
+                    <Address />
+                    <City />
+                    <Province />
+                    <PostalCode />
                 </form>
             </div>
 

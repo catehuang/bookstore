@@ -11,7 +11,6 @@ function Home() {
                         try {
                                 // the data set formed in arrays
                                 const response = await axios.get(`/books`);
-                                //console.log(response);
                                 setBooks(response.data);
                         }
                         catch (error)
