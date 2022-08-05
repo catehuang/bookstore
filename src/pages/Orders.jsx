@@ -11,10 +11,11 @@ function Orders() {
 
     useEffect(() => {
         LoadOrders(dispatch, user);
+        // eslint-disable-next-line
     }, []);
 
     const orders = useSelector((state) => state.order.orders);
-   //console.log(orders);
+
     return (
         <div className="">
             <p className="text-2xl text-center font-bold pt-10">Your Orders</p>

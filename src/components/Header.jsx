@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Badge from "@mui/material/Badge";
 import { logoutCart, clearCart } from "../reducers/cartSlice";
@@ -33,6 +33,7 @@ function Header() {
         if (user) {
             UpdateCart({ cart, user });
         }
+        // eslint-disable-next-line
     },[cart]);
 
     const handleLogout = () => {

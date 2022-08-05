@@ -6,7 +6,6 @@ import { axios } from "../axios";
 import { LoadOrders } from "../api/order";
 import { useNavigate } from "react-router-dom";
 import { clearCart } from "../reducers/cartSlice";
-import CheckIcon from "@material-ui/icons/Check";
 
 function Payment() {
     const user = useSelector((state) => state.user.currentUser);
@@ -48,6 +47,7 @@ function Payment() {
             setShippingProvince(latestOrder.shippingProvince);
             setShippingPostalCode(latestOrder.shippingPostalCode);
         }
+        // eslint-disable-next-line
     }, []);
 
     const Receiver = () => {
@@ -170,7 +170,8 @@ function Payment() {
         ) {
             setValidShippingInfo(true);
         }
-    });
+
+    }, [receiver, shippingAddress, shippingCity, shippingProvince, shippingPostalCode]);
 
 
     useEffect(() => {
