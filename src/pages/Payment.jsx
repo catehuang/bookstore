@@ -38,17 +38,17 @@ function Payment() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        if (order) {
-            const latestOrder = order.orders[order.orders.length - 1].address;
-            setReceiver(latestOrder.receiver);
-            setShippingAddress(latestOrder.shippingAddress);
-            setShippingCity(latestOrder.shippingCity);
-            setShippingProvince(latestOrder.shippingProvince);
-            setShippingPostalCode(latestOrder.shippingPostalCode);
-        }
-        // eslint-disable-next-line
-    }, []);
+    // useEffect(() => {
+    //     if (order.orders.length > 0) {
+    //         const latestOrder = order.orders[order.orders.length - 1].address;
+    //         setReceiver(latestOrder.receiver);
+    //         setShippingAddress(latestOrder.shippingAddress);
+    //         setShippingCity(latestOrder.shippingCity);
+    //         setShippingProvince(latestOrder.shippingProvince);
+    //         setShippingPostalCode(latestOrder.shippingPostalCode);
+    //     }
+    //     // eslint-disable-next-line
+    // }, []);
 
     const Receiver = () => {
         return (
@@ -62,7 +62,7 @@ function Payment() {
                         onChange={(e) =>
                             setReceiver(e.target.value.replace(/[^0-9-_.a-z\s]/gi, ""))
                         }
-                        required
+                        required 
                     />
                 </div>
             </div>
@@ -81,7 +81,7 @@ function Payment() {
                         onChange={(e) =>
                             setShippingAddress(e.target.value.replace(/[^0-9-_.a-z\s]/gi, ""))
                         }
-                        required
+                        required 
                     />
                 </div>
             </div>
@@ -100,7 +100,7 @@ function Payment() {
                         onChange={(e) =>
                             setShippingCity(e.target.value.replace(/[^0-9-_.a-z\s]/gi, ""))
                         }
-                        required
+                        required 
                     />
                 </div>
             </div>
@@ -153,7 +153,7 @@ function Payment() {
                                 e.target.value.replace(/[^0-9-_.a-z\s]/gi, "")
                             )
                         }
-                        required
+                        required 
                     />
                 </div>
             </div>
@@ -256,11 +256,12 @@ function Payment() {
             <div className="px-5 flex flex-col gap-3">
                 <p className="text-xl font-bold">Shipping Information</p>
                 <form className="flex flex-col gap-2 w-96 px-10">
-                    <Receiver />
-                    <Address />
-                    <City />
-                    <Province />
-                    <PostalCode />
+                    {/* calling the component with {compName()} instead of <compName /> or the input field lose focus after typing a character */}
+                    {Receiver()}
+                    {Address()}
+                    {City()} 
+                    {Province()}
+                    {PostalCode()}
                 </form>
             </div>
 
