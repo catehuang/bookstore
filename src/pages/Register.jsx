@@ -13,32 +13,16 @@ function Register() {
                 (state) => state.user
         );
         const dispatch = useDispatch();
-        const [validEmail, setValidEmail] = useState(false);
-        const [validUsername, setValidUsername] = useState(false);
-        const [validPassword, setValidPassword] = useState(false);
         const [formValidated, setFormValidated] = useState(false);
-
-        const validateEmail = (value) => {
-                setEmail(value);
-                if (value.match(/^[a-zA-Z-@.0-9]+$/)) setValidEmail(true);
-                else setValidEmail(false);
-        };
-
-        const validateUsername = (value) => {
-                setUsername(value);
-                if (value.match(/^[a-zA-Z-@.0-9]+$/)) setValidUsername(true);
-                else setValidUsername(false);
-        };
-
-        const validatePassword = (value) => {
-                setPassword(value);
-                if (value.match(/^[a-zA-Z-@.0-9]+$/)) setValidPassword(true);
-                else setValidPassword(false);
-        };
 
         useEffect(() => {
                 const validateForm = () => {
-                        if (validEmail && validUsername && validPassword) {
+                        if (
+                                email.length > 5 &&
+                                email.includes("@") &&
+                                username.length > 0 &&
+                                password.length > 4
+                        ) {
                                 setFormValidated(true);
                         } else {
                                 setFormValidated(false);
@@ -50,18 +34,14 @@ function Register() {
         const handleRegister = async (e) => {
                 e.preventDefault();
 
-                if (formValidated) {
-                        try {
-                                UserRegister(dispatch, {
-                                        email,
-                                        username,
-                                        password,
-                                }); 
-                        }
-                        catch(err)
-                        {
-                                console.log("Failed to register");
-                        }          
+                try {
+                        UserRegister(dispatch, {
+                                email,
+                                username,
+                                password,
+                        });
+                } catch (err) {
+                        console.log("Failed to register");
                 }
         };
 
@@ -73,25 +53,25 @@ function Register() {
         return (
                 <div>
                         <div className="h-16">
-                                {(!validUsername || !validEmail || !validPassword) && (
+                                {!formValidated && (
                                         <div className="py-2 text-center bg-green-600 text-gray-50">
                                                 <p className="text-sm">
                                                         Available characters include letters, numbers, at sign(@), dot(.),
-                                                        and hyphen(-).
+                                                        and hyphen(-). Password must contain at least five characters.
                                                 </p>
                                         </div>
                                 )}
-                                { registerError && registerErrorCode === 2 && (
+                                {registerError && registerErrorCode === 2 && (
                                         <div className="text-red-600 text-center bg-red-100 py-1">
                                                 This username exists. Please choose another one.
                                         </div>
                                 )}
-                                { registerError && registerErrorCode === 3 && (
+                                {registerError && registerErrorCode === 3 && (
                                         <div className="text-red-600 text-center bg-red-100 py-1">
                                                 This Email already registered.
                                         </div>
                                 )}
-                                { registerError && registerErrorCode === 1 && (
+                                {registerError && registerErrorCode === 1 && (
                                         <div>
                                                 <p className="text-red-600 text-center bg-red-100 py-1">
                                                         Register failed. Please try again.
@@ -111,12 +91,11 @@ function Register() {
                                                                 type="text"
                                                                 value={email}
                                                                 required
-                                                                onChange={(e) => validateEmail(e.target.value)}
+                                                                onChange={(e) =>
+                                                                        setEmail(e.target.value.replace(/[^0-9-_.a-z@]/gi, ""))
+                                                                }
                                                                 className=" py-1 px-2 w-full"
                                                         />
-                                                        {validEmail && (
-                                                                <p className="text-green-600 font-bold p-1">&#10003;</p>
-                                                        )}
                                                 </div>
                                         </div>
 
@@ -127,12 +106,11 @@ function Register() {
                                                                 type="text"
                                                                 value={username}
                                                                 required
-                                                                onChange={(e) => validateUsername(e.target.value)}
+                                                                onChange={(e) =>
+                                                                        setUsername(e.target.value.replace(/[^0-9-_.a-z@]/gi, ""))
+                                                                }
                                                                 className="py-1 px-2 w-full"
                                                         />
-                                                        {validUsername && (
-                                                                <p className="text-green-600 font-bold p-1">&#10003;</p>
-                                                        )}
                                                 </div>
                                         </div>
 
@@ -143,14 +121,24 @@ function Register() {
                                                                 type={passwordShown ? "text" : "password"}
                                                                 value={password}
                                                                 required
-                                                                onChange={(e) => validatePassword(e.target.value)}
+                                                                onChange={(e) =>
+                                                                        setPassword(e.target.value.replace(/[^0-9-_.a-z@]/gi, ""))
+                                                                }
                                                                 className="py-1 px-2 w-full"
                                                         />
                                                         <button onClick={togglePassword}>
                                                                 {passwordShown ? (
-                                                                        <VisibilityIcon color="action" fontSize="small" className="pr-1" />
+                                                                        <VisibilityIcon
+                                                                                color="action"
+                                                                                fontSize="small"
+                                                                                className="pr-1"
+                                                                        />
                                                                 ) : (
-                                                                        <VisibilityOffIcon color="action" fontSize="small" className="pr-1" />
+                                                                        <VisibilityOffIcon
+                                                                                color="action"
+                                                                                fontSize="small"
+                                                                                className="pr-1"
+                                                                        />
                                                                 )}
                                                         </button>
                                                 </div>

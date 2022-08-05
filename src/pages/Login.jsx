@@ -9,27 +9,14 @@ function Login() {
         const [username, setUsername] = useState("");
         const [password, setPassword] = useState("");
         const [passwordShown, setPsswordShown] = useState(false);
-        const [validUsername, setValidUsername] = useState(false);
-        const [validPassword, setValidPassword] = useState(false);
+
         const [formValidated, setFormValidated] = useState(false);
         const { loginError } = useSelector((state) => state.user);
         const dispatch = useDispatch();
 
-        const validateUsername = (value) => {
-                setUsername(value);
-                if (value.match(/^[a-zA-Z-@.0-9]+$/)) setValidUsername(true);
-                else setValidUsername(false);
-        };
-
-        const validatePassword = (value) => {
-                setPassword(value);
-                if (value.match(/^[a-zA-Z-@.0-9]+$/)) setValidPassword(true);
-                else setValidPassword(false);
-        };
-
         useEffect(() => {
                 const validateForm = () => {
-                        if (validUsername && validPassword) {
+                        if (username.length > 0 && password.length > 4) {
                                 setFormValidated(true);
                         } else {
                                 setFormValidated(false);
@@ -46,21 +33,15 @@ function Login() {
         const handleLogin = async (e) => {
                 e.preventDefault();
 
-                if (formValidated) {
-                        try {
-                                UserLogin(dispatch, {
-                                        username,
-                                        password,
-                                });
-                        } 
-                        catch(err)
-                        {
-                                console.log(err);
-                        }
-                        
+                try {
+                        UserLogin(dispatch, {
+                                username,
+                                password,
+                        });
+                } catch (err) {
+                        console.log(err);
                 }
         };
-       
 
         return (
                 <div>
@@ -81,7 +62,9 @@ function Login() {
                                                 <input
                                                         type="text"
                                                         value={username}
-                                                        onChange={(e) => validateUsername(e.target.value)}
+                                                        onChange={(e) =>
+                                                                setUsername(e.target.value.replace(/[^0-9-_.a-z@]/gi, ""))
+                                                        }
                                                         className="border rounded py-1 px-2 w-full"
                                                 />
                                         </div>
@@ -93,14 +76,16 @@ function Login() {
                                                                 type={passwordShown ? "text" : "password"}
                                                                 value={password}
                                                                 required
-                                                                onChange={(e) => validatePassword(e.target.value)}
+                                                                onChange={(e) =>
+                                                                        setPassword(e.target.value.replace(/[^0-9-_.a-z@]/gi, ""))
+                                                                }
                                                                 className="py-1 px-2 w-full"
                                                         />
                                                         <button onClick={togglePassword} className="pr-1">
                                                                 {passwordShown ? (
-                                                                        <VisibilityIcon color="action" fontSize="small"/>
+                                                                        <VisibilityIcon color="action" fontSize="small" />
                                                                 ) : (
-                                                                        <VisibilityOffIcon color="action" fontSize="small"/>
+                                                                        <VisibilityOffIcon color="action" fontSize="small" />
                                                                 )}
                                                         </button>
                                                 </div>
