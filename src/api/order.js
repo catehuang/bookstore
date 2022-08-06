@@ -13,9 +13,9 @@ export const LoadOrders = async (dispatch, user) => {
                 const response = await axiosAuth.get(`/orders/find/${userId}`);
                 //console.log(response.data);
                 dispatch(setOrder(response.data));
-                console.log("orders loaded.");
+                //console.log("orders loaded.");
         } catch (err) {
-                console.log("No order history");
+                //console.log("No order history");
                 //console.log(err);
         }
 };

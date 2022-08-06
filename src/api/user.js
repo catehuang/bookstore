@@ -27,7 +27,7 @@ export const UserRegister = async (dispatch, user) => {
                 dispatch(registerSuccess(response.data));
                 dispatch(loginSuccess(response.data));
                 CreateCart(dispatch, response.data);
-                console.log("Registered. Welcome " + response.data.username + " !");
+                //console.log("Registered. Welcome " + response.data.username + " !");
         }
 };
 
@@ -41,11 +41,11 @@ export const UserLogin = async (dispatch, user) => {
 
                 dispatch(loginSuccess(response.data));
                 // console.log(response.data);
-                console.log("Login successfully. Welcome " + response.data.username + " !");
+                //console.log("Login successfully. Welcome " + response.data.username + " !");
                 LoadCart(dispatch, response.data);
                 LoadOrders(dispatch, response.data);
         } catch (err) {
-                console.log(err);
+                //console.log(err);
                 dispatch(loginFailure());
         }
 };
@@ -53,8 +53,8 @@ export const UserLogin = async (dispatch, user) => {
 export const UserLogout = async () => {
         try {
                 await axios.get("/logout");
-                console.log("Logout successfully. See you soon!");
+                //console.log("Logout successfully. See you soon!");
         } catch (err) {
-                console.log(err);
+                //console.log(err);
         }
 };
