@@ -36,16 +36,10 @@ function Product_Books({ book }) {
                                                                 precision={0.5}
                                                                 size="small"
                                                         />
-                                                        {/* {Array(Math.floor(book.stars))
-                                                        .fill()
-                                                        .map((_, i) => (
-                                                                <span key={i}>&#9733;</span>
-                                                        ))} */}
                                                 </div>
                                                 <span className="text-sm">{book_reviews}</span>
                                         </div>
                                 </div>
-                                {/* <button className="text-sm text-center border-yellow-500 bg-amber-200 w-full py-1 rounded hover:bg-amber-300">Add to Cart</button>    */}
                         </div>
                 </Link>
         );
