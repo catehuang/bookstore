@@ -11,6 +11,7 @@ router.post("/", verifyToken, async (req, res) => {
                 const savedOrder = await newOrder.save();
                 res.status(200).json(savedOrder);
         } catch (err) {
+                console.log("could't create order ==============");
                 console.log(err);
                 res.status(500).json(err);
         }
@@ -23,6 +24,7 @@ router.get("/find/:userId", verifyToken, async (req, res) => {
                 const orders = await Order.find({ userId });
                 res.status(200).json(orders);
         } catch (err) {
+                console.log(err);
                 res.status(500).json(err);
         }
 });
@@ -39,6 +41,7 @@ router.put("/:id", verifyToken, async (req, res) => {
                 );
                 res.status(200).json(updatedOrder);
         } catch (err) {
+                console.log(err);
                 res.status(500).json(err);
         }
 });
@@ -49,6 +52,7 @@ router.delete("/:id", verifyToken, async (req, res) => {
                 await Order.findByIdAndDelete(req.params.id);
                 res.status(200).json("Order has been deleted.");
         } catch (error) {
+                console.log(err);
                 res.status(500).json(error);
         }
 });

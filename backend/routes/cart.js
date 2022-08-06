@@ -1,7 +1,6 @@
 const express = require("express");
 const Cart = require("../models/cart");
 const router = express.Router();
-const passport = require("passport");
 const { verifyToken } = require("../middleware/auth");
 
 // create a new cart
@@ -15,7 +14,7 @@ router.post("/new/:userId", verifyToken, async (req, res) => {
       }
       else
       {
-        console.log(result);
+        //console.log(result);
         res.status(200).json(result);
       }
     });

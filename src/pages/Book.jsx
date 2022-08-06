@@ -40,7 +40,8 @@ function Book() {
             }
         };
         getBook();
-    }, [id]);
+        // eslint-disable-next-line
+    }, []);
 
     const handleAddToCart = () => {
         dispatch(addProduct({ ...book, quantity }));

@@ -21,6 +21,8 @@ function Header() {
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
 
+
+
     useEffect(() => {
         const getBooks = async () => {
             const response = await axios.get(`/books`);
@@ -34,7 +36,7 @@ function Header() {
             UpdateCart({ cart, user });
         }
         // eslint-disable-next-line
-    },[cart]);
+    },[cart, user]);
 
     const handleLogout = () => {
         try {

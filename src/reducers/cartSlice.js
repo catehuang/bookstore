@@ -18,12 +18,17 @@ const cartSlice = createSlice({
       state.total = 0;
     },
     setCart: (state, action) => {
+        // if local cart is empty, put the cart data from remote to local
       state.cartId = action.payload._id;
       state.userId = action.payload.userId;
       state.products = action.payload.products;
       state.quantity = action.payload.products.reduce((cartItemQuantity) => cartItemQuantity + 1,0);
       state.total = action.payload.products.reduce((accumulatedTotal, product) =>
           accumulatedTotal + product.quantity * product.price,0);        
+    },
+    adoptCart: (state, action) => {
+        state.cartId = action.payload._id;
+        state.userId = action.payload.userId;
     },
     addProduct: (state, action) => {
       // does this item in cart
@@ -95,6 +100,7 @@ const cartSlice = createSlice({
 export const {
   newCart,
   setCart,
+  adoptCart,
   addProduct,
   updateProduct,
   deleteProduct,

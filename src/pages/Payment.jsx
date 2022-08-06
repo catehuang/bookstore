@@ -10,7 +10,6 @@ import { clearCart } from "../reducers/cartSlice";
 function Payment() {
     const user = useSelector((state) => state.user.currentUser);
     const cart = useSelector((state) => state.cart);
-    const order = useSelector((state) => state.order);
     const cartTotal = cart.total.toFixed(2);
     const shippingFee = (cartTotal * 0.1).toFixed(2);
     const beforeTax = (Number(cartTotal) + Number(shippingFee)).toFixed(2);
@@ -162,15 +161,15 @@ function Payment() {
 
     useEffect(() => {
         if (
-            receiver.length > 2 &&
+            receiver.length > 1 &&
             shippingAddress.length > 2   &&
-            shippingCity.length > 2  &&
+            shippingCity.length > 1  &&
             shippingProvince.length > 2  &&
-            shippingPostalCode.length > 2 
-        ) {
+            shippingPostalCode.length > 5 
+        ) 
+        {
             setValidShippingInfo(true);
         }
-
     }, [receiver, shippingAddress, shippingCity, shippingProvince, shippingPostalCode]);
 
 
@@ -184,8 +183,7 @@ function Payment() {
         };
         getClientSecret();
         // eslint-disable-next-line
-    }, [amount]);
-
+    },[cart]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -199,8 +197,7 @@ function Payment() {
                     },
                 })
                 .then(async (result) => {
-                    //console.log(result.paymentIntent);
-                    await axiosAuth.post(`/orders`, {
+                    const response = await axiosAuth.post(`/orders`, {
                         userId: user._id,
                         products: cart.products.map((item) => ({
                             _id: item._id,
@@ -224,19 +221,24 @@ function Payment() {
                         },
                         status: result.paymentIntent.status,
                     });
+
+                    if (response.status === 200)
+                    {
+                        setSucceeded(true);
+                        setError(null);         
+                    }
                 });
         } catch (error) {
             console.log(error);
             setError(true);
         }
 
-        if (!error) {
-            setSucceeded(true);
-            setError(null);
+        if (!error)
+        {
             setProcessing(false);
             dispatch(clearCart());
             LoadOrders(dispatch, user._id);
-            navigate("/orders");
+            navigate("/orders");        
         }
     };
 
