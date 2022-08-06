@@ -6,7 +6,7 @@ function Footer() {
       <div className="bg-[#005e80] text-center">
           <p className="text-gray-200 p-1 text-sm"><a href="#top">Back to top</a></p>
       </div>
-      <div className="w-2/3 mx-auto mt-5 flex justify-between text-sm">
+      <div className="w-4/5 mx-auto mt-5 flex justify-between text-sm">
         <div className="flex flex-col gap-1">
           <p className="text-base py-1 font-bold">Get to Know Us</p>
           <p>Careers</p>
@@ -43,7 +43,7 @@ function Footer() {
         </div>
       </div>
       <div className="mt-3 bg-[#00131a]">
-        <div className="w-2/5 mx-auto flex justify-between flex-row py-2 text-sm">
+        <div className="w-4/5 mx-auto flex justify-between flex-row py-2 text-sm">
           <p>Condition of Use</p>
           <p>Privacy Notice</p>
           <p>Help</p>

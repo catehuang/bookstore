@@ -54,7 +54,7 @@ function Login() {
                         </div>
                         <div className="mx-auto w-96">
                                 <p className="text-3xl first-letter:font-bold text-center">BookStore</p>
-                                <form className="border rounded-lg my-5 p-5 flex flex-col gap-5">
+                                <form className="border rounded-lg my-10 p-5 flex flex-col gap-5">
                                         <p className="text-xl">Login</p>
 
                                         <div className="felx flex-col">
