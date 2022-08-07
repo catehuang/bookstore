@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Close from '@material-ui/icons/Close';
+import Close from '@mui/icons-material/Close';
 import PersonIcon from '@material-ui/icons/Person';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
