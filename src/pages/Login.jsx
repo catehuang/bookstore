@@ -44,7 +44,7 @@ function Login() {
         };
 
         return (
-                <div>
+                <div className="h-screen">
                         <div className="h-16">
                                 {loginError && (
                                         <div className="text-red-600 text-center bg-red-100 py-1">

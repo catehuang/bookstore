@@ -9,11 +9,17 @@ const userRoute = require("./routes/user");
 const cartRoute = require("./routes/cart");
 const orderRoute = require("./routes/order");
 const paymentRoute = require("./routes/payment");
+const PORT = process.env.PORT || 5000;
+const path = require("path");
 
 if (process.env.NODE_ENV !== "production") {
   // Load environment variables from .env file in non prod environments
   require("dotenv").config();
 }
+
+const buildPath = path.join(__dirname, '..', 'build');
+
+
 require("./utils/connectdb");
 
 require("./strategies/JwtStrategy");
@@ -21,7 +27,7 @@ require("./strategies/LocalStrategy");
 require("./middleware/auth");
 
 const app = express();
-
+app.use(express.static(buildPath));
 app.use(bodyParser.json());
 app.use(cookieParser(process.env.COOKIE_SECRET));
 
@@ -60,6 +66,6 @@ app.use("/api/orders", orderRoute);
 app.use("/api/payments", paymentRoute);
 
 
-app.listen(process.env.PORT, () => {
-  console.log(`Sever started at http://localhost:` + process.env.PORT);
+app.listen(PORT, () => {
+  console.log(`Sever started at http://localhost:` + PORT);
 });
