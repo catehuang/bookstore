@@ -10,7 +10,6 @@ function Subtotal() {
         const cartTotal = cart.total;
         const [total, setTotal] = useState(cartTotal);
         const navigate = useNavigate();
-        console.log(cartTotal);
 
         useEffect(() => {
                 setTotal(cartTotal);
@@ -73,7 +72,7 @@ function Subtotal() {
                                 )}
                                 decimalScale={2}
                                 fixedDecimalScale={true}
-                                value={total}
+                                value={cartTotal}
                                 displayType={"text"}
                                 thousandSeparator={true}
                                 prefix={"$"}
