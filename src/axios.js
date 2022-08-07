@@ -3,7 +3,7 @@ import axiosLib from "axios";
 // const currentUser = user && JSON.parse(user).currentUser;
 // const token = currentUser?.accessToken;
 
-const BASE_URL = "http://localhost:5000/api";
+const BASE_URL = "https://web-app-bookstore.herokuapp.com/:5000/api";
 
 export const axios = axiosLib.create({
   baseURL: BASE_URL,

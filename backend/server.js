@@ -81,5 +81,5 @@ if(process.env.NODE_ENV === 'production') {
 }
 
 app.listen(PORT, () => {
-  console.log(`Sever started at http://localhost:` + PORT);
+  console.log(`Sever is running on the port`, PORT);
 });
