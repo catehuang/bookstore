@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import VisibilityIcon from "@material-ui/icons/Visibility";
-import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import VisibilityIcon from "@mui/icons-material/Visibility";
 import { UserLogin } from "../api/user";
 
 function Login() {
@@ -44,7 +44,7 @@ function Login() {
         };
 
         return (
-                <div className="h-screen">
+                <div>
                         <div className="h-16">
                                 {loginError && (
                                         <div className="text-red-600 text-center bg-red-100 py-1">
