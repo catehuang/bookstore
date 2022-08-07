@@ -7,12 +7,11 @@ import { useNavigate } from "react-router-dom";
 function Subtotal() {
         const user = useSelector(state => state.user.currentUser);
         const cart = useSelector(state => state.cart);
-        const cartTotal = cart.total;
-        const [total, setTotal] = useState(cartTotal);
+        const [total, setTotal] = useState(cart.total);
         const navigate = useNavigate();
 
         useEffect(() => {
-                setTotal(cartTotal);
+                setTotal(cart.total);
         });
 
         return (
@@ -72,7 +71,7 @@ function Subtotal() {
                                 )}
                                 decimalScale={2}
                                 fixedDecimalScale={true}
-                                value={cartTotal}
+                                value={total}
                                 displayType={"text"}
                                 thousandSeparator={true}
                                 prefix={"$"}
