@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const data = require("./data");
 const userdata = require("./user");
-const URL = "mongodb://localhost:27017/amazon";
+const URL = "mongodb://localhost:27017/bookstore";
 
 // useNewUrlParser , useUnifiedTopology , useFindAndModify , and useCreateIndex are no longer supported options.
 mongoose.connect(URL);
