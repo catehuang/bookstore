@@ -13,7 +13,7 @@ function Subtotal() {
 
         useEffect(() => {
                 setTotal(cartTotal);
-        }, [cartTotal]);
+        });
 
         return (
                 <div className="w-80 h-fit p-10 bg-white rounded-lg flex flex-col gap-5">
