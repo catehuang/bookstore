@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 function Subtotal() {
         const user = useSelector(state => state.user.currentUser);
         const cart = useSelector(state => state.cart);
-        const cartTotal = useSelector(state => state.cart.total);
+        const cartTotal = cart.total;
         const [total, setTotal] = useState(cartTotal);
         const navigate = useNavigate();
         console.log(cartTotal);
