@@ -10,7 +10,7 @@ function Home() {
                 const getBooks = async () => {
                         try {
                                 // the data set formed in arrays
-                                const response = await axios.get(`/books`);
+                                const response = await axios.get(`/api/books`);
                                 setBooks(response.data);
                         }
                         catch (error)
