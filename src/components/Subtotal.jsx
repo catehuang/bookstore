@@ -10,6 +10,7 @@ function Subtotal() {
         const cartTotal = useSelector(state => state.cart.total);
         const [total, setTotal] = useState(cartTotal);
         const navigate = useNavigate();
+        console.log(cartTotal);
 
         useEffect(() => {
                 setTotal(cartTotal);

@@ -75,9 +75,9 @@ app.use("/api/payments", paymentRoute);
 if(process.env.NODE_ENV === 'production') {
   app.use(express.static('build'));
 
-  // app.get('*', (req, res) => {
-  //   res.sendFile(path.resolve(__dirname, 'backend', 'build', 'index.html'));
-  // });
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'backend', 'build', 'index.html'));
+  });
 }
 
 app.listen(PORT, () => {
