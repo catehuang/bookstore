@@ -8,7 +8,7 @@ function Subtotal() {
         const user = useSelector((state) => state.user.currentUser);
         const cart = useSelector((state) => state.cart);
         const cartTotal = useSelector((state) => state.cart.total);
-        const [total, setTotal] = useState(cartTotal);
+        const [total, setTotal] = useState(0);
         const navigate = useNavigate();
 
         useEffect(() => {
