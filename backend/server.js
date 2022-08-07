@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require('express-session')
 const bookRoute = require("./routes/book");
@@ -11,16 +12,15 @@ const orderRoute = require("./routes/order");
 const paymentRoute = require("./routes/payment");
 const PORT = process.env.PORT || 5000;
 const path = require("path");
+const url = process.env.MONGO_URL;
 
-if (process.env.NODE_ENV !== "production") {
-  // Load environment variables from .env file in non prod environments
-  require("dotenv").config();
-}
+require("dotenv").config();
 
 const buildPath = path.join(__dirname, '..', 'build');
 
-
-require("./utils/connectdb");
+mongoose.connect("mongodb+srv://" + url, { useNewUrlParser: true, useUnifiedTopology: true })
+.then(() => console.log("connect to db"))
+.catch(err => console.error("connection error", err.stack));
 
 require("./strategies/JwtStrategy");
 require("./strategies/LocalStrategy");
@@ -33,22 +33,22 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 
 //Add the client URL to the CORS policy
 
-const whitelist = process.env.WHITELISTED_DOMAINS
-  ? process.env.WHITELISTED_DOMAINS.split(",")
-  : [];
+// const whitelist = process.env.WHITELISTED_DOMAINS
+//   ? process.env.WHITELISTED_DOMAINS.split(",")
+//   : [];
 
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true,
-};
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     if (!origin || whitelist.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+//   credentials: true,
+// };
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use(session({
   secret: "thisisasecret",
@@ -65,6 +65,13 @@ app.use("/api/carts", cartRoute);
 app.use("/api/orders", orderRoute);
 app.use("/api/payments", paymentRoute);
 
+if(process.env.NODE_ENV === 'production') {
+  app.use(express.static('build'));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'backend', 'build', 'index.html'));
+  });
+}
 
 app.listen(PORT, () => {
   console.log(`Sever started at http://localhost:` + PORT);

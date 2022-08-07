@@ -7,7 +7,6 @@ import { addProduct } from "../reducers/cartSlice";
 import { axios } from "../axios";
 import Suggestion from "../components/Suggestion";
 
-
 function Book() {
     // return an object
     const { id } = useParams();
@@ -34,7 +33,7 @@ function Book() {
     ];
 
     useEffect(() => {
-               const getBook = async () => {
+        const getBook = async () => {
             try {
                 const response = await axios.get(`/books/find/${id}`);
                 setBook(response.data);
@@ -43,16 +42,13 @@ function Book() {
             }
         };
         getBook();
-        if (book.quantity === 0)
-            setAvailable(false);
+        if (book.quantity === 0) setAvailable(false);
 
         // scroll to top after reload page
-        window.scrollTo({top: 0, left: 0});
+        window.scrollTo({ top: 0, left: 0 });
         // eslint-disable-next-line
     }, [id]);
 
-
-    
     const handleAddToCart = () => {
         dispatch(addProduct({ ...book, quantity }));
         navigate("/");
@@ -75,7 +71,9 @@ function Book() {
             <div className="flex flex-col w-72 flex-none h-fit border border-gray-300 rounded p-5 gap-5 text-sm">
                 <div className="flex flex-col gap-5">
                     <div className="flex justify-between">
-                        <p className="my-auto text-base font-bold">{available? 'In Stock' : 'Currently unavailable'}</p>
+                        <p className="my-auto text-base font-bold">
+                            {available ? "In Stock" : "Currently unavailable"}
+                        </p>
                         <p className="text-red-700 flex font-bold">
                             <span className="text-xs mt-1">$</span>
                             <span className=" text-xl">{book_price_integer}</span>
@@ -91,24 +89,26 @@ function Book() {
                                 className="border border-gray-400 rounded px-1"
                                 onChange={(e) => setQuantity(e.target.value)}
                             >
-                                {book.quantity > 0 && Array.from({ length: book.quantity }, (_, num) => (
-                                    <option key={num + 1} value={num + 1}>
-                                        {num + 1}
-                                    </option>
-                                ))}
-
+                                {book.quantity > 0 &&
+                                    Array.from({ length: book.quantity }, (_, num) => (
+                                        <option key={num + 1} value={num + 1}>
+                                            {num + 1}
+                                        </option>
+                                    ))}
                             </select>
                         </div>
                     </div>
                     <button
-                        className="text-sm text-center border-yellow-500 bg-yellow-400 w-full py-1 rounded hover:bg-yellow-500" disabled={available? false: true}
+                        className="text-sm text-center border-yellow-500 bg-yellow-400 w-full py-1 rounded hover:bg-yellow-500"
+                        disabled={available ? false : true}
                         onClick={handleAddToCart}
                     >
                         Add to Cart
                     </button>
 
                     <button
-                        className="text-sm text-center border-yellow-500 bg-orange-400 w-full py-1 rounded hover:bg-orange-500" disabled={available? false: true}
+                        className="text-sm text-center border-yellow-500 bg-orange-400 w-full py-1 rounded hover:bg-orange-500"
+                        disabled={available ? false : true}
                         onClick={handleBuyNow}
                     >
                         Buy now
@@ -160,7 +160,7 @@ function Book() {
 
             {/* The forth row on the page */}
             <div className="">
-                <Suggestion selectedBook={book}/>
+                <Suggestion selectedBook={book} />
             </div>
         </div>
     );
