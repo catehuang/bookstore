@@ -5,7 +5,6 @@
   "dependencies": {
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
-
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.9.2",
     "@mui/system": "^5.9.2",
@@ -32,10 +31,10 @@
   },
   "scripts": {
     "start-client": "react-scripts start",
-    "build": "react-scripts build && (cd backend && yarn install)",
+    "build": "react-scripts build && (cd backend && npm install)",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start": "cd backend && yarn start"
+    "start": "cd backend && npm start"
   },
   "engines": {
     "node": "16.15.0"
