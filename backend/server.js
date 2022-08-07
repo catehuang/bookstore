@@ -48,9 +48,8 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 //   credentials: true,
 // };
 
-app.use(cors(origin, {
-  credentials: true,
-}));
+app.use(cors());
+app.options('*', cors());
 
 app.use(session({
   secret: "thisisasecret",
