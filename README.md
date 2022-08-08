@@ -1,4 +1,4 @@
-It's a bookstore website. Customers can login their accounts and put books into their shopping carts, and place orders.
+It's a bookstore website. Customers can login their accounts and put books into their shopping carts, and place orders. Potential customers can have their own shopping carts as well.
 
 Functionalities
 * Registration
