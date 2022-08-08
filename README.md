@@ -1,10 +1,14 @@
-On this BookStore website, there are three main functionalities:
-* Users can register/login their own account
-* All users can put products(books) into their carts. However, only logged-in users can save their carts on the server.
-* Logged-in users can checkout their products in their cart, place their orders, and check their orders (and order history).
+It's a bookstore website. Customers can login their accounts and put books into their shopping carts, and place orders.
 
+Functionalities
+* Registration
+* Authentication - tokens and cookies
+* Searching function - use a keyword to find a book
+* Managing shopping carts
+* Payment by card method
+* Order history
 
-This project uses the following libraries
+Used libraries
 * React
 * Tailwind CSS
 * Redux
