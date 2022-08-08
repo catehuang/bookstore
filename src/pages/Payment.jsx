@@ -301,6 +301,8 @@ function Payment() {
                                 </p>
                             )}
 
+                            <p className="text-red">Do not use your credit card number !!</p>
+                            <p className="text-red">Please use 4242424... to complete the payment</p>
                             {error && <div>{error}</div>}
                         </div>
                     </div>
