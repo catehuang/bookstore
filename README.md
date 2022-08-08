@@ -13,3 +13,15 @@ This project uses the following libraries
 * mongoose
 * passport, passport-local, passport-local-mongoose, passport-jwt, jsonwebtoken
 * react-stripe-js, stripe-js
+
+The following environment varaibles are not included on Github
+* JWT_SECRET
+* ACCESS_TOKEN_SECRET
+* REFRESH_TOKEN_SECRET
+* SESSION_EXPIRY
+* REFRESH_TOKEN_EXPIRY
+* MONGO_URL
+* COOKIE_SECRET
+* STRIPE_SECRET
+
+
