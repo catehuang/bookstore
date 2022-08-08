@@ -4,9 +4,9 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CurrencyFormat from "react-currency-format";
 import { useNavigate } from "react-router-dom";
 
-function Subtotal() {
+function Subtotal({ cart }) {
         const user = useSelector(state => state.user.currentUser);
-        const cart = useSelector(state => state.cart);
+        //const cart = useSelector(state => state.cart);
         const [total, setTotal] = useState(cart.total);
         const navigate = useNavigate();
 

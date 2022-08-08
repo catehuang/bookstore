@@ -31,7 +31,7 @@ function Checkout() {
                                         )}
                                 </div>
                                 {/* main right window */}
-                                 <Subtotal />
+                                 <Subtotal cart={cart}/>
                         </div>
 
                         {/* more info on the bottom */}
