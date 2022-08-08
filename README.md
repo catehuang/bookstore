@@ -10,6 +10,7 @@ Functionalities
 
 Used libraries
 * React
+* Redux
 * Tailwind CSS
 * Redux
 * Axios
