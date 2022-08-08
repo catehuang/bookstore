@@ -11,7 +11,7 @@ function Book() {
     // return an object
     const { id } = useParams();
     const [book, setBook] = useState([]);
-    const [quantity, setQuantity] = useState(0);
+    const [quantity, setQuantity] = useState(1);
     const [available, setAvailable] = useState(true);
     const dispatch = useDispatch();
     const navigate = useNavigate();
