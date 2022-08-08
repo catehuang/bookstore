@@ -295,14 +295,23 @@ function Payment() {
                                     {processing ? "Processing" : "Buy Now"}
                                 </button>
                             </form>
-                            {!validShippingInfo && (
+                            {
+                                !validShippingInfo && (
                                 <p className="text-center pt-2 text-green-500">
                                     Please provide shipping Information
                                 </p>
                             )}
 
-                            <p className="text-red">Do not use your credit card number !!</p>
-                            <p className="text-red">Please use 4242424... to complete the payment</p>
+                            {
+                                validShippingInfo && (
+                                <div>
+                                    <p className="text-red-500">Do not use your credit card number !!</p>
+                                    <p className="text-red-500">Please use 4242424... to complete the payment</p>                                
+                                </div>                                    
+                                )
+                            }
+
+
                             {error && <div>{error}</div>}
                         </div>
                     </div>
