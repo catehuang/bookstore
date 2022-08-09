@@ -12,6 +12,7 @@ function Subtotal() {
 
         useEffect(() => {
                 setTotal(cart.total);
+                // eslint-disable-next-line
         });
 
         return (

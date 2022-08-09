@@ -146,7 +146,7 @@
                 },
                 {
                         "category": "books",
-                        "featuredCategory": "Politics & Socail Sciences",
+                        "featuredCategory": "Politics & social Sciences",
                         "name": "The Freedom Convoy: The Inside Story of Three Weeks that Shook the World",
                         "image": "https://images-na.ssl-images-amazon.com/images/I/71EzllGpnBL._AC._SR360,460.jpg",
                         "author": "Andrew Lawton",
@@ -158,7 +158,7 @@
                 },
                 {
                         "category": "books",
-                        "featuredCategory": "Politics & Socail Sciences",
+                        "featuredCategory": "Politics & social Sciences",
                         "name": "Color & Frame - By the Sea (Adult Coloring Book)",
                         "image": "https://images-na.ssl-images-amazon.com/images/I/91jW9T0PatL._AC._SR360,460.jpg",
                         "author": "New Seasons",
@@ -167,6 +167,18 @@
                         "reviews": 4903,
                         "description": "This Simple 1-2-3™ Color and Frame - By the Sea coloring book features the art of Ana Davis. Whimsical coloring pages fill this book - from sea turtles, to starfish, to lighthouses, each page holds an imaginative coloring experience. 8 x10 inch, perforated one sided pages allows easy tear out to frame or share. Thick paper prevents marker or pen from bleeding through to the next page. Spiral binding allows pages to lay flat while coloring. Images range in complexity. This coloring book is made for grown-ups but all ages can enjoy! Join millions of adults around the world who are rediscovering the simple relaxation and joy of coloring! Publications International, Ltd.  (​PIL) publishes books and products for kids and adults in many categories: reference, leisure, inspirational, automotive, sports, cookbooks, stationery (New Seasons), interactive and early learning (Little Grasshopper Books).",
                         "quantity": 10
+                },
+                {
+                        "category": "books",
+                        "featuredCategory": "Business & Investing",
+                        "name": "The Psychology of Money: Timeless lessons on wealth, greed, and happiness",
+                        "image": "https://images-na.ssl-images-amazon.com/images/I/41v+g6LqafL._SX322_BO1,204,203,200_.jpg",
+                        "author": "Morgan Housel",
+                        "price": 14.20,
+                        "stars": 4.5,
+                        "reviews": 42175,
+                        "description": "Doing well with money isn't necessarily about what you know. It's about how you behave. And behavior is hard to teach, even to really smart people. Money―investing, personal finance, and business decisions―is typically taught as a math-based field, where data and formulas tell us exactly what to do. But in the real world people don't make financial decisions on a spreadsheet. They make them at the dinner table, or in a meeting room, where personal history, your own unique view of the world, ego, pride, marketing, and odd incentives are scrambled together. In The Psychology of Money, award-winning author Morgan Housel shares 19 short stories exploring the strange ways people think about money and teaches you how to make better sense of one of life's most important topics.",
+                        "quantity": 0
                 }
         ]
 }

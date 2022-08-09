@@ -12,7 +12,6 @@ function Book() {
     const { id } = useParams();
     const [book, setBook] = useState([]);
     const [quantity, setQuantity] = useState(1);
-    const [available, setAvailable] = useState(true);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const newDate = new Date();
@@ -42,8 +41,6 @@ function Book() {
             }
         };
         getBook();
-        if (book.quantity === 0) setAvailable(false);
-
         // scroll to top after reload page
         window.scrollTo({ top: 0, left: 0 });
         // eslint-disable-next-line
@@ -72,7 +69,7 @@ function Book() {
                 <div className="flex flex-col gap-5">
                     <div className="flex justify-between">
                         <p className="my-auto text-base font-bold">
-                            {available ? "In Stock" : "Currently unavailable"}
+                            {book.quantity !==0 ? "In Stock" : "Currently unavailable"}
                         </p>
                         <p className="text-red-700 flex font-bold">
                             <span className="text-xs mt-1">$</span>
@@ -95,20 +92,23 @@ function Book() {
                                             {num + 1}
                                         </option>
                                     ))}
+                                {book.quantity === 0 &&
+                                    <option value="0"> 0</option>
+                                }
                             </select>
                         </div>
                     </div>
                     <button
-                        className="text-sm text-center border-yellow-500 bg-yellow-400 w-full py-1 rounded hover:bg-yellow-500"
-                        disabled={available ? false : true}
+                        className="text-sm text-center border-yellow-500 bg-yellow-400 w-full py-1 rounded hover:bg-yellow-500 disabled:bg-gray-300"
+                        disabled={book.quantity !==0 ? false : true}
                         onClick={handleAddToCart}
                     >
                         Add to Cart
                     </button>
 
                     <button
-                        className="text-sm text-center border-yellow-500 bg-orange-400 w-full py-1 rounded hover:bg-orange-500"
-                        disabled={available ? false : true}
+                        className="text-sm text-center border-yellow-500 bg-orange-400 w-full py-1 rounded hover:bg-orange-500 disabled:bg-gray-300"
+                        disabled={book.quantity !==0 ? false : true}
                         onClick={handleBuyNow}
                     >
                         Buy now

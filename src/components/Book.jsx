@@ -13,6 +13,14 @@ function Product_Books({ book }) {
         return (
                 <Link to={`/books/` + book._id}>
                         <div className="mx-auto pt-3 w-60 bg-gray-100 py-5 rounded">
+                                {
+                                        book.quantity === 0 && (
+                                                <div>
+                                                        <p className="bg-black text-white px-1 w-fit absolute">SOLD OUT</p>
+                                                </div>    
+                                        )
+                                }
+
                                 <img
                                         className="object-contain h-52 w-52 mx-auto"
                                         src={book.image}

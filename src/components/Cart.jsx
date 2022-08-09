@@ -6,7 +6,7 @@ import { updateProduct, deleteProduct } from "../reducers/cartSlice";
 
 
 function Cart({ product }) {
-        const user = useSelector(state => state.user.currentUser);
+        //const user = useSelector(state => state.user.currentUser);
         const cart = useSelector(state => state.cart);
         const cartItem = cart.products;
         //const total = useSelector(state => state.cart.total);
