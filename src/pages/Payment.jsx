@@ -159,6 +159,48 @@ function Payment() {
         );
     };
 
+    const Summary = () => {
+        return (
+            <div className="sm:border border-gray-400 w-full sm:w-80 h-fit p-5 bg-white rounded-lg flex flex-col gap-5 mx-auto">
+                    <div className="flex flex-col gap-3">
+                        <p className="text-xl font-bold border-b pb-2">Order Summary</p>
+
+                        <div className="flex flex-col gap-1 px-5">
+                            <div className="flex justify-between">
+                                <p>Items:</p>
+                                <p>${cartTotal}</p>
+                            </div>
+                            <div className="flex justify-between">
+                                <p>Shipping & Handling:</p>
+                                <p>${shippingFee}</p>
+                            </div>
+
+                            {cartTotal > 35 && (
+                                <div className="flex justify-between">
+                                    <p>Free Shipping</p>
+                                    <p>- ${shippingFee}</p>
+                                </div>
+                            )}
+
+                            <div className="flex justify-between">
+                                <p>Total before tax:</p>
+                                <p>${beforeTax}</p>
+                            </div>
+                            <div className="flex justify-between">
+                                <p>Estimated GST/HST:</p>
+                                <p>${gst}</p>
+                            </div>
+                        </div>
+
+                        <div className="flex justify-between text-lg text-red-700 border-t pt-2 px-5">
+                            <p>Order Total</p>
+                            <p>${total}</p>
+                        </div>
+                    </div>
+                </div>
+        )
+    }
+
     useEffect(() => {
         if (
             receiver.length > 1 &&
@@ -249,7 +291,7 @@ function Payment() {
     };
 
     return (
-        <div className="p-10 flex flex-col gap-5">
+        <div className="p-10 flex flex-col gap-5 flex-wrap">
             <div>
                 <p className="text-2xl font-bold px-5">
                     Check out ( {cart.quantity} ) items
@@ -269,19 +311,24 @@ function Payment() {
 
             <div className="my-10 flex gap-5 flex-wrap">
                 <div className="grow flex flex-col gap-5">
-                    <div className="flex flex-col gap-5 bg-white rounded-lg">
-                        <p className="text-xl font-bold px-5">Review Items and Shipping</p>
-                        {cart.products.map((item) => (
-                            <Cart key={item._id} product={item} />
-                        ))}
+                    <div className="flex flex-wrap gap-5">
+                        <div className="flex flex-col gap-5 bg-white rounded-lg grow">
+                            <p className="text-xl font-bold px-5">Review Items and Shipping</p>
+                            {cart.products.map((item) => (
+                                <Cart key={item._id} product={item} />
+                            ))}
+                            <p className="border-gray-300 border-t"></p>
+                        </div>   
+                        <Summary />                     
                     </div>
-                    <div>
-                        <p className="text-xl font-bold px-5">Payement Method</p>
-                        <div className="m-10 p-10 rounded bg-gray-100 w-fit">
-                            <form onSubmit={handleSubmit} className="w-96 ">
+
+                    <div className="">
+                        <p className="text-xl font-bold px-5 pt-5">Payement Method</p>
+                        <div className="ml-5 m-10 sm:ml-10 p-5 sm:p-10 rounded-lg bg-gray-100 w-fit mx-auto">
+                            <form onSubmit={handleSubmit} className="w-80 flex flex-col">
                                 <CardElement
                                     onChange={handleChange}
-                                    className="w-96 p-5 text-lg border border-gray-400 rounded-lg bg-white"
+                                    className="w-80 p-5 text-lg border border-gray-400 rounded-lg bg-white"
                                 />
                                 <p className="text-lg text-red-700 py-5">
                                     Order Total: ${total}
@@ -317,44 +364,7 @@ function Payment() {
                     </div>
                 </div>
 
-                {/* right window */}
-                <div className="border border-gray-400 w-80 h-fit p-10 bg-white rounded-lg flex flex-col gap-5 mt-10">
-                    <div className="flex flex-col gap-3">
-                        <p className="text-xl font-bold border-b pb-2">Order Summary</p>
-
-                        <div className="flex flex-col gap-1">
-                            <div className="flex justify-between">
-                                <p>Items:</p>
-                                <p>${cartTotal}</p>
-                            </div>
-                            <div className="flex justify-between">
-                                <p>Shipping & Handling:</p>
-                                <p>${shippingFee}</p>
-                            </div>
-
-                            {cartTotal > 35 && (
-                                <div className="flex justify-between">
-                                    <p>Free Shipping</p>
-                                    <p>- ${shippingFee}</p>
-                                </div>
-                            )}
-
-                            <div className="flex justify-between">
-                                <p>Total before tax:</p>
-                                <p>${beforeTax}</p>
-                            </div>
-                            <div className="flex justify-between">
-                                <p>Estimated GST/HST:</p>
-                                <p>${gst}</p>
-                            </div>
-                        </div>
-
-                        <div className="flex justify-between text-lg text-red-700 border-t pt-2">
-                            <p>Order Total</p>
-                            <p>${total}</p>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div>
     );

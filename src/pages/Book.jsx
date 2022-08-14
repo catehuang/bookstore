@@ -65,7 +65,7 @@ function Book() {
 
     const ShoppingInfo = () => {
         return (
-            <div className="flex flex-col w-72 flex-none h-fit border border-gray-300 rounded p-5 gap-5 text-sm">
+            <div className="flex flex-col w-72 flex-none h-fit sm:border border-gray-300 rounded p-5 gap-5 text-sm mx-auto">
                 <div className="flex flex-col gap-5">
                     <div className="flex justify-between">
                         <p className="my-auto text-base font-bold">
@@ -119,16 +119,16 @@ function Book() {
     };
 
     return (
-        <div className="flex flex-col gap-10 m-10 w-4/5 mx-auto">
+        <div className="flex flex-col gap-10 m-10 w-4/5 mx-auto text-sm sm:text-base">
             {/* First row on the page */}
             <p className="text-[#005e80]">
                 <Link to="/">&lt; back to result</Link>
             </p>
 
             {/* Second row on the page */}
-            <div className="flex justify-between">
+            <div className="flex justify-between flex-wrap gap-10">
                 <img
-                    className="w-40 sm:w-48 md:w-60 lg:w-72 h-fit object-contain"
+                    className="w-fit sm:w-48 md:w-60 lg:w-72 h-fit object-contain mx-auto"
                     src={book.image}
                     alt=""
                 />
@@ -137,8 +137,8 @@ function Book() {
 
             {/* Third row on the page - book info*/}
             <div className="flex flex-col gap-2">
-                <p className="text-3xl">{book.name}</p>
-                <p className="text-2xl text-gray-600">Paperback</p>
+                <p className="text-lg sm:text-3xl">{book.name}</p>
+                <p className="sm:text-2xl text-gray-600">Paperback</p>
                 <p>
                     by<span className="text-sky-800  px-1">{book.author}</span>
                     (Author)
@@ -153,7 +153,7 @@ function Book() {
                             readOnly
                         />
                     </p>
-                    <p className="text-sm text-sky-800">{book_reviews} ratings</p>
+                    <p className="sm:text-sm text-sky-800">{book_reviews} ratings</p>
                 </div>
                 <p>{book.description}</p>
             </div>

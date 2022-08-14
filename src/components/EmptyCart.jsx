@@ -10,7 +10,7 @@ function EmptyCart() {
 
         return (
                 <div className="grow bg-white rounded-lg p-10">
-                        <div className="flex flex-row">
+                        <div className="flex flex-row flex-wrap">
                                 <img
                                         className="max-h-60 object-scale-down lg:object-contain"
                                         src="https://m.media-amazon.com/images/G/15/cart/empty/kettle-desaturated._CB424694027_.svg"
@@ -18,7 +18,7 @@ function EmptyCart() {
                                 />
 
                                 <div className="my-auto mx-auto">
-                                        <p className="text-2xl font-bold">Your Shopping Cart is empty</p>
+                                        <p className="text-lg sm:text-2xl font-bold">Your Shopping Cart is empty</p>
                                         <Link to="/">
                                                 <p className="text-cyan-600 mt-2 mb-5">Shop today's deals</p>
                                         </Link>

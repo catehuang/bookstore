@@ -23,10 +23,10 @@ function Suggestion({ selectedBook }) {
 
         const RenderBook = ({book}) => {
                 return (
-                        <div className="text-sm" key={book._id}>
+                        <div className="text-xs sm:text-sm" key={book._id}>
                                 <Link to={`/books/` + book._id}>
                                         <img
-                                                className="object-contain h-52 w-52 mx-auto"
+                                                className="object-contain h-36 w-36 sm:h-52 sm:w-52 mx-auto"
                                                 src={book.image}
                                                 alt=""
                                         />

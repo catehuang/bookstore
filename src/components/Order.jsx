@@ -13,7 +13,7 @@ function Order({ eachOrder }) {
         const OrderInfo = () => {
                 return (
                         <div className="bg-gray-200 px-5 py-3 text-sm">
-                                <div className="flex gap-5">
+                                <div className="flex flex-wrap gap-3 justify-between">
                                         <div className="flex flex-col">
                                                 <p>ORDER PLACED</p>
                                                 <p>{createdAt}</p>
@@ -40,7 +40,7 @@ function Order({ eachOrder }) {
         };
 
         return (
-                <div className="border rounded-lg text-gray-800 w-fit mx-auto">
+                <div className="border rounded-lg text-gray-800 sm:w-fit mx-auto text-sm sm:text-base">
                         <OrderInfo />
 
                         <div className="">
@@ -50,7 +50,7 @@ function Order({ eachOrder }) {
                                                         <img
                                                                 src={product.image}
                                                                 alt=""
-                                                                className="object-contain h-48 w-48 mx-auto"
+                                                                className="object-contain h-36 w-36 sm:h-48 sm:w-48 mx-auto"
                                                         />          
                                                 <div className="flex flex-col gap-2 w-96 mx-5">
                                                         <p className="font-bold">{product.name}</p>

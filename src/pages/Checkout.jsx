@@ -10,11 +10,11 @@ function Checkout() {
         const products = cart.products;
 
         return (
-                <div className="bg-gray-200 p-10">
+                <div className="bg-gray-200 p-5">
                         <Advertizing />
 
                         {/* main window */}
-                        <div className="my-10 flex gap-5 flex-wrap">
+                        <div className="my-5 flex gap-5 flex-wrap">
                                 {/* main left window */}
                                 <div className="grow">
                                         {cart.quantity === 0 && <EmptyCart />}
@@ -35,7 +35,7 @@ function Checkout() {
                         </div>
 
                         {/* more info on the bottom */}
-                        <div className="text-sm py-5">
+                        <div className="text-xs py-5 flex flex-col gap-2">
                                 <p>
                                         The price and availability of items at BookStore are subject to
                                         change. The shopping cart is a temporary place to store a list of your

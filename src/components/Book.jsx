@@ -11,18 +11,19 @@ function Product_Books({ book }) {
         const book_reviews = numberFormat.format(book.reviews);
 
         return (
-                <Link to={`/books/` + book._id}>
-                        <div className="mx-auto pt-3 w-60 bg-gray-100 py-5 rounded">
+                
+                        <div className="mx-auto pt-3 w-48 sm:w-60 bg-gray-100 rounded">
+                                <Link to={`/books/` + book._id}>
                                 {
                                         book.quantity === 0 && (
                                                 <div>
-                                                        <p className="bg-black text-white px-1 w-fit absolute">SOLD OUT</p>
+                                                        <p className="bg-gray-600 text-white px-1 w-fit absolute">SOLD OUT</p>
                                                 </div>    
                                         )
                                 }
 
                                 <img
-                                        className="object-contain h-52 w-52 mx-auto"
+                                        className="object-contain h-36 w-36 sm:h-52 sm:w-52 mx-auto"
                                         src={book.image}
                                         alt=""
                                 />
@@ -48,8 +49,8 @@ function Product_Books({ book }) {
                                                 <span className="text-sm">{book_reviews}</span>
                                         </div>
                                 </div>
+                                </Link>
                         </div>
-                </Link>
         );
 }
 

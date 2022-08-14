@@ -36,7 +36,7 @@ function Header() {
             UpdateCart({ cart, user });
         }
         // eslint-disable-next-line
-    },[cart, user]);
+    }, [cart, user]);
 
     const handleLogout = () => {
         try {
@@ -62,76 +62,80 @@ function Header() {
 
     return (
         <div className="px-10 py-3 bg-[#00131a] text-gray-200">
-            <div className="flex gap-10">
-                <div className="text-xl first-letter:font-bold">
-                    <Link to="/">BookStore</Link>
-                </div>
-                <div className="mx-auto grow">
-                    <div className="flex">
-                        <input type="text" className="rounded-l-lg text-[#00131a] px-2" value={searchString} onChange={(e) => handleSearch(e.target.value)} />
-                        <p className="border-t border-r border-b rounded-r-lg px-1 bg-amber-400 border-none text-[#00131a]">
-                            <SearchIcon />
-                        </p>
+            <div className="flex justify-between flex-wrap gap-5">
+                <div className="flex flex-row justify-start gap-10">
+                    <div className="text-xl first-letter:font-bold flex-none">
+                        <Link to="/">BookStore</Link>
+                    </div>
+                    <div className="w-fit">
+                        <div className="flex ">
+                            <input type="text" className="rounded-l text-[#00131a] px-2 w-60" value={searchString} onChange={(e) => handleSearch(e.target.value)} />
+                            <p className="border-t border-r border-b rounded-r px-1 bg-amber-400 border-none text-[#00131a]">
+                                <SearchIcon />
+                            </p>
+                        </div>
                     </div>
                 </div>
-
-                <div>
-                    {user ? (
-                        <p>Hi, {user.username}</p>
-                    ) : (
-                        <Link to="/login">
-                            <p>Login</p>
-                        </Link>
-                    )}
-                </div>
-
-                {user && (
-                    <Link to="/orders">
-                        <p>Orders</p>
-                    </Link>
-                )}
-
-                <div className="flex-none">
-                    {user ? (
-                        <button onClick={handleLogout}>Logout</button>
-                    ) : (
-                        <Link to="/register">
-                            <p>Sign up</p>
-                        </Link>
-                    )}
-                </div>
-                <div className="text-2xs flex-none flex">
-                    <Link to="checkout">
-                        <Badge badgeContent={`${quantity}`} color="error">
-                            <ShoppingCartIcon />
-                        </Badge>
-                    </Link>
-                </div>
-            </div>
-
-            {/* search result */}
-            { 
-                isOpen && 
+  {/* search result */}
+  {
+                isOpen &&
                 (
-                    <div className="bg-white ml-32 w-fit px-2 rounded text-black text-sm flex flex-col gap-2 absolute z-50">
-                    {  
-                        searchString === '' ? setIsOpen(false) :
-                        (
-                            books.filter(book => {
-                                if (book.name.toLowerCase().includes(searchString.toLowerCase()))
-                                    return book;
-                                else
-                                    return null;
-                                })?.map(book => (
-                                    <p className="flex-wrap " key={book._id} onClick={() => handleClickSearch(`${book._id}`)}>
-                                        <span className="cursor-pointer">{book.name}</span>
-                                    </p>
-                                ))                            
-                        )  
-                    }
+                    <div className="w-1/2 bg-white ml-32 mt-8 px-2 rounded text-gray-700 text-sm flex flex-col gap-2 absolute z-50 ">
+                        {
+                            searchString === '' ? setIsOpen(false) :
+                                (
+                                    books.filter(book => {
+                                        if (book.name.toLowerCase().includes(searchString.toLowerCase()))
+                                            return book;
+                                        else
+                                            return null;
+                                    })?.map(book => (
+                                        <p className="flex-wrap " key={book._id} onClick={() => handleClickSearch(`${book._id}`)}>
+                                            <span className="cursor-pointer line-clamp-1">{book.name}</span>
+                                        </p>
+                                    ))
+                                )
+                        }
                     </div>
                 )
             }
+                <div className="flex flex-row justify-end gap-12">
+                    <div>
+                        {user ? (
+                            <p>Hi, {user.username}</p>
+                        ) : (
+                            <Link to="/login">
+                                <p>Login</p>
+                            </Link>
+                        )}
+                    </div>
+
+                    {user && (
+                        <Link to="/orders">
+                            <p>Orders</p>
+                        </Link>
+                    )}
+
+                    <div className="flex-none">
+                        {user ? (
+                            <button onClick={handleLogout}>Logout</button>
+                        ) : (
+                            <Link to="/register">
+                                <p>Sign up</p>
+                            </Link>
+                        )}
+                    </div>
+                    <div className="text-2xs flex-none flex">
+                        <Link to="checkout">
+                            <Badge badgeContent={`${quantity}`} color="error">
+                                <ShoppingCartIcon />
+                            </Badge>
+                        </Link>
+                    </div>
+                </div>
+
+            </div>
+          
         </div>
     );
 }

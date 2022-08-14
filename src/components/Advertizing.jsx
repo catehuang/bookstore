@@ -2,13 +2,13 @@ import React from "react";
 
 function Advertizing() {
         return (
-                <div className="flex mx-auto gap-10 justify-evenly bg-white p-5 rounded-lg">
+                <div className="flex mx-auto gap-5 justify-evenly bg-white p-5 rounded-lg ">
                         <img
-                                className="w-24"
+                                className="w-24 h-fit sm:w-32"
                                 src="https://images-na.ssl-images-amazon.com/images/G/15/credit/img19/CBCC/detailpage/DP-Desktop-HeaderHand_NP-Unrec._CB466933401_.png"
                                 alt=""
                         />
-                        <div className="my-auto">
+                        <div className="text-xs sm:text-base my-auto">
                                 <span>You can get </span>
                                 <span className="text-cyan-700">5% back at BookStore </span>
                                 <span>for 6 months upon approval for the </span>
@@ -18,7 +18,7 @@ function Advertizing() {
                                 </span>
                         </div>
                         <div className="my-auto flex-none">
-                                <p className="border py-1 px-4 rounded bg-gray-300 text-sm">
+                                <p className="border py-1 px-4 rounded bg-gray-300 text-xs sm:text-sm">
                                         Learn more
                                 </p>
                         </div>
