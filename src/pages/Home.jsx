@@ -24,7 +24,7 @@ function Home() {
   return (
     <div className="w-full">
             <Banner />
-                <main className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6  2xl:grid-cols-7 grid-flow-row gap-y-5 py-10 px-10 mx-auto justify-between'>
+                <main className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6  2xl:grid-cols-7 grid-flow-row gap-y-5 py-10 px-5 sm:px-10 mx-auto justify-between'>
                         {
                                 books.map(book =>
                                         <Books key={book._id} book={book}/>)

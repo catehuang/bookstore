@@ -65,7 +65,7 @@ function Book() {
 
     const ShoppingInfo = () => {
         return (
-            <div className="flex flex-col w-72 flex-none h-fit sm:border border-gray-300 rounded p-5 gap-5 text-sm mx-auto">
+            <div className="flex flex-col sm:w-72 flex-none h-fit sm:border border-gray-300 rounded p-5 gap-5 text-sm mx-auto">
                 <div className="flex flex-col gap-5">
                     <div className="flex justify-between">
                         <p className="my-auto text-base font-bold">

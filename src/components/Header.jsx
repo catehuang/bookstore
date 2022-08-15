@@ -69,7 +69,7 @@ function Header() {
                     </div>
                     <div className="w-fit">
                         <div className="flex ">
-                            <input type="text" className="rounded-l text-[#00131a] px-2 w-60" value={searchString} onChange={(e) => handleSearch(e.target.value)} />
+                            <input type="text" className="rounded-l text-[#00131a] px-2 w-52" value={searchString} onChange={(e) => handleSearch(e.target.value)} />
                             <p className="border-t border-r border-b rounded-r px-1 bg-amber-400 border-none text-[#00131a]">
                                 <SearchIcon />
                             </p>
