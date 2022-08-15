@@ -10,10 +10,9 @@ import { logout } from "../reducers/userSlice";
 import { UpdateCart } from "../api/cart";
 import { axios } from "../axios";
 
-
 function Header() {
-    const user = useSelector(state => state.user.currentUser);
-    const cart = useSelector(state => state.cart);
+    const user = useSelector((state) => state.user.currentUser);
+    const cart = useSelector((state) => state.cart);
     const [books, setBooks] = useState([]);
     const [searchString, setSearchString] = useState("");
     const quantity = cart.quantity;
@@ -21,13 +20,11 @@ function Header() {
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
 
-
-
     useEffect(() => {
         const getBooks = async () => {
             const response = await axios.get(`/books`);
             setBooks(response.data);
-        }
+        };
         getBooks();
     }, []);
 
@@ -50,56 +47,66 @@ function Header() {
     };
 
     const handleSearch = (str) => {
-        setSearchString(str.replace(/[^0-9a-z]/gi, ''));
+        setSearchString(str.replace(/[^0-9a-z]/gi, ""));
         setIsOpen(true);
-    }
+    };
 
     const handleClickSearch = (bookId) => {
         setSearchString("");
         setIsOpen(false);
         navigate(`/books/${bookId}`);
-    }
+    };
 
     return (
         <div className="px-3 sm:px-10 py-3 bg-[#00131a] text-gray-200">
-            <div className="flex gap-5 sm:justify-between flex-wrap ">
+            <div className="flex gap-5 space-x-3 sm:justify-between flex-wrap ">
                 <div className="flex flex-row justify-start gap-5 sm:gap-10">
                     <div className="text-xl first-letter:font-bold flex-none">
                         <Link to="/">BookStore</Link>
                     </div>
                     <div className="w-fit">
                         <div className="flex ">
-                            <input type="text" className="rounded-l border-r-none text-[#00131a] px-2 w-40 sm:w-52" value={searchString} onChange={(e) => handleSearch(e.target.value)} />
+                            <input
+                                type="text"
+                                className="rounded-l text-[#00131a] px-2 w-40 sm:w-52"
+                                value={searchString}
+                                onChange={(e) => handleSearch(e.target.value)}
+                            />
                             <p className="border-t border-r border-b rounded-r px-1 bg-amber-400 border-none text-[#00131a]">
                                 <SearchIcon />
                             </p>
                         </div>
                     </div>
                 </div>
-  {/* search result */}
-  {
-                isOpen &&
-                (
+                {/* search result */}
+                {isOpen && (
                     <div className="w-1/2 bg-white ml-32 mt-8 px-2 rounded text-gray-700 text-sm flex flex-col gap-2 absolute z-50 ">
-                        {
-                            searchString === '' ? setIsOpen(false) :
-                                (
-                                    books.filter(book => {
-                                        if (book.name.toLowerCase().includes(searchString.toLowerCase()))
-                                            return book;
-                                        else
-                                            return null;
-                                    })?.map(book => (
-                                        <p className="flex-wrap " key={book._id} onClick={() => handleClickSearch(`${book._id}`)}>
-                                            <span className="cursor-pointer line-clamp-1">{book.name}</span>
-                                        </p>
-                                    ))
-                                )
-                        }
+                        {searchString === ""
+                            ? setIsOpen(false)
+                            : books
+                                .filter((book) => {
+                                    if (
+                                        book.name
+                                            .toLowerCase()
+                                            .includes(searchString.toLowerCase())
+                                    )
+                                        return book;
+                                    else return null;
+                                })
+                                ?.map((book) => (
+                                    <p
+                                        className="flex-wrap "
+                                        key={book._id}
+                                        onClick={() => handleClickSearch(`${book._id}`)}
+                                    >
+                                        <span className="cursor-pointer line-clamp-1">
+                                            {book.name}
+                                        </span>
+                                    </p>
+                                ))}
                     </div>
-                )
-            }
-                <div className="flex flex-row justify-end gap-12">
+                )}
+                <div className="flex flex-row justify-end gap-10 space-x-5">
                     <div>
                         {user ? (
                             <p>Hi, {user.username}</p>
@@ -133,9 +140,7 @@ function Header() {
                         </Link>
                     </div>
                 </div>
-
             </div>
-          
         </div>
     );
 }
