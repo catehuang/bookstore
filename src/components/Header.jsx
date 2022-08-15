@@ -59,7 +59,7 @@ function Header() {
 
     return (
         <div className="px-3 sm:px-10 py-3 bg-[#00131a] text-gray-200">
-            <div className="flex gap-5 space-x-3 sm:justify-between flex-wrap ">
+            <div className="flex gap-5 sm:justify-between flex-wrap ">
                 <div className="flex flex-row justify-start space-x-5 sm:gap-10">
                     <div className="text-xl first-letter:font-bold flex-none">
                         <Link to="/">BookStore</Link>
@@ -68,7 +68,7 @@ function Header() {
                         <div className="flex ">
                             <input
                                 type="text"
-                                className="rounded-l text-[#00131a] px-2 w-40 sm:w-52"
+                                className="rounded-l text-[#00131a] px-2 w-52"
                                 value={searchString}
                                 onChange={(e) => handleSearch(e.target.value)}
                             />

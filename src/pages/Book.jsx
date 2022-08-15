@@ -66,7 +66,7 @@ function Book() {
     const ShoppingInfo = () => {
         return (
             <div className="flex flex-col sm:w-72 flex-none h-fit sm:border border-gray-300 rounded p-5 gap-5 text-sm mx-auto">
-                <div className="flex flex-col gap-5 space-x-5">
+                <div className="flex flex-col gap-5">
                     <div className="flex justify-between">
                         <p className="my-auto text-base font-bold">
                             {book.quantity !==0 ? "In Stock" : "Currently unavailable"}
@@ -99,7 +99,7 @@ function Book() {
                         </div>
                     </div>
                     <button
-                        className="text-sm text-center border border-yellow-500 bg-yellow-400 w-full py-1 rounded hover:bg-yellow-500 disabled:bg-gray-300"
+                        className="text-sm text-center border border-yellow-500 bg-yellow-400 w-full py-1 rounded hover:bg-yellow-500 disabled:bg-gray-300 space-y-5"
                         disabled={book.quantity !==0 ? false : true}
                         onClick={handleAddToCart}
                     >
@@ -107,7 +107,7 @@ function Book() {
                     </button>
 
                     <button
-                        className="text-sm text-center border border-yellow-500 bg-orange-400 w-full py-1 rounded hover:bg-orange-500 disabled:bg-gray-300"
+                        className="text-sm text-center border border-yellow-500 bg-orange-400 w-full py-1 rounded hover:bg-orange-500 disabled:bg-gray-300 space-y-5"
                         disabled={book.quantity !==0 ? false : true}
                         onClick={handleBuyNow}
                     >
