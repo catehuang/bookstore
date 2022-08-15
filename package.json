@@ -65,6 +65,5 @@
   "main": "postcss.config.js",
   "author": "",
   "license": "ISC",
-  "description": "",
-  "proxy": "http://localhost:3000"
+  "description": ""
 }
