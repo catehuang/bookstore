@@ -7,4 +7,12 @@ module.exports = {
   plugins: [
     require('@tailwindcss/line-clamp'),
   ],
+  corePlugins: {
+    backdropOpacity: false,
+    backgroundOpacity: false,
+    borderOpacity: false,
+    divideOpacity: false,
+    ringOpacity: false,
+    textOpacity: false
+},
 }
