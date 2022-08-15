@@ -52,7 +52,7 @@ function Register() {
 
         return (
                 <div>
-                        <div className="h-16">
+                        <div className="h-fit">
                                 {!formValidated && (
                                         <div className="py-2 text-center bg-green-600 text-gray-50">
                                                 <p className="text-sm">
