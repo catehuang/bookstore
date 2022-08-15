@@ -99,7 +99,7 @@ function Book() {
                         </div>
                     </div>
                     <button
-                        className="text-sm text-center border-yellow-500 bg-yellow-400 w-full py-1 rounded hover:bg-yellow-500 disabled:bg-gray-300"
+                        className="text-sm text-center border border-yellow-500 bg-yellow-400 w-full py-1 rounded hover:bg-yellow-500 disabled:bg-gray-300"
                         disabled={book.quantity !==0 ? false : true}
                         onClick={handleAddToCart}
                     >
@@ -107,7 +107,7 @@ function Book() {
                     </button>
 
                     <button
-                        className="text-sm text-center border-yellow-500 bg-orange-400 w-full py-1 rounded hover:bg-orange-500 disabled:bg-gray-300"
+                        className="text-sm text-center border border-yellow-500 bg-orange-400 w-full py-1 rounded hover:bg-orange-500 disabled:bg-gray-300"
                         disabled={book.quantity !==0 ? false : true}
                         onClick={handleBuyNow}
                     >
