@@ -18,15 +18,20 @@ require("dotenv").config();
 
 const buildPath = path.join(__dirname, "..", "build");
 
+// for development
+if (process.env.NODE_ENV !== "production") {
 mongoose
     .connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("connect to db"))
     .catch((err) => console.log(err));
+}
 
 // for deployment
-// mongoose.connect("mongodb+srv://" + url, { useNewUrlParser: true, useUnifiedTopology: true })
-// .then(() => console.log("connect to db"))
-// .catch(err => console.error("connection error", err.stack));
+if (process.env.NODE_ENV === "production") {
+    mongoose.connect("mongodb+srv://" + url, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log("connect to db"))
+    .catch(err => console.error("connection error", err.stack));
+}
 
 require("./strategies/JwtStrategy");
 require("./strategies/LocalStrategy");
