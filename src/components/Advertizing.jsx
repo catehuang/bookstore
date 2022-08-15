@@ -4,7 +4,7 @@ function Advertizing() {
         return (
                 <div className="flex mx-auto gap-5 justify-evenly bg-white p-5 rounded-lg ">
                         <img
-                                className="w-16 h-16 sm:w-32 sm:h-32"
+                                className="w-12 h-12 sm:w-32 sm:h-32"
                                 src="https://images-na.ssl-images-amazon.com/images/G/15/credit/img19/CBCC/detailpage/DP-Desktop-HeaderHand_NP-Unrec._CB466933401_.png"
                                 alt=""
                         />
