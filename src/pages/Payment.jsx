@@ -291,7 +291,7 @@ function Payment() {
     };
 
     return (
-        <div className="p-10 flex flex-col space-y-5 flex-wrap">
+        <div className="p-5 sm:p-10 flex flex-col space-y-5 flex-wrap">
             <div>
                 <p className="text-2xl font-bold px-5">
                     Check out ( {cart.quantity} ) items
@@ -299,7 +299,7 @@ function Payment() {
             </div>
             <div className="px-5 flex flex-col space-y-3">
                 <p className="text-xl font-bold">Shipping Information</p>
-                <form className="flex flex-col gap-2 w-96 sm:px-10">
+                <form className="flex flex-col gap-2 sm:w-96 sm:px-10">
                     {/* calling the component with {compName()} instead of <compName /> or the input field lose focus after typing a character */}
                     {Receiver()}
                     {Address()}
