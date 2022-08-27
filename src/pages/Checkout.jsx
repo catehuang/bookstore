@@ -16,10 +16,10 @@ function Checkout() {
                         {/* main window */}
                         <div className="my-5 flex space-y-5 sm:gap-5 sm:space-y-0 flex-wrap">
                                 {/* main left window */}
-                                <div className="grow">
+                                <div className="sm: grow">
                                         {cart.quantity === 0 && <EmptyCart />}
                                         {cart.quantity !== 0 && (
-                                                <div className="flex flex-col gap-5 py-10 bg-white rounded-lg w-full">
+                                                <div className="flex flex-col gap-5 py-10 bg-white rounded-lg">
                                                         
                                                                 <p className="text-2xl font-bold text-center">Shopping Cart</p>
                                                                 {/* <p>Price</p> */}
