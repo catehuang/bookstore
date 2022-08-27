@@ -165,7 +165,7 @@ function Payment() {
                     <div className="flex flex-col gap-3">
                         <p className="text-xl font-bold border-b pb-2">Order Summary</p>
 
-                        <div className="flex flex-col gap-1 px-5">
+                        <div className="flex flex-col gap-1 sm:px-5">
                             <div className="flex justify-between">
                                 <p>Items:</p>
                                 <p>${cartTotal}</p>
@@ -313,7 +313,7 @@ function Payment() {
                 <div className="grow flex flex-col gap-5">
                     <div className="flex flex-wrap gap-5">
                         <div className="flex flex-col gap-5 bg-white rounded-lg grow">
-                            <p className="text-xl font-bold px-5">Review Items and Shipping</p>
+                            <p className="text-xl font-bold sm:px-5">Review Items and Shipping</p>
                             {cart.products.map((item) => (
                                 <Cart key={item._id} product={item} />
                             ))}
@@ -325,7 +325,7 @@ function Payment() {
                     <div className="">
                         <p className="text-xl font-bold px-5 pt-5">Payement Method</p>
                         <div className="ml-5 m-10 sm:ml-10 p-5 sm:p-10 rounded-lg bg-gray-100 w-fit mx-auto">
-                            <form onSubmit={handleSubmit} className="w-80 flex flex-col">
+                            <form onSubmit={handleSubmit} className="sm:w-80 flex flex-col">
                                 <CardElement
                                     onChange={handleChange}
                                     className="w-80 p-5 text-lg border border-gray-400 rounded-lg bg-white"
