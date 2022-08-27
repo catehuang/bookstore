@@ -14,7 +14,7 @@ function Checkout() {
                         <Advertizing />
 
                         {/* main window */}
-                        <div className="my-5 flex gap-5 flex-wrap">
+                        <div className="my-5 flex space-y-5 sm:gap-5 sm:space-y-0 flex-wrap">
                                 {/* main left window */}
                                 <div className="grow">
                                         {cart.quantity === 0 && <EmptyCart />}
