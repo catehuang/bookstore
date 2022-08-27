@@ -161,7 +161,7 @@ function Payment() {
 
     const Summary = () => {
         return (
-            <div className="sm:border border-gray-400 w-full sm:w-80 h-fit p-5 bg-white rounded-lg flex flex-col gap-5 mx-auto">
+            <div className="sm:border border-gray-400 sm:w-80 h-fit p-5 bg-white rounded-lg flex flex-col gap-5 mx-auto">
                     <div className="flex flex-col gap-3">
                         <p className="text-xl font-bold border-b pb-2">Order Summary</p>
 
