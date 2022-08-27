@@ -23,7 +23,7 @@ function Product_Books({ book }) {
                                 }
 
                                 <img
-                                        className="object-contain h-36 w-36 sm:h-52 sm:w-52 mx-auto"
+                                        className="object-contain h-24 w-24 sm:h-52 sm:w-52 mx-auto"
                                         src={book.image}
                                         alt=""
                                 />
