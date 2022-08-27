@@ -161,7 +161,7 @@ function Payment() {
 
     const Summary = () => {
         return (
-            <div className="sm:border border-gray-400 sm:w-80 h-fit p-5 bg-white rounded-lg flex flex-col gap-5 mx-auto">
+            <div className="sm:border border-gray-400 w-full sm:w-80 h-fit p-5 bg-white rounded-lg flex flex-col gap-5 mx-auto">
                     <div className="flex flex-col gap-3">
                         <p className="text-xl font-bold border-b pb-2">Order Summary</p>
 
@@ -328,7 +328,7 @@ function Payment() {
                             <form onSubmit={handleSubmit} className="sm:w-80 flex flex-col">
                                 <CardElement
                                     onChange={handleChange}
-                                    className="w-80 p-5 text-lg border border-gray-400 rounded-lg bg-white"
+                                    className="sm:w-80 p-5 text-lg border border-gray-400 rounded-lg bg-white"
                                 />
                                 <p className="text-lg text-red-700 py-5">
                                     Order Total: ${total}
