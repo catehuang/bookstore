@@ -19,7 +19,7 @@ function Checkout() {
                                 <div className="grow">
                                         {cart.quantity === 0 && <EmptyCart />}
                                         {cart.quantity !== 0 && (
-                                                <div className="flex flex-col gap-5 py-10 bg-white rounded-lg">
+                                                <div className="flex flex-col gap-5 py-10 bg-white rounded-lg w-full">
                                                         
                                                                 <p className="text-2xl font-bold text-center">Shopping Cart</p>
                                                                 {/* <p>Price</p> */}
