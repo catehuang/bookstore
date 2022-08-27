@@ -65,8 +65,8 @@ function Book() {
 
     const ShoppingInfo = () => {
         return (
-            <div className="flex flex-col sm:w-72 flex-none h-fit sm:border border-gray-300 rounded p-5 gap-5 text-sm">
-                <div className="flex flex-col space-x-5">
+            <div className="flex flex-col sm:w-72 flex-none h-fit sm:border border-gray-300 rounded p-5 gap-5 text-sm mx-auto">
+                <div className="flex flex-col gap-5">
                     <div className="flex justify-between">
                         <p className="my-auto text-base font-bold">
                             {book.quantity !==0 ? "In Stock" : "Currently unavailable"}
@@ -79,8 +79,8 @@ function Book() {
                     </div>
                     <p>FREE delivery {monthNames[month + 1]} 1 - 3 on your first order</p>
                     <p>Usually ships within 1 week.</p>
-                    <div className="flex space-x-2">
-                        <div className="flex space-x-5">
+                    <div className="flex gap-2">
+                        <div className="flex gap-5">
                             <p className="my-auto text-base">Quantity: </p>
                             <select
                                 className="border border-gray-400 rounded px-1"
@@ -126,9 +126,9 @@ function Book() {
             </p>
 
             {/* Second row on the page */}
-            <div className="flex justify-between flex-wrap gap-10 mx-auto">
+            <div className="flex justify-between flex-wrap gap-10">
                 <img
-                    className="w-40 sm:w-48 md:w-60 lg:w-72 h-fit object-contain mx-auto"
+                    className="w-fit sm:w-48 md:w-60 lg:w-72 h-fit object-contain mx-auto"
                     src={book.image}
                     alt=""
                 />
