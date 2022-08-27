@@ -44,7 +44,7 @@ function Login() {
         };
 
         return (
-                <div>
+                <div className="flex flex-col space-y-3">
                         <div className="h-16">
                                 {loginError && (
                                         <div className="text-red-600 text-center bg-red-100 py-1">
@@ -54,7 +54,7 @@ function Login() {
                         </div>
                         <div className="mx-auto w-96">
                                 <p className="text-3xl first-letter:font-bold text-center">BookStore</p>
-                                <form className="border rounded-lg my-10 p-5 flex flex-col gap-5">
+                                <form className="sm:border rounded-lg my-10 p-5 flex flex-col gap-5">
                                         <p className="text-xl">Login</p>
 
                                         <div className="felx flex-col">
@@ -94,13 +94,13 @@ function Login() {
                                         {formValidated ? (
                                                 <button
                                                         type="submit"
-                                                        className="border rounded-lg p-1 bg-amber-300 hover:bg-amber-400"
+                                                        className="border rounded-lg p-1 bg-amber-300 hover:bg-amber-400 my-2"
                                                         onClick={handleLogin}
                                                 >
                                                         Login
                                                 </button>
                                         ) : (
-                                                <button className="border rounded-lg p-1 bg-gray-200" disabled>
+                                                <button className="border rounded-lg p-1 bg-gray-200 my-2" disabled>
                                                         Login
                                                 </button>
                                         )}

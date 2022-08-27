@@ -54,7 +54,7 @@ function Suggestion({ selectedBook }) {
         };
 
         return (
-                <div className="flex overflow-x-auto gap-10 border border-gray-300 rounded-lg p-5 pb-0 h-fit">
+                <div className="flex overflow-x-auto gap-10 border border-gray-300 rounded-lg py-5 pb-0 h-fit">
                         {selectedBook? books
                                 .filter((book) => book._id !== selectedBook._id)
                                 .map((book) => (
