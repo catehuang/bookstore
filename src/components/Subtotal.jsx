@@ -15,7 +15,7 @@ function Subtotal() {
         }, [cart]);
 
         return (
-                <div className="w-full sm:w-80 h-fit px-16 py-5 sm:py-10 sm:p-10 bg-white rounded-lg flex flex-col gap-10 mx-auto text-xs sm:text-base">
+                <div className="w-full sm:w-80 h-fit px-5 sm:px-16 py-5 sm:p-10 bg-white rounded-lg flex flex-col space-y-5 mx-auto text-xs sm:text-base">
                         <div className="flex flex-col space-y-3">
                                 <div className="flex sm:text-xs gap-2">
                                         <span className="text-green-700">
