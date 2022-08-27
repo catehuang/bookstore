@@ -15,7 +15,7 @@ function Subtotal() {
         }, [cart]);
 
         return (
-                <div className="w-full sm:w-80 h-fit px-5 sm:px-16 py-5 sm:p-10 bg-white rounded-lg flex flex-col space-y-5 mx-auto text-xs sm:text-base">
+                <div className="w-full sm:w-80 h-fit px-10 py-5 sm:p-10 bg-white rounded-lg flex flex-col space-y-5 mx-auto text-xs sm:text-base">
                         <div className="flex flex-col space-y-3">
                                 <div className="flex sm:text-xs gap-2">
                                         <span className="text-green-700">
@@ -29,7 +29,7 @@ function Subtotal() {
                         
                         <CurrencyFormat
                                 renderText={(value) => (
-                                        <div className="text-xs sm:text-lg flex flex-col gap-3">
+                                        <div className="text-xs sm:text-lg flex flex-col space-y-3">
                                                 <div className="flex justify-between">
                                                         <p className="text-base m:text-lg">
                                                                 Subtotal ({cart.quantity} item{cart.quantity > 1 ? "s)" : ")"} :
