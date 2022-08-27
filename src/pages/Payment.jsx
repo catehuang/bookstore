@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Cart from "../components/Cart";
-import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { CardElement, useStripe, useElements, PaymentElement } from "@stripe/react-stripe-js";
 import { axios } from "../axios";
 import { LoadOrders } from "../api/order";
 import { useNavigate } from "react-router-dom";
