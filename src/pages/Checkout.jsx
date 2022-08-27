@@ -21,7 +21,7 @@ function Checkout() {
                                         {cart.quantity !== 0 && (
                                                 <div className="flex flex-col gap-5 py-10 bg-white rounded-lg">
                                                         
-                                                                <p className="text-2xl font-bold">Shopping Cart</p>
+                                                                <p className="text-2xl font-bold text-center">Shopping Cart</p>
                                                                 {/* <p>Price</p> */}
                                                         
                                                         {products.map((item) => (
