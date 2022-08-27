@@ -65,7 +65,7 @@ function Book() {
 
     const ShoppingInfo = () => {
         return (
-            <div className="flex flex-col sm:w-72 flex-none h-fit sm:border border-gray-300 rounded p-5 space-y-2 text-sm mx-auto bg-gray-100">
+            <div className="flex flex-col w-fit sm:w-72 flex-none h-fit sm:border border-gray-300 rounded p-5 space-y-2 text-sm mx-auto bg-gray-100">
                 <div className="flex flex-col space-y-5">
                     <div className="flex justify-between">
                         <p className="my-auto text-base font-bold">
@@ -119,7 +119,7 @@ function Book() {
     };
 
     return (
-        <div className="flex flex-col space-y-10 m-10 w-4/5 mx-auto text-sm sm:text-base">
+        <div className="flex flex-col space-y-5 m-10 w-4/5 mx-auto text-sm sm:text-base">
             {/* First row on the page */}
             <p className="text-[#005e80]">
                 <Link to="/">&lt; back to result</Link>
@@ -128,7 +128,7 @@ function Book() {
             {/* Second row on the page */}
             <div className="flex justify-between flex-wrap gap-10">
                 <img
-                    className="w-4/5 sm:w-48 md:w-60 lg:w-72 h-fit object-contain mx-auto"
+                    className="w-4/5 sm:w-52 md:w-60 lg:w-72 h-fit object-contain mx-auto"
                     src={book.image}
                     alt=""
                 />
