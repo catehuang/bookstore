@@ -16,7 +16,7 @@ function Checkout() {
                         {/* main window */}
                         <div className="my-5 flex space-y-5 sm:gap-5 sm:space-y-0 flex-wrap">
                                 {/* main left window */}
-                                <div className="w-full sm: grow">
+                                <div className="flex-none sm: grow">
                                         {cart.quantity === 0 && <EmptyCart />}
                                         {cart.quantity !== 0 && (
                                                 <div className="flex flex-col gap-5 py-10 bg-white rounded-lg">

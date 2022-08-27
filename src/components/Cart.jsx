@@ -44,7 +44,7 @@ function Cart({ product }) {
                     <p className="pl-1 text-xs">This will be a gift</p>
                 </div>
 
-                <div className="flex space-x-10">
+                <div className="flex space-x-3 sm:space-x-10">
                     <div className="flex space-x-2">
                         <div className="flex space-x-3">
                             <p className="my-auto text-sm sm:text-base">Quantity: </p>
@@ -62,7 +62,7 @@ function Cart({ product }) {
                         </div>
                     </div>
                     <button
-                        className="text-sm border border-yellow-300 bg-amber-200 rounded hover:bg-amber-300 px-8 py-0.5"
+                        className="text-sm border border-yellow-300 bg-amber-200 rounded hover:bg-amber-300 px-5 sm:px-8 py-0.5"
                         onClick={handleDeleteProduct}
                     >
                         Delete
@@ -71,7 +71,7 @@ function Cart({ product }) {
             </div>
 
             <CurrencyFormat
-                renderText={(value) => <p className="flex-end font-bold">{value}</p>}
+                renderText={(value) => <p className="flex-end font-bold pb-5">{value}</p>}
                 decimalScale={2}
                 fixedDecimalScale={true}
                 value={product.price}
