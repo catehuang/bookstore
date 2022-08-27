@@ -65,8 +65,8 @@ function Book() {
 
     const ShoppingInfo = () => {
         return (
-            <div className="flex flex-col sm:w-72 flex-none h-fit sm:border border-gray-300 rounded p-5 gap-5 text-sm mx-auto">
-                <div className="flex flex-col space-y-5 sm: gap-5 sm:space-y-0">
+            <div className="flex flex-col sm:w-72 flex-none h-fit sm:border border-gray-300 rounded p-5 space-y-5 text-sm mx-auto">
+                <div className="flex flex-col space-y-5">
                     <div className="flex justify-between">
                         <p className="my-auto text-base font-bold">
                             {book.quantity !==0 ? "In Stock" : "Currently unavailable"}
@@ -119,7 +119,7 @@ function Book() {
     };
 
     return (
-        <div className="flex flex-col gap-10 m-10 w-4/5 mx-auto text-sm sm:text-base">
+        <div className="flex flex-col space-y-10 m-10 w-4/5 mx-auto text-sm sm:text-base">
             {/* First row on the page */}
             <p className="text-[#005e80]">
                 <Link to="/">&lt; back to result</Link>
