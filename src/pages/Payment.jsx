@@ -237,10 +237,14 @@ function Payment() {
         try {
             // stripe.confirmCardPayment will return a Promise which resolves with a result object.
             await stripe
-                .confirmCardPayment(clientSecret, {
-                    payment_method: {
-                        card: elements.getElement(CardElement),
-                    },
+                // .confirmCardPayment(clientSecret, {
+                //     payment_method: {
+                //         card: elements.getElement(CardElement),
+                //     },
+                //     appearance
+                // })
+                .confirmPayment({
+                    elements,
                     appearance
                 })
                 .then(async (result) => {
