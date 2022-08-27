@@ -227,6 +227,10 @@ function Payment() {
         // eslint-disable-next-line
     },[cart]);
 
+    const appearance = {
+        theme: 'flat'
+      };
+      
     const handleSubmit = async (e) => {
         e.preventDefault();
         setProcessing(true);
@@ -237,6 +241,7 @@ function Payment() {
                     payment_method: {
                         card: elements.getElement(CardElement),
                     },
+                    appearance
                 })
                 .then(async (result) => {
                     const response = await axiosAuth.post(`/orders`, {
