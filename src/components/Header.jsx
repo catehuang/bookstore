@@ -68,7 +68,7 @@ function Header() {
                         <div className="flex ">
                             <input
                                 type="text"
-                                className="rounded-l text-[#00131a] px-2 w-52"
+                                className="rounded-none rounded-l  text-[#00131a] px-2 w-52"
                                 value={searchString}
                                 onChange={(e) => handleSearch(e.target.value)}
                             />

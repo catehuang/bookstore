@@ -12,7 +12,7 @@ function Product_Books({ book }) {
 
         return (
                 
-                        <div className="mx-auto pt-3 w-32 sm:w-60 bg-gray-100 rounded">
+                        <div className="mx-auto pt-3 w-40 sm:w-60 bg-gray-100 rounded">
                                 <Link to={`/books/` + book._id}>
                                 {
                                         book.quantity === 0 && (
