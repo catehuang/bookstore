@@ -192,7 +192,7 @@ function Payment() {
                             </div>
                         </div>
 
-                        <div className="flex justify-between text-lg text-red-700 border-t pt-2 px-5">
+                        <div className="flex justify-between text-lg text-red-700 border-t pt-2 sm:px-5">
                             <p>Order Total</p>
                             <p>${total}</p>
                         </div>
@@ -312,8 +312,8 @@ function Payment() {
             <div className="my-10 flex gap-5 flex-wrap">
                 <div className="grow flex flex-col gap-5">
                     <div className="flex flex-wrap gap-5">
-                        <div className="flex flex-col gap-5 bg-white rounded-lg grow">
-                            <p className="text-xl font-bold sm:px-5">Review Items and Shipping</p>
+                        <div className="flex flex-col gap-5 bg-white rounded-lg sm:grow">
+                            <p className="text-xl font-bold px-5">Review Items and Shipping</p>
                             {cart.products.map((item) => (
                                 <Cart key={item._id} product={item} />
                             ))}
