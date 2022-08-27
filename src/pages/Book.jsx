@@ -66,7 +66,7 @@ function Book() {
     const ShoppingInfo = () => {
         return (
             <div className="flex flex-col sm:w-72 flex-none h-fit sm:border border-gray-300 rounded p-5 gap-5 text-sm mx-auto">
-                <div className="flex flex-col space-y-5 gap-5">
+                <div className="flex flex-col space-y-5 sm: gap-5 sm:space-y-0">
                     <div className="flex justify-between">
                         <p className="my-auto text-base font-bold">
                             {book.quantity !==0 ? "In Stock" : "Currently unavailable"}
@@ -80,7 +80,7 @@ function Book() {
                     <p>FREE delivery {monthNames[month + 1]} 1 - 3 on your first order</p>
                     <p>Usually ships within 1 week.</p>
                     <div className="flex gap-2">
-                        <div className="flex gap-5">
+                        <div className="flex space-x-5">
                             <p className="my-auto text-base">Quantity: </p>
                             <select
                                 className="border border-gray-400 rounded px-1"
