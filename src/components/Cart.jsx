@@ -71,7 +71,7 @@ function Cart({ product }) {
             </div>
 
             <CurrencyFormat
-                renderText={(value) => <p className="flex-end font-bold">{value}</p>}
+                renderText={(value) => <p className="flex-end font-bold pb-5">{value}</p>}
                 decimalScale={2}
                 fixedDecimalScale={true}
                 value={product.price}
