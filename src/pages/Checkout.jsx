@@ -22,7 +22,7 @@ function Checkout() {
                                                 <div className="flex flex-col gap-5 py-10 bg-white rounded-lg">
                                                         <div className="flex justify-between px-16">
                                                                 <p className="text-2xl font-bold">Shopping Cart</p>
-                                                                <p>Price</p>
+                                                                {/* <p>Price</p> */}
                                                         </div>
                                                         {products.map((item) => (
                                                                 <Cart key={item._id} product={item} />

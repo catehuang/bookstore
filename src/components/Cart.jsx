@@ -26,7 +26,7 @@ function Cart({ product }) {
     }, [quantity]);
 
     return (
-        <div className="flex flex-col justify-between sm:flex-row gap-5 p-10 pb-0 mx-5 border-gray-300 border-t">
+        <div className="flex flex-col space-y-5 sm: justify-between sm:flex-row gap-5 p-10 pb-0 mx-5 border-gray-300 border-t">
             <img className="h-60 sm:h-48 w-fit mx-auto flex-none" src={product.image} alt="" />
             <div className="grow flex flex-col gap-3 text-xs sm:text-sm">
                 <p className="text-base sm:text-xl">
@@ -44,9 +44,9 @@ function Cart({ product }) {
                     <p className="pl-1 text-xs">This will be a gift</p>
                 </div>
 
-                <div className="flex gap-10">
-                    <div className="flex gap-2">
-                        <div className="flex gap-3">
+                <div className="flex space-x-10">
+                    <div className="flex space-x-2">
+                        <div className="flex space-x-3">
                             <p className="my-auto text-sm sm:text-base">Quantity: </p>
                             <select
                                 className="border border-gray-400 rounded px-1"

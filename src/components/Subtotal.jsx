@@ -42,7 +42,7 @@ function Subtotal() {
 
                                                 {cart.quantity > 0 && user && (
                                                         <button
-                                                                className="text-sm border border-yellow-300 bg-amber-200 w-full py-1 rounded hover:bg-amber-300"
+                                                                className="text-sm border border-yellow-300 bg-amber-200 w-full py-1 rounded hover:bg-amber-300 my-3"
                                                                 onClick={(e) => navigate("/payment")}
                                                         >
                                                                 Proceed to Checkout
@@ -52,13 +52,13 @@ function Subtotal() {
                                                 {cart.quantity > 0 && !user && (
                                                         <div className="flex flex-col gap-3">
                                                                 <button
-                                                                        className="text-sm border border-yellow-300 bg-amber-200 w-full py-1 rounded hover:bg-amber-300"
+                                                                        className="text-sm border border-yellow-300 bg-amber-200 w-full py-1 rounded hover:bg-amber-300my-3"
                                                                         onClick={(e) => navigate("/login")}
                                                                 >
                                                                         Login
                                                                 </button>
                                                                 <button
-                                                                        className="text-sm border border-yellow-300 bg-orange-200 w-full py-1 rounded hover:bg-orange-300"
+                                                                        className="text-sm border border-yellow-300 bg-orange-200 w-full py-1 rounded hover:bg-orange-300 my-3"
                                                                         onClick={(e) => navigate("/register")}
                                                                 >
                                                                         Sign up
@@ -67,7 +67,7 @@ function Subtotal() {
                                                 )}
 
                                                 {cart.quantity === 0 && (
-                                                        <p className="text-sm text-center border border-gray-200 bg-gray-300 w-full py-2 rounded">
+                                                        <p className="text-sm text-center border border-gray-200 bg-gray-300 w-full py-2 rounded my-3">
                                                                 Proceed to Checkout
                                                         </p>
                                                 )}
