@@ -18,7 +18,7 @@ function Orders() {
     const orders = useSelector((state) => state.order.orders);
 
     return (
-        <div className="w-4/5 mx-auto">
+        <div className="sm:w-4/5 mx-auto">
             <p className="text-2xl text-center font-bold pt-10">Your Orders</p>
 
             {[...orders]?.reverse().map((eachOrder) => (

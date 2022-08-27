@@ -58,7 +58,7 @@ function Order({ eachOrder }) {
 
                                                         <p>Price: $ {formatPrice(product.price)}</p>
                                                         <p>Quantity: {product.quantity}</p>
-                                                        <button className="text-sm text-center border-yellow-500 bg-yellow-400 py-1 rounded hover:bg-yellow-500 px-5 w-fit" onClick={() => navigate(`/books/${product._id}`)}>Buy it again</button>
+                                                        <button className="text-sm text-center border-yellow-500 bg-yellow-400 py-1 rounded hover:bg-yellow-500 px-1 sm:px-5 w-fit" onClick={() => navigate(`/books/${product._id}`)}>Buy it again</button>
                                                         </div>                               
                                                 </div>
                                         </div>
