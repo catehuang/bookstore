@@ -23,10 +23,11 @@ function Checkout() {
                                                         
                                                                 <p className="text-2xl font-bold text-center">Shopping Cart</p>
                                                                 {/* <p>Price</p> */}
-                                                        
+                                                        <div className="p-10">
                                                         {products.map((item) => (
                                                                 <Cart key={item._id} product={item} />
                                                         ))}
+                                                        </div>
                                                 </div>
                                         )}
                                 </div>

@@ -328,9 +328,9 @@ function Payment() {
                             <form onSubmit={handleSubmit} className="sm:w-80 flex flex-col">
                                 <CardElement
                                     onChange={handleChange}
-                                    className="sm:w-80 p-5 text-lg border border-gray-400 rounded-lg bg-white"
+                                    className="sm:w-80 sm:p-5 text-lg border border-gray-400 rounded-lg bg-white"
                                 />
-                                <p className="text-lg text-red-700 py-5">
+                                <p className="text-lg text-red-700 py-2 sm:py-5">
                                     Order Total: ${total}
                                 </p>
                                 <button
