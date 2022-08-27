@@ -317,18 +317,18 @@ function Payment() {
                             {cart.products.map((item) => (
                                 <Cart key={item._id} product={item} />
                             ))}
-                            <p className="border-gray-300 border-t"></p>
+                            <p className="border-gray-300 border-t pt-5"></p>
                         </div>   
                         <Summary />                     
                     </div>
 
                     <div className="">
                         <p className="text-xl font-bold px-5 pt-5">Payement Method</p>
-                        <div className="ml-5 m-10 sm:ml-10 p-5 sm:p-10 rounded-lg bg-gray-100 w-fit mx-auto">
+                        <div className="ml-5 m-10 mt-5 sm:ml-10 p-5 sm:p-10 rounded-lg bg-gray-100 w-fit mx-auto">
                             <form onSubmit={handleSubmit} className="sm:w-80 flex flex-col">
                                 <CardElement
                                     onChange={handleChange}
-                                    className="sm:w-80 sm:p-5 text-lg border border-gray-400 rounded-lg bg-white"
+                                    className="sm:w-80 sm:p-5 text-lg border border-gray-400 rounded-lg bg-white py-5"
                                 />
                                 <p className="text-lg text-red-700 py-2 sm:py-5">
                                     Order Total: ${total}
