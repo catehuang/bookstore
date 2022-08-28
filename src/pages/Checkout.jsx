@@ -20,19 +20,18 @@ function Checkout() {
                                         {cart.quantity === 0 && <EmptyCart />}
                                         {cart.quantity !== 0 && (
                                                 <div className="flex flex-col gap-5 py-10 bg-white rounded-lg">
-                                                        
-                                                                <p className="text-2xl font-bold text-center">Shopping Cart</p>
-                                                                {/* <p>Price</p> */}
-                                                        <div className="p-10">
-                                                        {products.map((item) => (
-                                                                <Cart key={item._id} product={item} />
-                                                        ))}
+                                                        <p className="text-2xl font-bold text-center">Shopping Cart</p>
+                                                        {/* <p>Price</p> */}
+                                                        <div className="px-10">
+                                                                {products.map((item) => (
+                                                                        <Cart key={item._id} product={item} />
+                                                                ))}
                                                         </div>
                                                 </div>
                                         )}
                                 </div>
                                 {/* main right window */}
-                                 <Subtotal />
+                                <Subtotal />
                         </div>
 
                         {/* more info on the bottom */}
