@@ -26,7 +26,7 @@ function Cart({ product }) {
     }, [quantity]);
 
     return (
-        <div className="flex flex-col space-y-5 sm: justify-between sm:flex-row sm:space-x-5 pb-0 mx-5 border-gray-300 border-t">
+        <div className="flex flex-col space-y-5 sm: justify-between sm:flex-row sm:space-x-5 pb-0 mx-5 border-gray-300 border-t sm:py-5">
             <img className="h-60 sm:h-48 object-contain mx-auto flex-none py-5" src={product.image} alt="" />
             <div className="grow flex flex-col space-y-3 text-xs sm:text-sm">
                 <p className="text-base sm:text-xl">

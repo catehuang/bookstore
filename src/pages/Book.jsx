@@ -132,7 +132,9 @@ function Book() {
                     src={book.image}
                     alt=""
                 />
-                {ShoppingInfo()}
+                <div className="self-center">
+                     {ShoppingInfo()}
+                </div>
             </div>
 
             {/* Third row on the page - book info*/}
