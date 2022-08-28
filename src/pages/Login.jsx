@@ -52,9 +52,9 @@ function Login() {
                                         </div>
                                 )}
                         </div>
-                        <div className="mx-auto w-96">
+                        <div className="mx-auto w-4/5 sm:w-96">
                                 <p className="text-3xl first-letter:font-bold text-center">BookStore</p>
-                                <form className="sm:border rounded-lg mb-10 mt-5 p-5 flex flex-col gap-5">
+                                <form className="sm:border rounded-lg mb-10 mt-5 p-5 flex flex-col space-y-5">
                                         <p className="text-xl">Login</p>
 
                                         <div className="felx flex-col">

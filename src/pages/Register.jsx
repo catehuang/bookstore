@@ -79,7 +79,7 @@ function Register() {
                                         </div>
                                 )}
                         </div>
-                        <div className="mx-auto w-96">
+                        <div className="mx-auto w-4/5 sm:w-96">
                                 <p className="text-3xl first-letter:font-bold text-center">BookStore</p>
                                 <form className="sm:border rounded-lg my-5 p-5 flex flex-col space-y-5">
                                         <p className="text-xl">Sign Up</p>
