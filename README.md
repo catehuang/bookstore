@@ -2,7 +2,7 @@ It's a bookstore website. Customers can login their accounts and put books into 
 
 Functionalities
 * Registration
-* Authentication - tokens
+* Authorization, Authentication - tokens
 * Searching function - use a keyword to find a book
 * Managing shopping carts
 * Payment by card method
