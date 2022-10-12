@@ -1,9 +1,9 @@
 const express = require("express");
 const Cart = require("../models/cart");
 const router = express.Router();
-const { verifyToken } = require("../middleware/auth");
+const { verifyToken } = require("../middlewares/authJwt");
 
-// create a new cart
+
 router.post("/new/:userId", verifyToken, async (req, res) => {
     const newCart = new Cart({ userId: req.body.userId });
     newCart.save(function(err, result){

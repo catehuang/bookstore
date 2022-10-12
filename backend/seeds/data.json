@@ -1,9 +1,8 @@
-{
-        "books": [
+
                 {
                         "category": "books",
                         "featuredCategory": "Comics & Graphic Novels",
-                        "name": "It Ends with Us: A Novel (Volume 1)",
+                        "title": "It Ends with Us: A Novel (Volume 1)",
                         "image": "https://images-na.ssl-images-amazon.com/images/I/71EwoNQypZL._AC._SR360,460.jpg",
                         "author": "Colleen Hoover",
                         "price": 15.09,
@@ -15,7 +14,7 @@
                 {
                         "category": "books",
                         "featuredCategory": "Professional & Technical",
-                        "name": "Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones",
+                        "title": "Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones",
                         "image": "https://images-na.ssl-images-amazon.com/images/I/81wgcld4wxL._AC._SR360,460.jpg",
                         "author": "James Clear",
                         "price": 21.66,
@@ -27,7 +26,7 @@
                 {
                         "category": "books",
                         "featuredCategory": "Comics & Graphic Novels",
-                        "name": "Reminders of Him: A Novel",
+                        "title": "Reminders of Him: A Novel",
                         "image": "https://images-na.ssl-images-amazon.com/images/I/617uZq23IPL._AC._SR360,460.jpg",
                         "author": "Colleen Hoover",
                         "price": 12.28,
@@ -39,7 +38,7 @@
                 {
                         "category": "books",
                         "featuredCategory": "Comics & Graphic Novels",
-                        "name": "Verity",
+                        "title": "Verity",
                         "image": "https://images-na.ssl-images-amazon.com/images/I/610QYM5NxRL._AC._SR360,460.jpg",
                         "author": "Colleen Hoover",
                         "price": 15.50,
@@ -51,7 +50,7 @@
                 {
                         "category": "books",
                         "featuredCategory": "Professional & Technical",
-                        "name": "The Fiber Fueled Cookbook: Inspiring Plant-Based Recipes to Turbocharge Your Health",
+                        "title": "The Fiber Fueled Cookbook: Inspiring Plant-Based Recipes to Turbocharge Your Health",
                         "image": "https://images-na.ssl-images-amazon.com/images/I/91cDoM87dYL._AC._SR360,460.jpg",
                         "author": "Will Bulsiewicz MD",
                         "price": 26.5,
@@ -63,7 +62,7 @@
                 {
                         "category": "books",
                         "featuredCategory": "Comics & Graphic Novels",
-                        "name": "The Seven Husbands of Evelyn Hugo: A Novel",
+                        "title": "The Seven Husbands of Evelyn Hugo: A Novel",
                         "image": "https://images-na.ssl-images-amazon.com/images/I/71pQQ9mk8eL._AC._SR360,460.jpg",
                         "author": "Taylor Jenkins Reid",
                         "price": 14.70,
@@ -75,7 +74,7 @@
                 {
                         "category": "books",
                         "featuredCategory": "Comics & Graphic Novels",
-                        "name": "Where the Crawdads Sing",
+                        "title": "Where the Crawdads Sing",
                         "image": "https://images-na.ssl-images-amazon.com/images/I/61m1Vxw8tiL._AC._SR360,460.jpg",
                         "author": "Delia Owens",
                         "price": 15.50,
@@ -87,7 +86,7 @@
                 {
                         "category": "books",
                         "featuredCategory": "Comics & Graphic Novels",
-                        "name": "The Boy, the Mole, the Fox and the Horse",
+                        "title": "The Boy, the Mole, the Fox and the Horse",
                         "image": "https://images-na.ssl-images-amazon.com/images/I/71eJk7GtUOL._AC._SR360,460.jpg",
                         "author": "Charlie Mackesy",
                         "price": 16.98,
@@ -99,7 +98,7 @@
                 {
                         "category": "books",
                         "featuredCategory": "Science & Math",
-                        "name": "The Body Keeps the Score: Brain, Mind, and Body in the Healing of Trauma",
+                        "title": "The Body Keeps the Score: Brain, Mind, and Body in the Healing of Trauma",
                         "image": "https://images-na.ssl-images-amazon.com/images/I/61NdJMwAThS._AC._SR360,460.jpg",
                         "author": "Bessel van der Kolk M.D.",
                         "price": 15.07,
@@ -111,7 +110,7 @@
                 {
                         "category": "books",
                         "featuredCategory": "Textbooks",
-                        "name": "The Wars of the Roses",
+                        "title": "The Wars of the Roses",
                         "image": "https://images-na.ssl-images-amazon.com/images/I/7185cinqDOL._AC._SR360,460.jpg",
                         "author": "Michael Hicks",
                         "price": 32.50,
@@ -123,7 +122,7 @@
                 {
                         "category": "books",
                         "featuredCategory": "Children's Books",
-                        "name": "First 100 Words: A Padded Board Book",
+                        "title": "First 100 Words: A Padded Board Book",
                         "image": "https://images-na.ssl-images-amazon.com/images/I/71aMpgf078L._AC._SR360,460.jpg",
                         "author": "Roger Priddy",
                         "price": 5.99,
@@ -135,7 +134,7 @@
                 {
                         "category": "books",
                         "featuredCategory": "Eduaction & Reference",
-                        "name": "Atlas of the Heart: Mapping Meaningful Connection and the Language of Human Experience",
+                        "title": "Atlas of the Heart: Mapping Meaningful Connection and the Language of Human Experience",
                         "image": "https://images-na.ssl-images-amazon.com/images/I/91DNhLLmUOL._AC._SR360,460.jpg",
                         "author": "Brené Brown",
                         "price": 24.14,
@@ -147,7 +146,7 @@
                 {
                         "category": "books",
                         "featuredCategory": "Politics & social Sciences",
-                        "name": "The Freedom Convoy: The Inside Story of Three Weeks that Shook the World",
+                        "title": "The Freedom Convoy: The Inside Story of Three Weeks that Shook the World",
                         "image": "https://images-na.ssl-images-amazon.com/images/I/71EzllGpnBL._AC._SR360,460.jpg",
                         "author": "Andrew Lawton",
                         "price": 18.51,
@@ -159,7 +158,7 @@
                 {
                         "category": "books",
                         "featuredCategory": "Politics & social Sciences",
-                        "name": "Color & Frame - By the Sea (Adult Coloring Book)",
+                        "title": "Color & Frame - By the Sea (Adult Coloring Book)",
                         "image": "https://images-na.ssl-images-amazon.com/images/I/91jW9T0PatL._AC._SR360,460.jpg",
                         "author": "New Seasons",
                         "price": 3.19,
@@ -171,7 +170,7 @@
                 {
                         "category": "books",
                         "featuredCategory": "Business & Investing",
-                        "name": "The Psychology of Money: Timeless lessons on wealth, greed, and happiness",
+                        "title": "The Psychology of Money: Timeless lessons on wealth, greed, and happiness",
                         "image": "https://images-na.ssl-images-amazon.com/images/I/41v+g6LqafL._SX322_BO1,204,203,200_.jpg",
                         "author": "Morgan Housel",
                         "price": 14.20,
@@ -180,5 +179,3 @@
                         "description": "Doing well with money isn't necessarily about what you know. It's about how you behave. And behavior is hard to teach, even to really smart people. Money―investing, personal finance, and business decisions―is typically taught as a math-based field, where data and formulas tell us exactly what to do. But in the real world people don't make financial decisions on a spreadsheet. They make them at the dinner table, or in a meeting room, where personal history, your own unique view of the world, ego, pride, marketing, and odd incentives are scrambled together. In The Psychology of Money, award-winning author Morgan Housel shares 19 short stories exploring the strange ways people think about money and teaches you how to make better sense of one of life's most important topics.",
                         "quantity": 0
                 }
-        ]
-}

@@ -1,67 +1,107 @@
 const router = require("express").Router();
-const passport = require("passport");
-const User = require("../models/user");
-const { verifyToken } = require("../middleware/auth");
+const db = require("../models");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
+const config = require("../config/auth");
+const { verifyRegister } = require("../middlewares");
+const User = db.user;
+const Role = db.role;
 
-// register
-router.post("/register", async (req, res) => {
-  try {
-    const { email, username, password } = req.body;
-
-    const registeredUser = await User.register({ username, email }, password);
-    await registeredUser.save();
-
-    const accessToken = jwt.sign(
-      { id: registeredUser._id },
-      process.env.JWT_SECRET,
-      { expiresIn: "1d" }
-    );
-
-    res.json({
-      _id: registeredUser._id,
-      username,
-      email: registeredUser.email,
-      accessToken,
-    });
-  } catch (err) {
-    res.send({ success: false, err });
-  }
+router.get("/test", async (req, res) => {
+  const userRole = await Role.find(
+    {
+      name: "user",
+    },
+    { _id: 1 }
+  ).distinct("_id");
+  res.status(200).send(userRole[0]);
 });
 
-// login
-router.post("/login", passport.authenticate("local"), async (req, res) => {
-  try {
-    const { username, password } = req.body;
-    const foundUser = await User.findOne({ username, password });
+router.post(
+  "/register",
+  [verifyRegister.checkDuplicateUsernameOrEmail],
+  async (req, res) => {
+    try {
+      const userRole = await Role.find(
+        {
+          name: "user",
+        },
+        { _id: 1 }
+      ).distinct("_id");
 
-    const accessToken = jwt.sign(
-      { id: foundUser._id },
-      process.env.JWT_SECRET,
-      { expiresIn: "1d" }
+      if (userRole) {
+        userRoleId = userRole[0];
+      } else {
+        console.log("Not found");
+      }
+
+      const user = new User({
+        username: req.body.username,
+        email: req.body.email,
+        password: bcrypt.hashSync(req.body.password, 10),
+        role: userRoleId,
+      });
+
+      user.save((err, user) => {
+        if (err) {
+          res.status(500).send({ message: err });
+        //   return;
+        }
+      });
+
+      const token = jwt.sign({ id: user.id }, config.secret, {
+        expiresIn: 86400, // 24 hours
+      });
+
+      res.json({
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+        role: user.role,
+        accessToken: token,
+      });
+    } catch (err) {
+      res.status(500).send({ message: err });
+    }
+  }
+);
+
+router.post("/login", async (req, res) => {
+  try {
+    const user = User.findOne({
+      username: req.body.username,
+    });
+    console.log(user);
+    if (!user) {
+      return res.status(404).send({ message: "User Not found." });
+    }
+
+    const passwordIsValid = bcrypt.compareSync(
+      req.body.password,
+      user.password
     );
 
-    res.json({
-      _id: foundUser._id,
-      username,
-      email: foundUser.email,
-      accessToken,
+    if (!passwordIsValid) {
+      return res.status(401).send({
+        accessToken: null,
+        message: "Invalid Password!",
+      });
+    }
+
+    const token = jwt.sign({ id: user.id }, config.secret, {
+      expiresIn: 86400, // 24 hours
+    });
+
+    res.status(200).send({
+      id: user._id,
+      username: user.username,
+      email: user.email,
+      roles: user.role,
+      accessToken: token,
     });
   } catch (err) {
-    //console.log(err);
-    res.status(500).json({ err });
-  }
-});
-
-// logout
-router.get("/logout", async (req, res) => {
-  try {
-    req.session.destroy();
-    req.logout;
-    res.json({ success: true });
-  } catch (err) {
-    res.statusCode = 500;
-    //res.send(err);
+    res.status(500).send({ message: err });
+    return;
   }
 });
 

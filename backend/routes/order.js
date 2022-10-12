@@ -1,7 +1,7 @@
 const express = require("express");
 const Order = require("../models/order");
 const router = express.Router();
-const { verifyToken } = require("../middleware/auth");
+const { verifyToken } = require("../middlewares/authJwt");
 
 //CREATE
 router.post("/", verifyToken, async (req, res) => {

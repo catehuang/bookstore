@@ -1,10 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
-const passport = require("passport");
-const session = require("express-session");
 const bookRoute = require("./routes/book");
 const userRoute = require("./routes/user");
 const cartRoute = require("./routes/cart");
@@ -19,35 +16,49 @@ require("dotenv").config();
 const buildPath = path.join(__dirname, "..", "build");
 
 // for development
-if (process.env.NODE_ENV !== "production") {
-mongoose
-    .connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log("connect to db"))
-    .catch((err) => console.log(err));
-}
+// if (process.env.NODE_ENV !== "production") {
+// mongoose
+//     .connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+//     .then(() => console.log("connect to db"))
+//     .catch((err) => console.log(err));
+// }
 
 // for deployment
-if (process.env.NODE_ENV === "production") {
-    mongoose.connect("mongodb+srv://" + url, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log("connect to db"))
-    .catch(err => console.error("connection error", err.stack));
-}
-
-require("./strategies/JwtStrategy");
-require("./strategies/LocalStrategy");
-require("./middleware/auth");
+// if (process.env.NODE_ENV === "production") {
+mongoose
+    .connect("mongodb+srv://" + url, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    })
+    .then(() => console.log("Successfully connect to MongoDB."))
+    .catch((err) => console.error("connection error", err.stack));
+// }
 
 const app = express();
 app.use(express.static(buildPath));
 app.use(bodyParser.json());
-app.use(cookieParser(process.env.COOKIE_SECRET));
+app.use(express.urlencoded({ extended: true }));
 
 if (process.env.NODE_ENV !== "production") {
-    app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+    console.log("Dev Mode");
+    var corsOptions = {
+        credentials: true,
+        origin: true
+    };
+    app.use(cors(corsOptions));
+    app.use(express.static(__dirname + "/public"));
+
+    // app.get("*", (req, res) => {
+    //     res.sendFile( path.resolve('../build/index.html') );
+    //     // res.sendFile(path.resolve(__dirname, "../build", "index.html"));
+    // });
 }
 
 if (process.env.NODE_ENV === "production") {
+    console.log("Production Mode");
     app.use(cors());
+
+    app.use(express.static("build"));
 
     app.all("/*", function (req, res, next) {
         res.header("Access-Control-Allow-Origin", "*");
@@ -56,32 +67,17 @@ if (process.env.NODE_ENV === "production") {
         res.header("Access-Control-Allow-Headers", "X-Requested-With");
         next();
     });
+
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname, "../build", "index.html"));
+    });
 }
-
-app.use(
-    session({
-        secret: "thisisasecret",
-        resave: false,
-        saveUninitialized: true,
-    })
-);
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 app.use("/api", userRoute);
 app.use("/api/books", bookRoute);
 app.use("/api/carts", cartRoute);
 app.use("/api/orders", orderRoute);
 app.use("/api/payments", paymentRoute);
-
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static("build"));
-
-    app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname, "../build", "index.html"));
-    });
-}
 
 app.listen(PORT, () => {
     console.log(`Sever is running on the port: `, PORT);
