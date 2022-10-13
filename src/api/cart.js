@@ -1,23 +1,6 @@
 import { axios } from "../axios";
 import { addProduct, adoptCart, setCart } from "../reducers/cartSlice";
 
-export const CreateCart = async (dispatch, user) => {
-    try {
-        const token = user.accessToken;
-        const userId = user._id;
-        const axiosAuth = axios.create({
-            headers: { token: `Bearer ${token}` },
-        });
-        const response = await axiosAuth.post(`carts/new/${userId}`, {
-            userId: userId
-        });
-        // only need to change the name tag on the local cart
-        dispatch(setCart(response.data));
-        //console.log("cart created.");
-    } catch (error) {
-        //console.log(error);
-    }
-};
 
 export const LoadCart = async (dispatch, user) => {
     try {
@@ -44,6 +27,24 @@ export const LoadCart = async (dispatch, user) => {
         }
     } catch (error) {
         console.log(error);
+    }
+};
+
+export const CreateCart = async (dispatch, user) => {
+    try {
+        const token = user.accessToken;
+        const userId = user._id;
+        const axiosAuth = axios.create({
+            headers: { token: `Bearer ${token}` },
+        });
+        const response = await axiosAuth.post(`carts/new/${userId}`, {
+            userId: userId
+        });
+        // only need to change the name tag on the local cart
+        dispatch(setCart(response.data));
+        //console.log("cart created.");
+    } catch (error) {
+        //console.log(error);
     }
 };
 
