@@ -18,29 +18,34 @@ function Orders() {
     const orders = useSelector((state) => state.order.orders);
 
     return (
-        <div className="sm:w-4/5 mx-auto">
+        <div className="sm:w-4/5 mx-auto my-10">
             <p className="text-2xl text-center font-bold pt-10">Your Orders</p>
 
             {[...orders]?.reverse().map((eachOrder) => (
-                <div className="my-10" key={eachOrder._id} >
+                <div className="my-10" key={eachOrder._id}>
                     <Order eachOrder={eachOrder} />
                 </div>
             ))}
             {orders.length === 0 && (
                 <div className="mx-auto flex flex-col justify-center py-10 gap-5">
                     <p className="text-2xl text-center">No any orders</p>
-                    <button className="text-cyan-600 text-lg font-bold" onClick={() =>navigate('/')}>Shop today's deals</button>               
+                    <button
+                        className="text-cyan-600 text-lg font-bold"
+                        onClick={() => navigate("/")}
+                    >
+                        Shop today's deals
+                    </button>
                     <img
                         className="mx-auto w-4/5 h-40"
                         src="https://m.media-amazon.com/images/G/15/cart/empty/kettle-desaturated._CB424694027_.svg"
                         alt=""
                     />
-                    <div className="px-10 mx-auto flex flex-col gap-3 w-full">
-                        <p className="text-lg font-bold">Recommended for you</p>
-                        <Suggestion selectedBook={null}/>                        
-                    </div>
                 </div>
             )}
+            <div className="px-10 mx-auto flex flex-col gap-3 w-full">
+                <p className="text-lg font-bold">Recommended for you</p>
+                <Suggestion selectedBook={null} />
+            </div>
         </div>
     );
 }

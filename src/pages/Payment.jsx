@@ -32,7 +32,7 @@ function Payment() {
     const [error, setError] = useState(null);
     const token = user.accessToken;
     const axiosAuth = axios.create({
-        headers: { token: `Bearer ${token}` },
+        headers: { "x-access-token": `${token}` },
     });
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -220,16 +220,19 @@ function Payment() {
             const response = await axiosAuth.post(`/payments/create`, {
                 amount: amount,
             });
-            //console.log(response.data.client_secret);
+            // console.log(response.data.client_secret);
             setClientSecret(response.data.client_secret);
         };
         getClientSecret();
+
+        // console.log(amount)
         // eslint-disable-next-line
-    },[cart]);
+    },[cart.length > 0]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setProcessing(true);
+        
         try {
             // stripe.confirmCardPayment will return a Promise which resolves with a result object.
             await stripe
@@ -240,7 +243,7 @@ function Payment() {
                 })
                 .then(async (result) => {
                     const response = await axiosAuth.post(`/orders`, {
-                        userId: user._id,
+                        userId: user.id,
                         products: cart.products.map((item) => ({
                             _id: item._id,
                             name: item.name,
@@ -248,6 +251,9 @@ function Payment() {
                             author: item.author,
                             categories: item.categories,
                             featuredCategory: item.featuredCategory,
+                            stars: item.star,
+                            reviews: item.reviews,
+                            description: item.description,
                             price: item.price,
                             quantity: item.quantity,
                         })),
