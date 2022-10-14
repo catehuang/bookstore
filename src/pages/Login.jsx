@@ -44,17 +44,10 @@ function Login() {
         };
 
         return (
-                <div className="flex flex-col space-y-5">
-                        <div className="h-16">
-                                {loginError && (
-                                        <div className="text-red-600 text-center bg-red-100 py-1">
-                                                Username or password incorrect. Please try again.
-                                        </div>
-                                )}
-                        </div>
-                        <div className="mx-auto w-4/5 sm:w-96">
+                <div className="flex flex-col">
+                        <div className="mx-auto w-4/5 sm:w-96 mt-11 mb-6">
                                 <p className="text-3xl first-letter:font-bold text-center">BookStore</p>
-                                <form className="sm:border rounded-lg mb-10 mt-5 p-5 flex flex-col space-y-5">
+                                <form className="sm:border rounded-lg my-5 p-5 flex flex-col space-y-5">
                                         <p className="text-xl">Login</p>
 
                                         <div className="felx flex-col">
@@ -112,6 +105,13 @@ function Login() {
                                                 <p className="text-cyan-600 text-sm">New to BookStore?</p>
                                         </Link>
                                 </form>
+                        </div>
+                        <div className="pb-24 h-28">
+                                {loginError && (
+                                        <div className="text-sm text-red-500 text-center font-bold px-5">
+                                                Username or password incorrect. Please try again.
+                                        </div>
+                                )}
                         </div>
                 </div>
         );
