@@ -9,6 +9,7 @@ import { UserLogout } from "../api/user";
 import { logout } from "../reducers/userSlice";
 import { UpdateCart } from "../api/cart";
 import { axios } from "../axios";
+import { ContactPageOutlined } from "@mui/icons-material";
 
 function Header() {
     const user = useSelector((state) => state.user.currentUser);
@@ -26,6 +27,7 @@ function Header() {
             setBooks(response.data);
         };
         getBooks();
+        // console.log(cart)
     }, []);
 
     useEffect(() => {

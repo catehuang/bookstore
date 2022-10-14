@@ -5,14 +5,14 @@ import { addProduct, adoptCart, setCart } from "../reducers/cartSlice";
 export const LoadCart = async (dispatch, user) => {
     try {
         const token = user.accessToken;
-        const userId = user._id;
+        const userId = user.id;
 
         const axiosAuth = axios.create({
-            headers: { token: `Bearer ${token}` },
+            headers: { "x-access-token": `${token}` },
         });
         const response = await axiosAuth.get(`/carts/find/${userId}`);
-        //console.log("load cart =============");
-        //console.log(response.data);
+        console.log("load cart =============");
+        console.log(response.data);
 
         if (response.data === null) {
             CreateCart(dispatch, user);
@@ -33,9 +33,9 @@ export const LoadCart = async (dispatch, user) => {
 export const CreateCart = async (dispatch, user) => {
     try {
         const token = user.accessToken;
-        const userId = user._id;
+        const userId = user.id;
         const axiosAuth = axios.create({
-            headers: { token: `Bearer ${token}` },
+            headers: { "x-access-token": `${token}` },
         });
         const response = await axiosAuth.post(`carts/new/${userId}`, {
             userId: userId
@@ -55,7 +55,7 @@ export const UpdateCart = async (obj) => {
 
     try {
         const axiosAuth = axios.create({
-            headers: { token: `Bearer ${token}` },
+            headers: { "x-access-token": `${token}` },
         });
 
         const response = await axiosAuth.put(`/carts/${cart.cartId}`, {
