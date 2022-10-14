@@ -5,7 +5,7 @@ const { verifyToken } = require("../middlewares/authJwt");
 
 //CREATE
 router.post("/", verifyToken, async (req, res) => {
-        //console.log(req.body);
+        console.log(req.body);
         const newOrder = new Order(req.body);
         try {
                 const savedOrder = await newOrder.save();
@@ -20,6 +20,7 @@ router.post("/", verifyToken, async (req, res) => {
 //GET USER Orders
 router.get("/find/:userId", verifyToken, async (req, res) => {
         const userId = req.params.userId 
+
         try {
                 const orders = await Order.find({ userId });
                 res.status(200).json(orders);

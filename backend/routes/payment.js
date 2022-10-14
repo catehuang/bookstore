@@ -10,7 +10,7 @@ router.post("/create", async (req, res) => {
                                 amount: req.body.amount,
                                 currency: "cad",
                         });
-                //console.log(paymentIntent);
+                // console.log(paymentIntent);
                 res.status(200).json(paymentIntent);          
         }
         catch(err)
