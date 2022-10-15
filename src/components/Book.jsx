@@ -11,7 +11,7 @@ function Product_Books({ book }) {
         const book_reviews = numberFormat.format(book.reviews);
 
         return (
-                        <div className="w-52 lg:w-60 my-5 md:mx-5 p-3 rounded-lg bg-white border border-gray-200">
+                        <div className="p-3 rounded-lg bg-white border border-gray-200 mx-2 my-2">
                                 <Link to={`/books/` + book._id}>
                                 {
                                         book.quantity === 0 && (
@@ -22,7 +22,7 @@ function Product_Books({ book }) {
                                 }
 
                                 <img
-                                        className="object-contain w-40 lg:h-60 lg:w-60 mx-auto mt-3"
+                                        className="object-contain w-60 h-60 mx-auto mt-3"
                                         src={book.image}
                                         alt=""
                                 />
