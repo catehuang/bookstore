@@ -8,7 +8,7 @@ function Advertizing() {
                                 src="https://images-na.ssl-images-amazon.com/images/G/15/credit/img19/CBCC/detailpage/DP-Desktop-HeaderHand_NP-Unrec._CB466933401_.png"
                                 alt=""
                         />
-                        <div className="text-xs sm:text-base my-auto">
+                        <div className="text-sm sm:text-base my-auto">
                                 <span>You can get </span>
                                 <span className="text-cyan-700">5% back at BookStore </span>
                                 <span>for 6 months upon approval for the </span>

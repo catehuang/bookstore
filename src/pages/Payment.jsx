@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Cart from "../components/Cart";
-import { CardElement, useStripe, useElements, PaymentElement } from "@stripe/react-stripe-js";
+import {
+    CardElement,
+    useStripe,
+    useElements,
+    PaymentElement,
+} from "@stripe/react-stripe-js";
 import { axios } from "../axios";
 import { LoadOrders } from "../api/order";
 import { useNavigate } from "react-router-dom";
@@ -61,7 +66,7 @@ function Payment() {
                         onChange={(e) =>
                             setReceiver(e.target.value.replace(/[^0-9-_.a-z\s]/gi, ""))
                         }
-                        required 
+                        required
                     />
                 </div>
             </div>
@@ -80,7 +85,7 @@ function Payment() {
                         onChange={(e) =>
                             setShippingAddress(e.target.value.replace(/[^0-9-_.a-z\s]/gi, ""))
                         }
-                        required 
+                        required
                     />
                 </div>
             </div>
@@ -99,7 +104,7 @@ function Payment() {
                         onChange={(e) =>
                             setShippingCity(e.target.value.replace(/[^0-9-_.a-z\s]/gi, ""))
                         }
-                        required 
+                        required
                     />
                 </div>
             </div>
@@ -152,7 +157,7 @@ function Payment() {
                                 e.target.value.replace(/[^0-9-_.a-z\s]/gi, "")
                             )
                         }
-                        required 
+                        required
                     />
                 </div>
             </div>
@@ -161,59 +166,63 @@ function Payment() {
 
     const Summary = () => {
         return (
-            <div className="sm:border border-gray-400 w-full sm:w-80 h-fit p-5 bg-white rounded-lg flex flex-col gap-5 mx-auto">
-                    <div className="flex flex-col gap-3">
-                        <p className="text-xl font-bold border-b pb-2">Order Summary</p>
+            <div className="sm:border border-gray-400 w-full sm:w-80 h-fit p-5 bg-white rounded-lg flex flex-col gap-5">
+                <div className="flex flex-col gap-3">
+                    <p className="text-xl font-bold border-b pb-2">Order Summary</p>
 
-                        <div className="flex flex-col gap-1 sm:px-5">
-                            <div className="flex justify-between">
-                                <p>Items:</p>
-                                <p>${cartTotal}</p>
-                            </div>
-                            <div className="flex justify-between">
-                                <p>Shipping & Handling:</p>
-                                <p>${shippingFee}</p>
-                            </div>
-
-                            {cartTotal > 35 && (
-                                <div className="flex justify-between">
-                                    <p>Free Shipping</p>
-                                    <p>- ${shippingFee}</p>
-                                </div>
-                            )}
-
-                            <div className="flex justify-between">
-                                <p>Total before tax:</p>
-                                <p>${beforeTax}</p>
-                            </div>
-                            <div className="flex justify-between">
-                                <p>Estimated GST/HST:</p>
-                                <p>${gst}</p>
-                            </div>
+                    <div className="flex flex-col gap-1 sm:px-5">
+                        <div className="flex justify-between">
+                            <p>Items:</p>
+                            <p>${cartTotal}</p>
+                        </div>
+                        <div className="flex justify-between">
+                            <p>Shipping & Handling:</p>
+                            <p>${shippingFee}</p>
                         </div>
 
-                        <div className="flex justify-between text-lg text-red-700 border-t pt-2 sm:px-5">
-                            <p>Order Total</p>
-                            <p>${total}</p>
+                        {cartTotal > 35 && (
+                            <div className="flex justify-between">
+                                <p>Free Shipping</p>
+                                <p>- ${shippingFee}</p>
+                            </div>
+                        )}
+
+                        <div className="flex justify-between">
+                            <p>Total before tax:</p>
+                            <p>${beforeTax}</p>
+                        </div>
+                        <div className="flex justify-between">
+                            <p>Estimated GST/HST:</p>
+                            <p>${gst}</p>
                         </div>
                     </div>
+
+                    <div className="flex justify-between text-lg text-red-700 border-t pt-2 sm:px-5">
+                        <p>Order Total</p>
+                        <p>${total}</p>
+                    </div>
                 </div>
-        )
-    }
+            </div>
+        );
+    };
 
     useEffect(() => {
         if (
             receiver.length > 1 &&
-            shippingAddress.length > 2   &&
-            shippingCity.length > 1  &&
-            shippingProvince.length > 2  &&
-            shippingPostalCode.length > 5 
-        ) 
-        {
+            shippingAddress.length > 2 &&
+            shippingCity.length > 1 &&
+            shippingProvince.length > 2 &&
+            shippingPostalCode.length > 5
+        ) {
             setValidShippingInfo(true);
         }
-    }, [receiver, shippingAddress, shippingCity, shippingProvince, shippingPostalCode]);
-
+    }, [
+        receiver,
+        shippingAddress,
+        shippingCity,
+        shippingProvince,
+        shippingPostalCode,
+    ]);
 
     useEffect(() => {
         const getClientSecret = async () => {
@@ -227,12 +236,12 @@ function Payment() {
 
         // console.log(amount)
         // eslint-disable-next-line
-    },[cart.length > 0]);
+    }, [cart.length > 0]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setProcessing(true);
-        
+
         try {
             // stripe.confirmCardPayment will return a Promise which resolves with a result object.
             await stripe
@@ -270,10 +279,9 @@ function Payment() {
                         status: result.paymentIntent.status,
                     });
 
-                    if (response.status === 200)
-                    {
+                    if (response.status === 200) {
                         setSucceeded(true);
-                        setError(null);         
+                        setError(null);
                     }
                 });
         } catch (error) {
@@ -281,12 +289,11 @@ function Payment() {
             setError(true);
         }
 
-        if (!error)
-        {
+        if (!error) {
             setProcessing(false);
             dispatch(clearCart());
             LoadOrders(dispatch, user._id);
-            navigate("/orders");        
+            navigate("/orders");
         }
     };
 
@@ -297,80 +304,70 @@ function Payment() {
     };
 
     return (
-        <div className="p-5 sm:p-10 flex flex-col space-y-5 flex-wrap">
-            <div>
-                <p className="text-2xl font-bold px-5">
-                    Check out ( {cart.quantity} ) items
-                </p>
-            </div>
+        <div className="p-5 sm:p-10 flex flex-col space-y-10 flex-wrap lg:w-4/5 mx-auto">
+            <p className="text-2xl font-bold px-5">
+                Check out ( {cart.quantity} ) items
+            </p>
+
             <div className="px-5 flex flex-col space-y-3">
                 <p className="text-xl font-bold">Shipping Information</p>
                 <form className="flex flex-col gap-2 sm:w-96 sm:px-10">
                     {/* calling the component with {compName()} instead of <compName /> or the input field lose focus after typing a character */}
                     {Receiver()}
                     {Address()}
-                    {City()} 
+                    {City()}
                     {Province()}
                     {PostalCode()}
                 </form>
             </div>
 
             <div className="my-10 flex gap-5 flex-wrap">
-                <div className="grow flex flex-col gap-5">
-                    <div className="flex flex-wrap gap-5">
-                        <div className="flex flex-col gap-5 bg-white rounded-lg sm:grow">
-                            <p className="text-xl font-bold px-5">Review Items and Shipping</p>
-                            {cart.products.map((item) => (
-                                <Cart key={item._id} product={item} />
-                            ))}
-                            <p className="border-gray-300 border-t pt-5"></p>
-                        </div>   
-                        <Summary />                     
-                    </div>
-
-                    <div className="">
-                        <p className="text-xl font-bold px-5 pt-5">Payement Method</p>
-                        <div className="ml-5 m-10 mt-5 sm:ml-10 p-5 sm:p-10 rounded-lg bg-gray-100 w-fit mx-auto">
-                            <form onSubmit={handleSubmit} className="sm:w-80 flex flex-col">
-                                <CardElement
-                                    onChange={handleChange}
-                                    className="sm:w-80 sm:p-5 text-lg border border-gray-400 rounded-lg bg-white p-3"
-                                />
-                                <p className="text-lg text-red-700 py-2 sm:py-5">
-                                    Order Total: ${total}
-                                </p>
-                                <button
-                                    disabled={
-                                        !stripe || !validShippingInfo || processing || succeeded
-                                    }
-                                    className="text-center border-yellow-500 bg-yellow-400 w-full py-1 rounded hover:bg-yellow-500 disabled:bg-gray-300"
-                                >
-                                    {processing ? "Processing" : "Buy Now"}
-                                </button>
-                            </form>
-                            {
-                                !validShippingInfo && (
-                                <p className="text-center pt-2 text-green-500">
-                                    Please provide shipping Information
-                                </p>
-                            )}
-
-                            {
-                                validShippingInfo && (
-                                <div>
-                                    <p className="text-red-500">Do not use your credit card number !!</p>
-                                    <p className="text-red-500">Please use 4242424... to complete the payment</p>                                
-                                </div>                                    
-                                )
-                            }
-
-
-                            {error && <div>{error}</div>}
-                        </div>
-                    </div>
+                <div className="flex flex-col gap-5 bg-white rounded-lg sm:grow">
+                    <p className="text-xl font-bold px-5">Review Items and Shipping</p>
+                    {cart.products.map((item) => (
+                        <Cart key={item._id} product={item} />
+                    ))}
+                    <p className="border-gray-300 border-t pt-5"></p>
                 </div>
+            </div>
 
-                
+            <div className="flex flex-col lg:flex-row space-y-10 lg:space-y-5 lg:space-x-10">
+            <div className="sm:px-5">
+                <Summary />
+            </div>
+
+            <div className="px-5 flex flex-col space-y-5 w-96">
+                <p className="text-xl font-bold">Payement Method</p>
+                <form onSubmit={handleSubmit} className="flex flex-col space-y-5 ">
+                    <CardElement
+                        onChange={handleChange}
+                        className="sm:p-5 text-lg border border-gray-400 rounded-lg bg-white p-3"
+                    />
+                    <button
+                        disabled={!stripe || !validShippingInfo || processing || succeeded}
+                        className="text-center border-yellow-500 bg-yellow-400 w-full py-1 rounded hover:bg-yellow-500 disabled:bg-gray-300"
+                    >
+                        {processing ? "Processing" : "Buy Now"}
+                    </button>
+                </form>
+                {!validShippingInfo && (
+                    <p className="text-center pt-2 text-green-600">
+                        Please provide shipping Information
+                    </p>
+                )}
+
+                {validShippingInfo && (
+                    <div>
+                        <p className="text-red-500">
+                            Do not use your credit card number !!
+                        </p>
+                        <p className="text-red-500">
+                            Please use 4242424... to complete the payment
+                        </p>
+                    </div>
+                )}
+                {error && <div>{error}</div>}
+            </div>
             </div>
         </div>
     );
