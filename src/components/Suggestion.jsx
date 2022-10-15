@@ -23,14 +23,14 @@ function Suggestion({ selectedBook }) {
 
         const RenderBook = ({book}) => {
                 return (
-                        <div className="text-xs sm:text-sm" key={book._id}>
+                        <div className="text-xs sm:text-sm p-2" key={book._id}>
                                 <Link to={`/books/` + book._id}>
                                         <img
-                                                className="object-contain h-36 w-36 sm:h-52 sm:w-52 mx-auto"
+                                                className="object-contain h-36 w-36 sm:w-52 sm:h-52 mx-auto"
                                                 src={book.image}
                                                 alt=""
                                         />
-                                        <div className="grid grid-rows-2 px-3 gap-2">
+                                        <div className="grid grid-rows-2 px-3 space-y-2 mt-2">
                                                 <p className="line-clamp-2">{book.name}</p>
 
                                                 <div className="flex gap-2">
@@ -54,7 +54,7 @@ function Suggestion({ selectedBook }) {
         };
 
         return (
-                <div className="flex overflow-x-auto gap-10 border border-gray-300 rounded-lg py-5 pb-0 h-fit">
+                <div className="flex overflow-x-auto space-x-5 border border-gray-300 rounded-lg py-5 pb-0 h-fit">
                         {selectedBook? books
                                 .filter((book) => book._id !== selectedBook._id)
                                 .map((book) => (
