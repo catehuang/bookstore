@@ -65,13 +65,13 @@ function Book() {
 
     const ShoppingInfo = () => {
         return (
-            <div className="flex flex-col w-fit sm:w-72 flex-none h-fit sm:border border-gray-300 rounded p-5 space-y-2 text-sm mx-auto bg-gray-50">
-                <div className="flex flex-col space-y-2">
-                    <div className="flex justify-between">
+            <div className="flex flex-col w-fit mx-auto bg-gray-100 border border-gray-200 rounded-lg p-5 text-sm">
+                <div className="flex flex-col space-y-3">
+                    <div className="flex">
                         <p className="my-auto text-base font-bold">
-                            {book.quantity !==0 ? "In Stock" : "Currently unavailable"}
+                            {book.quantity !== 0 ? "In Stock" : "Currently unavailable"}
                         </p>
-                        <p className="text-red-700 flex font-bold">
+                        <p className="text-red-700 flex font-bold mr-0 ml-auto">
                             <span className="text-xs mt-1">$</span>
                             <span className=" text-xl">{book_price_integer}</span>
                             <span className="text-xs mt-1">{book_price_fraction}</span>
@@ -79,9 +79,10 @@ function Book() {
                     </div>
                     <p>FREE delivery {monthNames[month + 1]} 1 - 3 on your first order</p>
                     <p>Usually ships within 1 week.</p>
-                    <div className="flex gap-2">
-                        <div className="flex space-x-5">
-                            <p className="my-auto text-base">Quantity: </p>
+
+                    <div className="flex">
+                        <div className="flex space-x-3">
+                            <p className="my-auto">Quantity: </p>
                             <select
                                 className="border border-gray-400 rounded px-1"
                                 onChange={(e) => setQuantity(e.target.value)}
@@ -92,23 +93,23 @@ function Book() {
                                             {num + 1}
                                         </option>
                                     ))}
-                                {book.quantity === 0 &&
-                                    <option value="0"> 0</option>
-                                }
+                                {book.quantity === 0 && <option value="0"> 0</option>}
                             </select>
                         </div>
                     </div>
+                </div>
+                <div className="flex flex-col space-y-3 my-5">
                     <button
-                        className="text-sm text-center border border-yellow-500 bg-yellow-400 w-full py-1 rounded hover:bg-yellow-500 disabled:bg-gray-300 space-y-5"
-                        disabled={book.quantity !==0 ? false : true}
+                        className="text-center border border-yellow-500 bg-yellow-400 w-full py-1 rounded hover:bg-yellow-500 disabled:bg-gray-300 space-y-5"
+                        disabled={book.quantity !== 0 ? false : true}
                         onClick={handleAddToCart}
                     >
                         Add to Cart
                     </button>
 
                     <button
-                        className="text-sm text-center border border-yellow-500 bg-orange-400 w-full py-1 rounded hover:bg-orange-500 disabled:bg-gray-300 space-y-5"
-                        disabled={book.quantity !==0 ? false : true}
+                        className="text-center border border-yellow-500 bg-orange-400 w-full py-1 rounded hover:bg-orange-500 disabled:bg-gray-300 space-y-5"
+                        disabled={book.quantity !== 0 ? false : true}
                         onClick={handleBuyNow}
                     >
                         Buy now
@@ -119,49 +120,50 @@ function Book() {
     };
 
     return (
-        <div className="flex flex-col space-y-5 m-5 w-4/5 mx-auto text-sm sm:text-base">
-            {/* First row on the page */}
-            <p className="text-[#005e80]">
-                <Link to="/">&lt; back to result</Link>
-            </p>
-
-            {/* Second row on the page */}
-            <div className="flex justify-between flex-wrap gap-5">
-                <img
-                    className="w-4/5 sm:w-52 md:w-60 lg:w-72 h-fit object-contain mx-auto"
-                    src={book.image}
-                    alt=""
-                />
-                <div className="self-center">
-                     {ShoppingInfo()}
-                </div>
-            </div>
-
-            {/* Third row on the page - book info*/}
-            <div className="flex flex-col gap-2">
-                <p className="text-lg sm:text-3xl">{book.name}</p>
-                <p className="sm:text-2xl text-gray-600">Paperback</p>
-                <p>
-                    by<span className="text-sky-800  px-1">{book.author}</span>
-                    (Author)
+        <div className="container mx-auto">
+            <div className="flex flex-col space-y-5 m-5">
+                {/* First row on the page */}
+                <p className="text-[#005e80]">
+                    <Link to="/">&lt; back to result</Link>
                 </p>
 
-                <div className="text-amber-500 flex gap-2">
-                    <p>
-                        <Rating
-                            value={Number(`${book.stars}`)}
-                            precision={0.5}
-                            size="small"
-                            readOnly
-                        />
-                    </p>
-                    <p className="sm:text-sm text-sky-800">{book_reviews} ratings</p>
+                {/* Second row on the page */}
+                <div className="flex">
+                    <img
+                        className="object-contain max-h-80 my-auto mx-auto mb-8 md:mb-0"
+                        src={book.image}
+                        alt=""
+                    />
+                    <div className="mx-auto my-auto hidden md:block">{ShoppingInfo()}</div>
                 </div>
-                <p>{book.description}</p>
-            </div>
 
-            {/* The forth row on the page */}
-            <div className="">
+                {/* Third row on the page - book info*/}
+                <div className="flex flex-col gap-2 px-5">
+                    <p className="text-2xl font-bold">{book.name}</p>
+                    <div className="">
+                        <p className="text-gray-600">Paperback</p>
+                        <p>
+                            by<span className="text-sky-800  px-1">{book.author}</span>
+                            (Author)
+                        </p>
+                    </div>
+
+                    <div className="text-amber-500 flex gap-2">
+                        <p>
+                            <Rating
+                                value={Number(`${book.stars}`)}
+                                precision={0.5}
+                                size="small"
+                                readOnly
+                            />
+                        </p>
+                        <p className="text-sky-800">{book_reviews} ratings</p>
+                    </div>
+                    <p className="py-3 text-base">{book.description}</p>
+                    <div className="mx-auto my-10  md:hidden">{ShoppingInfo()}</div>
+                </div>
+            </div>
+            <div className="my-10 mx-10">
                 <Suggestion selectedBook={book} />
             </div>
         </div>

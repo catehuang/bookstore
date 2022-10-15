@@ -22,14 +22,23 @@ function Home() {
         },[])
 
   return (
-    <div className="w-full">
-            <Banner />
-                <main className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 grid-flow-row gap-y-5 py-10 sm:px-10 mx-auto justify-evenly'>
-                        {
-                                books.map(book =>
-                                        <Books key={book._id} book={book}/>)
-                        }
-                </main>
+    <div className="bg-gray-100">
+            <div className="">
+                    <Banner/>
+            </div>
+            <div className=" mx-auto">
+                <div className="bg-gray-100 py-5">
+                        <div className="flex flex-wrap">
+                                {
+                                        books.map(book =>
+                                                <div className="mx-auto">
+                                                        <Books key={book._id} book={book}/>
+                                                </div>)
+
+                                }                                
+                        </div>
+                </div>
+        </div>
     </div>
   )
 }

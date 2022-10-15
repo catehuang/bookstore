@@ -16,7 +16,7 @@ function Banner() {
         ));
 
         return (
-                <div className="object-contain mx-auto">
+                <div className="w-full mx-auto">
                         <Carousel
                                         autoPlay
                                         infiniteLoop
