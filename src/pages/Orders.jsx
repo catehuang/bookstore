@@ -18,14 +18,16 @@ function Orders() {
     const orders = useSelector((state) => state.order.orders);
 
     return (
-        <div className="sm:w-4/5 mx-auto my-10">
-            <p className="text-2xl text-center font-bold pt-10">Your Orders</p>
-
+        <div className="mx-auto my-10 p-10">
+            <p className="text-2xl text-center font-bold">Your Orders</p>
+            <div className="mb-20">
             {[...orders]?.reverse().map((eachOrder) => (
                 <div className="my-10" key={eachOrder._id}>
                     <Order eachOrder={eachOrder} />
                 </div>
             ))}
+            </div>
+
             {orders.length === 0 && (
                 <div className="mx-auto flex flex-col justify-center py-10 gap-5">
                     <p className="text-2xl text-center">No any orders</p>
@@ -42,7 +44,7 @@ function Orders() {
                     />
                 </div>
             )}
-            <div className="px-10 mx-auto flex flex-col gap-3 w-full">
+            <div className="py-10 mx-auto">
                 <p className="text-lg font-bold">Recommended for you</p>
                 <Suggestion selectedBook={null} />
             </div>
