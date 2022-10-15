@@ -27,7 +27,7 @@ function Header() {
             setBooks(response.data);
         };
         getBooks();
-        console.log(cart)
+        console.log(cart);
     }, []);
 
     useEffect(() => {
@@ -59,90 +59,100 @@ function Header() {
         navigate(`/books/${bookId}`);
     };
 
-    return (
-        <div className="px-3 sm:px-10 py-3 bg-[#00131a] text-gray-200">
-            <div className="flex gap-5 sm:justify-between flex-wrap ">
-                <div className="flex flex-row justify-start space-x-5 sm:gap-10">
-                    <div className="text-xl first-letter:font-bold flex-none">
-                        <Link to="/">BookStore</Link>
-                    </div>
-                    <div className="w-fit">
-                        <div className="flex ">
-                            <input
-                                type="text"
-                                className="rounded-none rounded-l  text-[#00131a] px-2 w-52"
-                                value={searchString}
-                                onChange={(e) => handleSearch(e.target.value)}
-                            />
-                            <p className="border-t border-r border-b rounded-r px-1 bg-amber-400 border-none text-[#00131a]">
-                                <SearchIcon />
+    const SearchResult = () => {
+        return (
+            <div className="w-4/5 md:w-1/3 bg-white mt-5 px-2 rounded text-gray-700 border border-gray-200 rouned-lg text-sm flex flex-col gap-2 absolute z-50 ">
+                {searchString === ""
+                    ? setIsOpen(false)
+                    : books
+                        .filter((book) => {
+                            if (
+                                book.name.toLowerCase().includes(searchString.toLowerCase())
+                            )
+                                return book;
+                            else return null;
+                        })
+                        ?.map((book) => (
+                            <p
+                                className="flex-wrap "
+                                key={book._id}
+                                onClick={() => handleClickSearch(`${book._id}`)}
+                            >
+                                <span className="cursor-pointer line-clamp-1">
+                                    {book.name}
+                                </span>
                             </p>
-                        </div>
-                    </div>
-                </div>
-                {/* search result */}
-                {isOpen && (
-                    <div className="w-1/2 bg-white ml-32 mt-8 px-2 rounded text-gray-700 text-sm flex flex-col gap-2 absolute z-50 ">
-                        {searchString === ""
-                            ? setIsOpen(false)
-                            : books
-                                .filter((book) => {
-                                    if (
-                                        book.name
-                                            .toLowerCase()
-                                            .includes(searchString.toLowerCase())
-                                    )
-                                        return book;
-                                    else return null;
-                                })
-                                ?.map((book) => (
-                                    <p
-                                        className="flex-wrap "
-                                        key={book._id}
-                                        onClick={() => handleClickSearch(`${book._id}`)}
-                                    >
-                                        <span className="cursor-pointer line-clamp-1">
-                                            {book.name}
-                                        </span>
-                                    </p>
-                                ))}
-                    </div>
-                )}
-                <div className="flex flex-row justify-end gap-10 space-x-5">
-                    <div>
-                        {user ? (
-                            <p>Hi, {user.username}</p>
-                        ) : (
-                            <Link to="/login">
-                                <p>Login</p>
-                            </Link>
-                        )}
-                    </div>
+                        ))}
+            </div>
+        );
+    };
 
+    const SearchBar = () => {
+        return (
+            <div id="searchBar" className="">
+                <div className="flex">
+                    <input
+                        type="text"
+                        className="rounded-none rounded-l  text-[#00131a] px-2 w-full md:w-52"
+                        value={searchString}
+                        onChange={(e) => handleSearch(e.target.value)}
+                        onBlur={(e) => setIsOpen(false)}
+                    />
+                    <p className="border border-amber-400 rounded-r bg-amber-400 text-[#00131a] px-1">
+                        <SearchIcon />
+                    </p>
+                </div>
+                <div id="searchResult">{isOpen && <SearchResult />}</div>
+            </div>
+        );
+    };
+
+    return (
+        <div className="bg-[#00131a] text-gray-200 px-10 py-5 flex flex-wrap">
+            <div id="bookstorte_searchBar" className="flex space-x-10">
+                <div className="text-xl first-letter:font-bold">
+                    <Link to="/">BookStore</Link>
+                </div>
+                <div className="hidden md:block">{SearchBar()}</div>
+            </div>
+            <div id="userInfo" className="flex ml-auto space-x-5 md:space-x-10 my-auto">
+                <div id="login_username" className="">
+                    {user ? (
+                        <p>Hi, {user.username}</p>
+                    ) : (
+                        <Link to="/login">
+                            <p>Login</p>
+                        </Link>
+                    )}
+                </div>
+
+                <div id="order" className="">
                     {user && (
                         <Link to="/orders">
                             <p>Orders</p>
                         </Link>
                     )}
+                </div>
 
-                    <div className="flex-none">
-                        {user ? (
-                            <button onClick={handleLogout}>Logout</button>
-                        ) : (
-                            <Link to="/register">
-                                <p>Sign up</p>
-                            </Link>
-                        )}
-                    </div>
-                    <div className="text-2xs flex-none flex">
-                        <Link to="checkout">
-                            <Badge badgeContent={`${quantity}`} color="error">
-                                <ShoppingCartIcon />
-                            </Badge>
+                <div id="logout" className="">
+                    {user ? (
+                        <button onClick={handleLogout}>Logout</button>
+                    ) : (
+                        <Link to="/register">
+                            <p>Sign up</p>
                         </Link>
-                    </div>
+                    )}
+                </div>
+
+                <div id="cart" className="text-2xs">
+                    <Link to="checkout">
+                        <Badge badgeContent={`${quantity}`} color="error">
+                            <ShoppingCartIcon />
+                        </Badge>
+                    </Link>
                 </div>
             </div>
+            <div className="md:hidden w-full mt-5">{SearchBar()}</div>
         </div>
     );
 }
