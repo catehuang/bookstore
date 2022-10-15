@@ -18,7 +18,7 @@ function Subtotal() {
         <div className="flex border bg-[#002533] rounded-lg p-5">
             <CurrencyFormat
                 renderText={(value) => (
-                    <div className="flex flex-col lg:flex-row py-auto mx-auto space-y-5 lg:space-y-0">
+                    <div className="flex flex-col lg:flex-row lg:space-x-10 py-auto mx-auto space-y-5 lg:space-y-0">
                         <div className="flex space-x-5 text-xl font-bold text-gray-100 mx-auto">
                             <p className="">
                                 Subtotal ({cart.quantity} item{cart.quantity > 1 ? "s)" : ")"} :
