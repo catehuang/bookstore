@@ -20,7 +20,7 @@ function Cart({ product }) {
 
     useEffect(() => {
         dispatch(updateProduct({ ...product, quantity }));
-        console.log(cartItem);
+        // console.log(cartItem);
         //console.log(cart);
         // eslint-disable-next-line
     }, [quantity]);
