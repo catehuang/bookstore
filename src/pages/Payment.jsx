@@ -166,7 +166,7 @@ function Payment() {
 
     const Summary = () => {
         return (
-            <div className="sm:border border-gray-400 w-full sm:w-80 h-fit p-5 bg-white rounded-lg flex flex-col gap-5">
+            <div className="sm:border border-gray-400 w-full sm:w-96 h-fit p-5 bg-white rounded-lg flex flex-col gap-5">
                 <div className="flex flex-col gap-3">
                     <p className="text-xl font-bold border-b pb-2">Order Summary</p>
 
@@ -331,43 +331,45 @@ function Payment() {
                 </div>
             </div>
 
-            <div className="flex flex-col lg:flex-row space-y-10 lg:space-y-5 lg:space-x-10">
-            <div className="sm:px-5">
-                <Summary />
-            </div>
+            <div className="flex flex-col space-y-10 lg:flex-row lg:space-y-0 lg:justify-around">
+                <div className="">
+                    <Summary />
+                </div>
 
-            <div className="px-5 flex flex-col space-y-5 w-96">
-                <p className="text-xl font-bold">Payement Method</p>
-                <form onSubmit={handleSubmit} className="flex flex-col space-y-5 ">
-                    <CardElement
-                        onChange={handleChange}
-                        className="sm:p-5 text-lg border border-gray-400 rounded-lg bg-white p-3"
-                    />
-                    <button
-                        disabled={!stripe || !validShippingInfo || processing || succeeded}
-                        className="text-center border-yellow-500 bg-yellow-400 w-full py-1 rounded hover:bg-yellow-500 disabled:bg-gray-300"
-                    >
-                        {processing ? "Processing" : "Buy Now"}
-                    </button>
-                </form>
-                {!validShippingInfo && (
-                    <p className="text-center pt-2 text-green-600">
-                        Please provide shipping Information
-                    </p>
-                )}
+                <div className="flex flex-col w-96 space-y-5 sm:border border-gray-400 rounded-lg px-5 py-5">
+                    <p className="text-xl font-bold">Payement Method</p>
+                    <form onSubmit={handleSubmit} className="flex flex-col space-y-5 ">
+                        <CardElement
+                            onChange={handleChange}
+                            className="sm:p-5 text-lg border border-gray-400 rounded-lg bg-white p-3"
+                        />
+                        <button
+                            disabled={
+                                !stripe || !validShippingInfo || processing || succeeded
+                            }
+                            className="text-center border-yellow-500 bg-yellow-400 w-full py-1 rounded hover:bg-yellow-500 disabled:bg-gray-300"
+                        >
+                            {processing ? "Processing" : "Buy Now"}
+                        </button>
+                    </form>
+                    {!validShippingInfo && (
+                        <p className="text-center pt-2 text-green-600">
+                            Please provide shipping Information
+                        </p>
+                    )}
 
-                {validShippingInfo && (
-                    <div>
-                        <p className="text-red-500">
-                            Do not use your credit card number !!
-                        </p>
-                        <p className="text-red-500">
-                            Please use 4242424... to complete the payment
-                        </p>
-                    </div>
-                )}
-                {error && <div>{error}</div>}
-            </div>
+                    {validShippingInfo && (
+                        <div>
+                            <p className="text-red-500">
+                                Do not use your credit card number !!
+                            </p>
+                            <p className="text-red-500">
+                                Please use 4242424... to complete the payment
+                            </p>
+                        </div>
+                    )}
+                    {error && <div>{error}</div>}
+                </div>
             </div>
         </div>
     );

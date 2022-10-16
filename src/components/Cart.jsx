@@ -15,18 +15,18 @@ function Cart({ product }) {
     const dispatch = useDispatch();
 
     const handleDeleteProduct = () => {
-        dispatch(deleteProduct(...cartItem, product));
+        dispatch(deleteProduct({ ...cartItem, product }));
     };
 
     useEffect(() => {
         dispatch(updateProduct({ ...product, quantity }));
-        //console.log(cartItem);
+        console.log(cartItem);
         //console.log(cart);
         // eslint-disable-next-line
     }, [quantity]);
 
     return (
-        <div className="px-5 flex flex-col md:flex-row py-5 mb-10">
+        <div className="px-5 flex flex-col md:flex-row py-5 mb-5">
             <img
                 className="object-contain max-h-72 md:w-fit my-auto mx-auto mb-8"
                 src={product.image}

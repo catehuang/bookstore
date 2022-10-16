@@ -27,7 +27,6 @@ function Header() {
             setBooks(response.data);
         };
         getBooks();
-        console.log(cart);
     }, []);
 
     useEffect(() => {
