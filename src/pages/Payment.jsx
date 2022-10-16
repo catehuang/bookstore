@@ -18,7 +18,8 @@ function Payment() {
     const cartTotal = cart.total.toFixed(2);
     const shippingFee = (cartTotal * 0.1).toFixed(2);
     const beforeTax = (Number(cartTotal) + Number(shippingFee)).toFixed(2);
-    const gst = (beforeTax * 0.05).toFixed(2);
+    const [tax, setTax] = useState(0)
+    const gst = (beforeTax * tax).toFixed(2);
     const total = (Number(beforeTax) + Number(gst)).toFixed(2);
     const amount = (total * 100).toFixed(0);
 
@@ -143,6 +144,30 @@ function Payment() {
         );
     };
 
+    useEffect (() => {
+        if (shippingProvince === "Alberta" || shippingProvince === "Northwest Territories" || shippingProvince === "Nunavut" || shippingProvince === "Yukon") {
+            setTax(0.05)
+        }
+        else if (shippingProvince === "British Columbia" || shippingProvince === "Manitoba") {
+            setTax(0.12)
+        }
+        else if (shippingProvince === "New Brunswick" || shippingProvince === "Newfoundland and Labrador" || shippingProvince === "Nova Scotia" || shippingProvince === "Prince Edward Island") {
+            setTax(0.15)
+        }
+        else if (shippingProvince === "Ontario") {
+            setTax(0.13)
+        }
+        else if (shippingProvince === "Quebec") {
+            setTax(0.14975)
+        }
+        else if (shippingProvince === "Saskatchewan"){
+            setTax(0.11)
+        }
+        else {
+            setTax(0)
+        }        
+    }, [shippingProvince])
+
     const PostalCode = () => {
         return (
             <div className="flex flex-col gap-2">
@@ -223,6 +248,10 @@ function Payment() {
         shippingProvince,
         shippingPostalCode,
     ]);
+
+    useEffect( () => {
+        window.scrollTo({ top: 0, left: 0 });
+    },[])
 
     useEffect(() => {
         const getClientSecret = async () => {

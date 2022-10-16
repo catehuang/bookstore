@@ -40,6 +40,7 @@ function Book() {
                 console.log(error.message);
             }
         };
+        
         getBook();
         // scroll to top after reload page
         window.scrollTo({ top: 0, left: 0 });
