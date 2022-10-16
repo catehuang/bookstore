@@ -10,24 +10,20 @@ import {
 } from "../reducers/userSlice";
 
 export const UserRegister = async (dispatch, user) => {
-        const response = await axios.post("/register", user, {
-                headers: { "Content-Type": "application/json" },
-                withCredentials: true,
-        });
-
-        if (response.data.success === false) {
-                if (response.data.err.name === "UserExistsError")
-                        dispatch(registerFailure(2)); // user exists
-                else if (response.data.err.code === 11000)
-                        dispatch(registerFailure(3)); // email exists
-                else dispatch(registerFailure()); // other errors
-        }
-        else
-        {       
+        try {
+                const response = await axios.post("/register", user, {
+                        headers: { "Content-Type": "application/json" },
+                        withCredentials: true,
+                });                
                 dispatch(registerSuccess(response.data));
                 dispatch(loginSuccess(response.data));
-                CreateCart(dispatch, response.data);
-                //console.log("Registered. Welcome " + response.data.username + " !");
+                CreateCart(dispatch, response.data);              
+        } catch (err) {
+                if (err.response.data.message === "Failed! Username is already in use!")
+                        dispatch(registerFailure(2)); // user exists
+                else if (err.response.data.message === "Failed! Email is already in use!")
+                        dispatch(registerFailure(3)); // email exists
+                else dispatch(registerFailure()); // other errors
         }
 };
 
