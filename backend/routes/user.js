@@ -7,14 +7,6 @@ const { verifyRegister } = require("../middlewares");
 const User = db.user;
 const Role = db.role;
 
-router.post("/test", async (req, res) => {
-    console.log(req.body);
-    const user = User.find({
-        username: req.body.username,
-    });
-    res.status(200).send(user.password);
-});
-
 router.post(
     "/register",
     [verifyRegister.checkDuplicateUsernameOrEmail],
