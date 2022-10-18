@@ -18,6 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 
 MongoClient.connect("mongodb+srv://" + url, {
   useNewUrlParser: true,
+  useUnifiedTopology: true,
 })
   .then(() => console.log("Successfully connect to MongoDB."))
   .catch((err) => console.error("connection error", err.stack));
@@ -45,15 +46,15 @@ if (process.env.NODE_ENV === "production") {
 
   app.use(cors());
 
-  app.all("/*", function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Credentials", true);
-    res.header("Access-Control-Allow-Credentials", "GET,PUT,POST,DELETE");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    next();
-  });
+  // app.all("/*", function (req, res, next) {
+  //   res.header("Access-Control-Allow-Origin", "*");
+  //   res.header("Access-Control-Allow-Credentials", true);
+  //   res.header("Access-Control-Allow-Credentials", "GET,PUT,POST,DELETE");
+  //   res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  //   next();
+  // });
 
-  app.use(express.static("build"));
+  // app.use(express.static("build"));
 
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "../build", "index.html"));
