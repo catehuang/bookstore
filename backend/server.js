@@ -49,8 +49,8 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 if (process.env.NODE_ENV === "production") {
-  // const buildPath = path.join(__dirname, "..", "build");
-  // app.use(express.static(buildPath));
+  const buildPath = path.join(__dirname, "..", "build");
+  app.use(express.static(buildPath));
   // app.use(express.static("build"));
   // app.use(cors());
 
