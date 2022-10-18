@@ -33,21 +33,21 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 if (process.env.NODE_ENV === "production") {
-  const buildPath = path.join(__dirname, "..", "build");
-  app.use(express.static(buildPath));
+  // const buildPath = path.join(__dirname, "..", "build");
+  // app.use(express.static(buildPath));
 
   app.use(cors());
 
-  app.all("/*", function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Credentials", true);
-    res.header("Access-Control-Allow-Credentials", "GET,PUT,POST,DELETE");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    next();
-  });
+  // app.all("/*", function (req, res, next) {
+  //   res.header("Access-Control-Allow-Origin", "*");
+  //   res.header("Access-Control-Allow-Credentials", true);
+  //   res.header("Access-Control-Allow-Credentials", "GET,PUT,POST,DELETE");
+  //   res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  //   next();
+  // });
 
   app.use(express.static("build"));
-  
+
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "../build", "index.html"));
   });
