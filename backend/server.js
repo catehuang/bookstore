@@ -22,7 +22,6 @@ mongoose
     .catch((err) => console.error("connection error", err.stack));
 
 const app = express();
-app.use(express.static(buildPath));
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -46,13 +45,13 @@ if (process.env.NODE_ENV === "production") {
       res.sendFile(path.resolve(__dirname, '../build', 'index.html'));
     });
 
-    app.all("/*", function (req, res, next) {
-        res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Credentials", true);
-        res.header("Access-Control-Allow-Credentials", "GET,PUT,POST,DELETE");
-        res.header("Access-Control-Allow-Headers", "X-Requested-With");
-        next();
-    });
+    // app.all("/*", function (req, res, next) {
+    //     res.header("Access-Control-Allow-Origin", "*");
+    //     res.header("Access-Control-Allow-Credentials", true);
+    //     res.header("Access-Control-Allow-Credentials", "GET,PUT,POST,DELETE");
+    //     res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    //     next();
+    // });
 }
 
 app.use("/api", userRoute);
