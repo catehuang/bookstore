@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
+const MongoClient = require("mongodb").MongoClient;
 const cors = require("cors");
 const bookRoute = require("./routes/book");
 const userRoute = require("./routes/user");
@@ -16,13 +16,23 @@ require("dotenv").config();
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 
-mongoose
-  .connect("mongodb+srv://" + url, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("Successfully connect to MongoDB."))
-  .catch((err) => console.error("connection error", err.stack));
+const client = new MongoClient("mongodb+srv://" + url, {
+  useNewUrlParser: true,
+});
+client.connect();
+mongoose.connection.once("open", () => {
+  console.log("Successfully connect to MongoDB.");
+});
+mongoose.connection.on("error", (err) => {
+  console.log("connection error", err.stack);
+});
+// mongoose
+//   .connect("mongodb+srv://" + url, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   })
+//   .then(() => console.log("Successfully connect to MongoDB."))
+//   .catch((err) => console.error("connection error", err.stack));
 
 if (process.env.NODE_ENV !== "production") {
   const corsOptions = {
