@@ -4,13 +4,16 @@ const router = express.Router();
 const { verifyToken } = require("../middlewares/authJwt");
 
 router.get("/test", () => {
-  res.status(200).json({message: "test"});
+  console.log("test");
 })
 
 // Get ALL Books 
 router.get("/",  async (req, res) => {
   try {
     const books = await Book.find();
+    if (books.length == 0) {
+      console.log("Error: can't retrieve data from MongoDB.")
+    }
     res.status(200).json(books);
   } catch (err) {
     res.status(500).json(err);
