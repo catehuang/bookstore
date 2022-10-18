@@ -22,6 +22,12 @@ MongoClient.connect("mongodb+srv://" + url, {
   .then(() => console.log("Successfully connect to MongoDB."))
   .catch((err) => console.error("connection error", err.stack));
 
+
+console.log("======== TEST =========")
+const Book = require("../models/book");
+const books = await Book.find();
+console.log(books)
+
 // mongoose
 //   .connect("mongodb+srv://" + url, {
 //     useNewUrlParser: true,
