@@ -1,5 +1,4 @@
 const express = require("express");
-const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const bookRoute = require("./routes/book");
@@ -27,7 +26,8 @@ app.use(express.urlencoded({ extended: true }));
 
 if (process.env.NODE_ENV !== "production") {
     console.log("Dev Mode");
-    var corsOptions = {
+    const cors = require("cors");
+    const corsOptions = {
         credentials: true,
         origin: true,
     };
