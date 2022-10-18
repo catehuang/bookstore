@@ -25,6 +25,12 @@ const app = express();
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 
+const corsOptions = {
+    credentials: true,
+    origin: true,
+};
+app.use(cors(corsOptions));
+
 if (process.env.NODE_ENV !== "production") {
     console.log("Dev Mode");
 
@@ -46,7 +52,7 @@ if (process.env.NODE_ENV === "production") {
       res.sendFile(path.resolve(__dirname, '../build', 'index.html'));
     });
 
-    app.use(cors());
+    // app.use(cors());
     app.all("/*", function (req, res, next) {
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Credentials", true);
