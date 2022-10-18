@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const bookRoute = require("./routes/book");
 const userRoute = require("./routes/user");
 const cartRoute = require("./routes/cart");
@@ -26,7 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 
 if (process.env.NODE_ENV !== "production") {
     console.log("Dev Mode");
-    const cors = require("cors");
+
     const corsOptions = {
         credentials: true,
         origin: true,
@@ -45,13 +46,14 @@ if (process.env.NODE_ENV === "production") {
       res.sendFile(path.resolve(__dirname, '../build', 'index.html'));
     });
 
-    // app.all("/*", function (req, res, next) {
-    //     res.header("Access-Control-Allow-Origin", "*");
-    //     res.header("Access-Control-Allow-Credentials", true);
-    //     res.header("Access-Control-Allow-Credentials", "GET,PUT,POST,DELETE");
-    //     res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    //     next();
-    // });
+    app.use(cors());
+    app.all("/*", function (req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Credentials", true);
+        res.header("Access-Control-Allow-Credentials", "GET,PUT,POST,DELETE");
+        res.header("Access-Control-Allow-Headers", "X-Requested-With");
+        next();
+    });
 }
 
 app.use("/api", userRoute);
