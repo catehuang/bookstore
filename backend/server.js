@@ -10,6 +10,7 @@ const paymentRoute = require("./routes/payment");
 const PORT = process.env.PORT || 5000;
 const path = require("path");
 const url = process.env.MONGO_URL;
+const app = express();
 
 require("dotenv").config();
 app.use(bodyParser.json());
