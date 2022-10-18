@@ -16,16 +16,12 @@ require("dotenv").config();
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 
-const client = new MongoClient("mongodb+srv://" + url, {
+MongoClient.connect("mongodb+srv://" + url, {
   useNewUrlParser: true,
-});
-client.connect();
-mongoose.connection.once("open", () => {
-  console.log("Successfully connect to MongoDB.");
-});
-mongoose.connection.on("error", (err) => {
-  console.log("connection error", err.stack);
-});
+})
+  .then(() => console.log("Successfully connect to MongoDB."))
+  .catch((err) => console.error("connection error", err.stack));
+
 // mongoose
 //   .connect("mongodb+srv://" + url, {
 //     useNewUrlParser: true,
