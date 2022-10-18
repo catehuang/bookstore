@@ -5,7 +5,7 @@ import axiosLib from "axios";
 
 // for deployment
 // const BASE_URL = "https://web-app-bookstore.herokuapp.com/api";
-const BASE_URL = ""
+const BASE_URL = "/api"
 
 export const axios = axiosLib.create({
   baseURL: BASE_URL,
