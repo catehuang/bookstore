@@ -43,7 +43,7 @@ if (process.env.NODE_ENV !== "production") {
 if (process.env.NODE_ENV === "production") {
   const buildPath = path.join(__dirname, "..", "build");
   app.use(express.static(buildPath));
-  app.use(express.static("build"));
+  // app.use(express.static("build"));
   app.use(cors());
 
   // app.all("/*", function (req, res, next) {
@@ -53,7 +53,6 @@ if (process.env.NODE_ENV === "production") {
   //   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   //   next();
   // });
-
 
 
   app.get("*", (req, res) => {
