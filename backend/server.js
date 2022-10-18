@@ -24,7 +24,7 @@ MongoClient.connect("mongodb+srv://" + url, {
 
 
 console.log("======== TEST =========")
-const Book = require("../models/book");
+const Book = require("./models/book");
 const books = await Book.find();
 console.log(books)
 
