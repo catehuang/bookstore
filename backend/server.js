@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require("express");b
 const bodyParser = require("body-parser");
 const MongoClient = require("mongodb").MongoClient;
 const cors = require("cors");
@@ -14,7 +14,7 @@ const app = express();
 
 require("dotenv").config();
 app.use(bodyParser.json());
-app.use(express.urlencoded({ extended: true }));
+// app.use(express.urlencoded({ extended: true }));
 
 MongoClient.connect("mongodb+srv://" + url, {
   useNewUrlParser: true,
@@ -37,14 +37,12 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-
-
 if (process.env.NODE_ENV !== "production") {
-  const corsOptions = {
-    credentials: true,
-    origin: true,
-  };
-  app.use(cors(corsOptions));
+  // const corsOptions = {
+  //   credentials: true,
+  //   origin: true,
+  // };
+  // app.use(cors(corsOptions));
   app.use(express.static(__dirname + "/public"));
 }
 
