@@ -31,6 +31,14 @@ MongoClient.connect("mongodb+srv://" + url, {
 //   .then(() => console.log("Successfully connect to MongoDB."))
 //   .catch((err) => console.error("connection error", err.stack));
 
+const corsOptions = {
+  credentials: true,
+  origin: true,
+};
+app.use(cors(corsOptions));
+
+
+
 if (process.env.NODE_ENV !== "production") {
   const corsOptions = {
     credentials: true,
@@ -44,7 +52,7 @@ if (process.env.NODE_ENV === "production") {
   const buildPath = path.join(__dirname, "..", "build");
   app.use(express.static(buildPath));
   // app.use(express.static("build"));
-  app.use(cors());
+  // app.use(cors());
 
   // app.all("/*", function (req, res, next) {
   //   res.header("Access-Control-Allow-Origin", "*");
