@@ -40,11 +40,11 @@ if (process.env.NODE_ENV !== "production") {
 
 if (process.env.NODE_ENV === "production") {
     console.log("Production Mode");
-    app.use(cors());
     app.use(express.static("build"));
+    // app.use(cors());
 
     app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname, '../build', 'index.html'));
+        res.sendFile(path.resolve(__dirname, "../build", "index.html"));
     });
 
     app.all("/*", function (req, res, next) {
