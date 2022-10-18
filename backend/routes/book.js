@@ -3,10 +3,6 @@ const express = require("express");
 const router = express.Router();
 const { verifyToken } = require("../middlewares/authJwt");
 
-router.get("/test", () => {
-  console.log("test");
-})
-
 // Get ALL Books 
 router.get("/",  async (req, res) => {
   try {

@@ -60,11 +60,11 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-app.use("/", userRoute);
-app.use("/books", bookRoute);
-app.use("/carts", cartRoute);
-app.use("/orders", orderRoute);
-app.use("/payments", paymentRoute);
+app.use("/api", userRoute);
+app.use("/api/books", bookRoute);
+app.use("/api/carts", cartRoute);
+app.use("/api/orders", orderRoute);
+app.use("/api/payments", paymentRoute);
 
 app.listen(PORT, () => {
   console.log(`Sever is running on the port: `, PORT);
