@@ -11,8 +11,6 @@ export const LoadCart = async (dispatch, user) => {
             headers: { "x-access-token": `${token}` },
         });
         const response = await axiosAuth.get(`/carts/find/${userId}`);
-        // console.log("load cart =============");
-        // console.log(response.data);
 
         if (response.data === null) {
             CreateCart(dispatch, user);
