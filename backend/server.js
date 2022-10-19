@@ -28,6 +28,13 @@ app.use(express.static(buildPath));
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use("/api", userRoute);
+app.use("/api/books", bookRoute);
+app.use("/api/carts", cartRoute);
+app.use("/api/orders", orderRoute);
+app.use("/api/payments", paymentRoute);
+
+
 if (process.env.NODE_ENV !== "production") {
     var corsOptions = {
         credentials: true,
@@ -54,11 +61,7 @@ if (process.env.NODE_ENV === "production") {
     });
 }
 
-app.use("/api", userRoute);
-app.use("/api/books", bookRoute);
-app.use("/api/carts", cartRoute);
-app.use("/api/orders", orderRoute);
-app.use("/api/payments", paymentRoute);
+
 
 app.listen(PORT, () => {
     console.log(`Sever is running on the port: `, PORT);
