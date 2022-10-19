@@ -15,16 +15,6 @@ require("dotenv").config();
 
 const buildPath = path.join(__dirname, "..", "build");
 
-// for development
-// if (process.env.NODE_ENV !== "production") {
-// mongoose
-//     .connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
-//     .then(() => console.log("connect to db"))
-//     .catch((err) => console.log(err));
-// }
-
-// for deployment
-// if (process.env.NODE_ENV === "production") {
 mongoose
     .connect("mongodb+srv://" + url, {
         useNewUrlParser: true,
@@ -32,7 +22,6 @@ mongoose
     })
     .then(() => console.log("Successfully connect to MongoDB."))
     .catch((err) => console.error("connection error", err.stack));
-// }
 
 const app = express();
 app.use(express.static(buildPath));
@@ -43,15 +32,10 @@ if (process.env.NODE_ENV !== "production") {
     console.log("Dev Mode");
     var corsOptions = {
         credentials: true,
-        origin: true
+        origin: true,
     };
     app.use(cors(corsOptions));
     app.use(express.static(__dirname + "/public"));
-
-    // app.get("*", (req, res) => {
-    //     res.sendFile( path.resolve('../build/index.html') );
-    //     // res.sendFile(path.resolve(__dirname, "../build", "index.html"));
-    // });
 }
 
 if (process.env.NODE_ENV === "production") {
