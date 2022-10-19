@@ -14,7 +14,7 @@ const app = express();
 
 require("dotenv").config();
 app.use(bodyParser.json());
-// app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 
 MongoClient.connect("mongodb+srv://" + url, {
   useNewUrlParser: true,
@@ -33,38 +33,41 @@ MongoClient.connect("mongodb+srv://" + url, {
 
 const corsOptions = {
   credentials: true,
-  origin: true,
+  origin: 'http://localhost:3000',
 };
 app.use(cors(corsOptions));
+//   app.all("/*", function (req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Credentials", true);
+//     res.header("Access-Control-Allow-Credentials", "GET,PUT,POST,DELETE");
+//     res.header("Access-Control-Allow-Headers", "X-Requested-With");
+//     next();
+//   });
 
-if (process.env.NODE_ENV !== "production") {
-  // const corsOptions = {
-  //   credentials: true,
-  //   origin: true,
-  // };
-  // app.use(cors(corsOptions));
-  app.use(express.static(__dirname + "/public"));
-}
 
-if (process.env.NODE_ENV === "production") {
+
+// if (process.env.NODE_ENV !== "production") {
+//   // const corsOptions = {
+//   //   credentials: true,
+//   //   origin: true,
+//   // };
+//   // app.use(cors(corsOptions));
+//   app.use(express.static(__dirname + "/public"));
+// }
+
+// if (process.env.NODE_ENV === "production") {
   const buildPath = path.join(__dirname, "..", "build");
   app.use(express.static(buildPath));
   // app.use(express.static("build"));
   // app.use(cors());
 
-  // app.all("/*", function (req, res, next) {
-  //   res.header("Access-Control-Allow-Origin", "*");
-  //   res.header("Access-Control-Allow-Credentials", true);
-  //   res.header("Access-Control-Allow-Credentials", "GET,PUT,POST,DELETE");
-  //   res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  //   next();
-  // });
+
 
 
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "../build", "index.html"));
   });
-}
+// }
 
 app.use("/api", userRoute);
 app.use("/api/books", bookRoute);
