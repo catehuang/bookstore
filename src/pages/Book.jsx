@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { addProduct } from "../reducers/cartSlice";
 import { axios } from "../axios";
 import Suggestion from "../components/Suggestion";
+import {getABook} from "../api/book"
 
 function Book() {
     // return an object
@@ -32,16 +33,7 @@ function Book() {
     ];
 
     useEffect(() => {
-        const getBook = async () => {
-            try {
-                const response = await axios.get(`/books/find/${id}`);
-                setBook(response.data);
-            } catch (error) {
-                console.log(error.message);
-            }
-        };
-        
-        getBook();
+        getABook(id).then(result => setBook(result))
         // scroll to top after reload page
         window.scrollTo({ top: 0, left: 0 });
         // eslint-disable-next-line

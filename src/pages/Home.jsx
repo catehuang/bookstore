@@ -2,22 +2,13 @@ import React, { useEffect, useState } from 'react';
 import Books from '../components/Book';
 import { axios } from "../axios";
 import Banner from '../components/Banner';
+import { getAllBooks } from '../api/book';
 
 function Home() {
         const [books, setBooks] = useState([]);
 
         useEffect(() => {
-                const getBooks = async () => {
-                        try {
-                                // the data set formed in arrays
-                                const response = await axios.get(`/books`);
-                                setBooks(response.data);
-                        }
-                        catch (error) {
-                                console.log(error.message);
-                        }
-                }
-                getBooks();
+                getAllBooks().then(result => setBooks(result))
         }, [])
 
         return (
