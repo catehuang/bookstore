@@ -7,30 +7,23 @@ const { verifyRegister } = require("../middlewares");
 const User = db.user;
 const Role = db.role;
 
-router.post("/test", async (req, res) => {
-    console.log(req.body);
-    const user = User.find({
-        username: req.body.username,
-    });
-    res.status(200).send(user.password);
-});
-
 router.post(
     "/register",
     [verifyRegister.checkDuplicateUsernameOrEmail],
     async (req, res) => {
         try {
-            const userRole = await Role.findOne(
+            await Role.findOne(
                 {
                     name: "user",
                 },
                 { _id: 1 }
             ).distinct("_id");
 
+            console.log(userRole);
             if (userRole) {
                 userRoleId = userRole;
             } else {
-                console.log("Not found");
+                console.log("Role Id not found");
             }
 
             const user = new User({
@@ -43,7 +36,6 @@ router.post(
             user.save((err, user) => {
                 if (err) {
                     res.status(500).send({ message: err });
-                    //   return;
                 }
             });
 
@@ -55,7 +47,7 @@ router.post(
                 _id: user._id,
                 username: user.username,
                 email: user.email,
-                role: user.role,
+                isAdmin: "user",
                 accessToken: token,
             });
         } catch (err) {
@@ -66,47 +58,45 @@ router.post(
 
 router.post("/login", async (req, res) => {
     try {
-        const user = User.findOne({
-            username: req.body.username,
-        })
-            .populate("role", "__v")
-            .exec((err, user) => {
+        User.findOne({ username: req.body.username }).exec(function (err, user) {
+            if (err) {
+                res.status(500).send({ message: err });
+                return;
+            }
+            if (!user) {
+                return res.status(404).send({ message: "User Not found." });
+            }
 
+            const passwordIsValid = bcrypt.compareSync(
+                req.body.password,
+                user.password
+            );
+            if (!passwordIsValid) {
+                return res.status(401).send({
+                    accessToken: null,
+                    message: "Invalid Password!",
+                });
+            }
+
+            const token = jwt.sign({ id: user.id }, config.secret, {
+                expiresIn: 86400, // 24 hours
+            });
+
+            Role.findOne({ _id: user.role._id }).exec(function (err, role) {
                 if (err) {
                     res.status(500).send({ message: err });
                     return;
                 }
-
-                if (!user) {
-                    return res.status(404).send({ message: "User Not found." });
-                }
-
-                const passwordIsValid = bcrypt.compareSync(
-                    req.body.password,
-                    user.password
-                );
-
-                if (!passwordIsValid) {
-                    return res.status(401).send({
-                        accessToken: null,
-                        message: "Invalid Password!",
-                    });
-                }
-
-                const token = jwt.sign({ id: user.id }, config.secret, {
-                    expiresIn: 86400, // 24 hours
-                });
-
                 res.status(200).send({
                     id: user._id,
                     username: user.username,
                     email: user.email,
-                    roles: user.role,
+                    isAdmin: role.name,
                     accessToken: token,
                 });
             });
+        });
     } catch (err) {
-        console.log("Nooooooo");
         res.status(500).send({ message: err });
         return;
     }
