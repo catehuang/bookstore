@@ -31,13 +31,13 @@ isAdmin = (req, res, next) => {
             {
                 _id: { $in: user.role },
             },
-            (err, roles) => {
+            (err, role) => {
                 if (err) {
                     res.status(500).send({ message: err });
                     return;
                 }
 
-                if (roles.name === "admin") {
+                if (role.name === "admin") {
                     next();
                     return;
                 }

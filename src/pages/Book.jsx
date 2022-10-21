@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { Rating } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../reducers/cartSlice";
-import { axios } from "../axios";
 import Suggestion from "../components/Suggestion";
 import {getABook} from "../api/book"
 

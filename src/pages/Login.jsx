@@ -8,7 +8,7 @@ import { UserLogin } from "../api/user";
 function Login() {
         const [username, setUsername] = useState("");
         const [password, setPassword] = useState("");
-        const [passwordShown, setPsswordShown] = useState(false);
+        const [passwordShown, setPasswordShown] = useState(false);
 
         const [formValidated, setFormValidated] = useState(false);
         const { loginError } = useSelector((state) => state.user);
@@ -27,7 +27,7 @@ function Login() {
 
         const togglePassword = (e) => {
                 e.preventDefault();
-                setPsswordShown(!passwordShown);
+                setPasswordShown(!passwordShown);
         };
 
         const handleLogin = async (e) => {
@@ -50,7 +50,7 @@ function Login() {
                                 <form className="sm:border rounded-lg my-5 p-5 flex flex-col space-y-5">
                                         <p className="text-xl">Login</p>
 
-                                        <div className="felx flex-col">
+                                        <div className="flex flex-col">
                                                 <p className="pb-1">Username</p>
                                                 <input
                                                         type="text"
@@ -62,7 +62,7 @@ function Login() {
                                                 />
                                         </div>
 
-                                        <div className="felx flex-col">
+                                        <div className="flex flex-col">
                                                 <p className="pb-1">Password</p>
                                                 <div className="flex border rounded-lg w-full justify-between">
                                                         <input
