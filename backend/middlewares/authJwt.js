@@ -22,11 +22,32 @@ verifyToken = (req, res, next) => {
 };
 
 isAdmin = (req, res, next) => {
-    if (req.body.user.isAdmin === "admin") {
-        next()
-    } else {
-        res.status(403).send({ message: "Require Admin Role!" });
-    }
+    // console.log(req.userId)
+    verifyToken(req, res, () => {
+        User.findOne({ _id: req.userId}).exec(function(err, user) {
+            // console.log(user)
+            if (err) {
+                res.status(500).send({ message: err });
+            }         
+            Role.findOne({ _id: user.role._id}).exec(function (err, role){
+                // console.log(role)
+                if (err) {                  
+                    res.status(500).send({ message: err });
+                }
+                if (role.name === "admin") {
+                    next()
+                } else {
+                    res.status(403).send({ message: "Require Admin Role!" });
+                }
+            })
+        })
+    })
+    
+    // if (req.body.user.isAdmin === "admin") {
+    //     next()
+    // } else {
+    //     res.status(403).send({ message: "Require Admin Role!" });
+    // }
 }
 
 const authJwt = {
