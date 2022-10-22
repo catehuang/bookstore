@@ -47,6 +47,7 @@ router.post(
                 _id: user._id,
                 username: user.username,
                 email: user.email,
+                role: user.role,
                 isAdmin: "user",
                 accessToken: token,
             });
@@ -79,7 +80,7 @@ router.post("/login", async (req, res) => {
             }
 
             const token = jwt.sign({ id: user.id }, config.secret, {
-                expiresIn: 86400, // 24 hours
+                expiresIn: 86400 * 3,
             });
 
             Role.findOne({ _id: user.role._id }).exec(function (err, role) {
@@ -91,6 +92,7 @@ router.post("/login", async (req, res) => {
                     id: user._id,
                     username: user.username,
                     email: user.email,
+                    role: user.role,
                     isAdmin: role.name,
                     accessToken: token,
                 });

@@ -29,7 +29,6 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 
 if (process.env.NODE_ENV !== "production") {
-    console.log("Dev Mode");
     var corsOptions = {
         credentials: true,
         origin: true,
