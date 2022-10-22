@@ -1,15 +1,9 @@
-import { axios } from "../axios";
+import { axios, axiosAuth } from "../axios";
 import { setOrder } from "../reducers/orderSlice";
 
 export const LoadOrders = async (dispatch, user) => {
         try {
-                const token = user.accessToken;
                 const userId = user.id;
-
-                const axiosAuth = axios.create({
-                        headers: { "x-access-token": `${token}` },
-                });
-
                 const response = await axiosAuth.get(`/orders/find/${userId}`);
                 //console.log(response.data);
                 dispatch(setOrder(response.data));

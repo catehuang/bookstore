@@ -1,15 +1,10 @@
-import { axios } from "../axios";
+import { axiosAuth } from "../axios";
 import { addProduct, adoptCart, setCart } from "../reducers/cartSlice";
 
 
 export const LoadCart = async (dispatch, user) => {
     try {
-        const token = user.accessToken;
         const userId = user.id;
-
-        const axiosAuth = axios.create({
-            headers: { "x-access-token": `${token}` },
-        });
         const response = await axiosAuth.get(`/carts/find/${userId}`);
         // console.log("load cart =============");
         // console.log(response.data);
@@ -17,7 +12,7 @@ export const LoadCart = async (dispatch, user) => {
         if (response.data === null) {
             CreateCart(dispatch, user);
         } else {
-            // update the anonynous cart 
+            // update the anonymous cart 
             dispatch(adoptCart(response.data));
             // put those product from remote cart to local cart
             response.data.products.map((product) => (
@@ -32,11 +27,7 @@ export const LoadCart = async (dispatch, user) => {
 
 export const CreateCart = async (dispatch, user) => {
     try {
-        const token = user.accessToken;
         const userId = user.id;
-        const axiosAuth = axios.create({
-            headers: { "x-access-token": `${token}` },
-        });
         const response = await axiosAuth.post(`carts/new/${userId}`, {
             userId: userId
         });
@@ -50,14 +41,9 @@ export const CreateCart = async (dispatch, user) => {
 
 export const UpdateCart = async (obj) => {
     // passed parameters are cart and user
-    const token = obj.user.accessToken;
     const cart = obj.cart;
 
     try {
-        const axiosAuth = axios.create({
-            headers: { "x-access-token": `${token}` },
-        });
-
         const response = await axiosAuth.put(`/carts/${cart.cartId}`, {
             body: cart
         });
