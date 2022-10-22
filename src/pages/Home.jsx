@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Books from "../components/Book";
 import Banner from "../components/Banner";
-import { getAllBooks } from "../api/book";
+import { GetAllBooks } from "../api/book";
 
 function Home() {
     const [books, setBooks] = useState([]);
 
     useEffect(() => {
-        getAllBooks().then((result) => setBooks(result));
+        GetAllBooks().then((result) => setBooks(result));
     }, []);
 
     return (

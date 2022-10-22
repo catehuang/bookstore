@@ -5,7 +5,7 @@ import { Rating } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../reducers/cartSlice";
 import Suggestion from "../components/Suggestion";
-import {getABook} from "../api/book"
+import {GetABook} from "../api/book"
 
 function Book() {
     // return an object
@@ -32,7 +32,7 @@ function Book() {
     ];
 
     useEffect(() => {
-        getABook(id).then(result => setBook(result))
+        GetABook(id).then(result => setBook(result))
         // scroll to top after reload page
         window.scrollTo({ top: 0, left: 0 });
         // eslint-disable-next-line

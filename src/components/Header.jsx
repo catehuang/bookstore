@@ -17,13 +17,13 @@ function Header() {
     const quantity = cart.quantity;
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        const getBooks = async () => {
-            const response = await axios.get(`/books`);
-            setBooks(response.data);
-        };
-        getBooks();
-    }, []);
+    // useEffect(() => {
+    //     const getBooks = async () => {
+    //         const response = await axios.get(`/books`);
+    //         setBooks(response.data);
+    //     };
+    //     getBooks();
+    // }, []);
 
     useEffect(() => {
         if (user) {

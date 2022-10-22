@@ -8,7 +8,7 @@ function AdminHeader() {
             <div className="px-10 py-2">
                 <ul className="flex space-x-10">
                     <li>
-                        <Link to="">Book Management</Link>
+                        <Link to="/bookManagement">Book Management</Link>
                     </li>
                     <li>
                         <Link to="">User Management</Link>
