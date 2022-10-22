@@ -1,4 +1,4 @@
-import { axios, axiosAuth } from "../axios";
+import { axiosAuth } from "../axios";
 import { setOrder } from "../reducers/orderSlice";
 
 export const LoadOrders = async (dispatch, user) => {

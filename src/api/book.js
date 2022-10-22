@@ -4,7 +4,6 @@ export const GetAllBooks = async () => {
   try {
     const response = await axios.get(`/books`)
     return response.data
-
   } catch (error) {
     console.log(error.message);
   }
@@ -19,12 +18,31 @@ export const GetABook = async (id) => {
   }
 };
 
-export const CreateABook = async (book, user) => {
+export const CreateABook = async (book) => {
   try {
     const response = await axiosAuth.post(`/books/new`, {
         book,
-        user
     });
+    return response.data
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+export const UpdateABook = async (book) => {
+  try {
+    const response = await axiosAuth.put(`/books/${book._id}`, {
+        book,
+    });
+    return response.data
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+export const DeleteABook = async (book) => {
+  try {
+    const response = await axiosAuth.delete(`/books/${book._id}`);
     return response.data
   } catch (error) {
     console.log(error.message);
