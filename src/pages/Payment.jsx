@@ -5,7 +5,6 @@ import {
     CardElement,
     useStripe,
     useElements,
-    PaymentElement,
 } from "@stripe/react-stripe-js";
 import { axios } from "../axios";
 import { LoadOrders } from "../api/order";
@@ -42,18 +41,6 @@ function Payment() {
     });
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
-    // useEffect(() => {
-    //     if (order.orders.length > 0) {
-    //         const latestOrder = order.orders[order.orders.length - 1].address;
-    //         setReceiver(latestOrder.receiver);
-    //         setShippingAddress(latestOrder.shippingAddress);
-    //         setShippingCity(latestOrder.shippingCity);
-    //         setShippingProvince(latestOrder.shippingProvince);
-    //         setShippingPostalCode(latestOrder.shippingPostalCode);
-    //     }
-    //     // eslint-disable-next-line
-    // }, []);
 
     const Receiver = () => {
         return (
@@ -366,7 +353,7 @@ function Payment() {
                 </div>
 
                 <div className="flex flex-col w-96 space-y-5 sm:border border-gray-400 rounded-lg px-5 py-5">
-                    <p className="text-xl font-bold">Payement Method</p>
+                    <p className="text-xl font-bold">Payment Method</p>
                     <form onSubmit={handleSubmit} className="flex flex-col space-y-5 ">
                         <CardElement
                             onChange={handleChange}
