@@ -27,12 +27,12 @@ function BookManagement() {
                 <div className="flex gap-x-10">
                     <button onClick={showAllBooks}>
                         <input type="radio" className="hidden" id="btn_view_all_books" name="book_entry" defaultChecked/>
-                        <label htmlFor="btn_view_all_books" className="border rounded px-5 py-1 bg-white border-sky-700 text-sky-700 hover:bg-sky-700 hover:text-sky-50 ">VIEW ALL BOOKS</label>                       
+                        <label htmlFor="btn_view_all_books" className="border rounded px-5 py-1 bg-white border-sky-700 text-sky-700 hover:bg-sky-700 hover:text-sky-50 ">VIEW</label>                       
                     </button>
 
                     <button onClick={showAnEmptyBook}>
                         <input type="radio" className="hidden" name="book_entry" id="btn_new_a_book"/>
-                        <label htmlFor="btn_new_a_book" className="border rounded px-5 py-1 bg-white border-sky-700 text-sky-700 hover:bg-sky-700 hover:text-sky-50 ">ADD A NEW BOOK</label>                       
+                        <label htmlFor="btn_new_a_book" className="border rounded px-5 py-1 bg-white border-sky-700 text-sky-700 hover:bg-sky-700 hover:text-sky-50 ">ADD</label>                       
                     </button>
                 </div>
 

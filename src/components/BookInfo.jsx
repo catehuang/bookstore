@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { GetABook, CreateABook, UpdateABook, DeleteABook } from "../api/book"
 
 
 function BookInfo({ book }) {
-    const navigate = useNavigate()
     const [name, setName] = useState(book ? book.name : "");
     const [image, setImage] = useState(book ? book.image : "");
     const [author, setAuthor] = useState(book ? book.author : "");

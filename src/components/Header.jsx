@@ -7,7 +7,7 @@ import { logoutCart, clearCart } from "../reducers/cartSlice";
 import { UserLogout } from "../api/user";
 import { logout } from "../reducers/userSlice";
 import { UpdateCart } from "../api/cart";
-import SearchBar from "./SearchBar"
+import SearchBar from "./SearchBar";
 import { GetAllBooks } from "../api/book";
 
 function Header() {
@@ -46,12 +46,21 @@ function Header() {
                 <div className="text-xl first-letter:font-bold">
                     <Link to="/">BookStore</Link>
                 </div>
-                <div id="searchBar_normal" className="hidden md:block"><SearchBar books={books}/></div>
+                <div id="searchBar_normal" className="hidden md:block">
+                    <SearchBar books={books} />
+                </div>
             </div>
-            <div id="userInfo" className="flex ml-auto space-x-5 md:space-x-10 my-auto">
+            <div
+                id="userInfo"
+                className="flex ml-auto space-x-5 md:space-x-10 my-auto"
+            >
                 <div id="login_username" className="">
                     {user ? (
-                        <p>Hi, {user.username}</p>
+                        user.isAdmin === "admin" ? (
+                            <p>HI, ADMIN</p>
+                        ) : (
+                            <p>Hi, {user.username}</p>
+                        )
                     ) : (
                         <Link to="/login">
                             <p>Login</p>
@@ -85,7 +94,9 @@ function Header() {
                     </Link>
                 </div>
             </div>
-            <div id="searchBar_mobile" className="md:hidden w-full mt-5"><SearchBar books={books}/></div>
+            <div id="searchBar_mobile" className="md:hidden w-full mt-5">
+                <SearchBar books={books} />
+            </div>
         </div>
     );
 }

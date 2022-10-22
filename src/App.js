@@ -23,6 +23,7 @@ function App() {
     return (
         <BrowserRouter>
             <Header />
+            {user?.isAdmin === "admin" && <AdminHeader />}
             <Routes>
                 <Route
                     path="/payment"
@@ -51,14 +52,7 @@ function App() {
                 <Route
                     path="/bookManagement"
                     element={
-                        user?.isAdmin === "admin" ? (
-                            <div>
-                                <AdminHeader />
-                                <BookManagement />
-                            </div>
-                        ) : (
-                            <Navigate to="/" />
-                        )
+                        user?.isAdmin === "admin" ? <BookManagement /> : <Navigate to="/" />
                     }
                 />
                 <Route exact path="/" element={<Home />} />
