@@ -7,8 +7,8 @@ import { logoutCart, clearCart } from "../reducers/cartSlice";
 import { UserLogout } from "../api/user";
 import { logout } from "../reducers/userSlice";
 import { UpdateCart } from "../api/cart";
-import { axios } from "../axios";
 import SearchBar from "./SearchBar"
+import { GetAllBooks } from "../api/book";
 
 function Header() {
     const user = useSelector((state) => state.user.currentUser);
@@ -17,13 +17,10 @@ function Header() {
     const quantity = cart.quantity;
     const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     const getBooks = async () => {
-    //         const response = await axios.get(`/books`);
-    //         setBooks(response.data);
-    //     };
-    //     getBooks();
-    // }, []);
+    // for search bar loading
+    useEffect(() => {
+        GetAllBooks().then((result) => setBooks(result));
+    }, []);
 
     useEffect(() => {
         if (user) {
