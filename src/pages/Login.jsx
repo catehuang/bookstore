@@ -12,6 +12,7 @@ function Login() {
 
         const [formValidated, setFormValidated] = useState(false);
         const { loginError } = useSelector((state) => state.user);
+        const [message, setMessage] = useState("")
         const dispatch = useDispatch();
 
         useEffect(() => {
@@ -24,6 +25,10 @@ function Login() {
                 };
                 validateForm();
         });
+
+        useEffect (() => {
+                setMessage("")
+        },[username, password])
 
         const togglePassword = (e) => {
                 e.preventDefault();
@@ -38,6 +43,7 @@ function Login() {
                                 username,
                                 password,
                         });
+                        setMessage(loginError)
                 } catch (err) {
                         console.log(err);
                 }
@@ -45,7 +51,14 @@ function Login() {
 
         return (
                 <div className="flex flex-col">
-                        <div className="mx-auto w-4/5 sm:w-96 mt-11 mb-6">
+                        <div className="py-5">
+                                {message && (
+                                        <div className="text-sm text-red-500 text-center font-bold w-fit mx-auto">
+                                                <p className="bg-red-50 px-5 py-3">Username or password incorrect. Please try again.</p>
+                                        </div>
+                                )}
+                        </div>
+                        <div className="mx-auto w-4/5 sm:w-96 mt-5">
                                 <p className="text-3xl first-letter:font-bold text-center">BookStore</p>
                                 <form className="sm:border rounded-lg my-5 p-5 flex flex-col space-y-5">
                                         <p className="text-xl">Login</p>
@@ -105,13 +118,6 @@ function Login() {
                                                 <p className="text-cyan-600 text-sm">New to BookStore?</p>
                                         </Link>
                                 </form>
-                        </div>
-                        <div className="pb-24 h-28">
-                                {loginError && (
-                                        <div className="text-sm text-red-500 text-center font-bold px-5">
-                                                Username or password incorrect. Please try again.
-                                        </div>
-                                )}
                         </div>
                 </div>
         );
