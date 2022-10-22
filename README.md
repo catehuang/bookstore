@@ -7,6 +7,8 @@ Functionalities
 * Managing shopping carts
 * Payment by card method
 * Order history
+* Admin functions
+  - Book management (create, update, delete books)
 
 Used libraries
 * React
