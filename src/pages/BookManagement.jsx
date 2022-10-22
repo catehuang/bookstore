@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { GetAllBooks } from "../api/book";
 import BookInfo from "../components/BookInfo";
 
