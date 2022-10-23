@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Badge from "@mui/material/Badge";
 import { logoutCart, clearCart } from "../reducers/cartSlice";
-import { UserLogout } from "../api/user";
 import { logout } from "../reducers/userSlice";
 import { UpdateCart } from "../api/cart";
 import SearchBar from "./SearchBar";
@@ -30,11 +29,6 @@ function Header() {
     }, [cart, user]);
 
     const handleLogout = () => {
-        try {
-            UserLogout();
-        } catch (err) {
-            console.log(err);
-        }
         dispatch(logout());
         dispatch(logoutCart());
         dispatch(clearCart());

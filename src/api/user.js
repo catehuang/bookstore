@@ -1,4 +1,4 @@
-import { axios, axiosAuth } from "../axios";
+import { axiosAuth } from "../axios";
 import { LoadOrders } from "./order";
 import { LoadCart, CreateCart } from "./cart";
 import {
@@ -40,15 +40,6 @@ export const UserLogin = async (dispatch, user) => {
     }
 };
 
-export const UserLogout = async () => {
-    try {
-        await axios.get("/logout");
-        //console.log("Logout successfully. See you soon!");
-    } catch (err) {
-        //console.log(err);
-    }
-};
-
 export const GetAllUsers = async () => {
     const response = await axiosAuth.get("/users")
     return response.data
@@ -58,5 +49,6 @@ export const GetAllUsers = async () => {
     const response = await axiosAuth.put(`/users/${user._id}`, {
         role_name: role
     })
+
     return response.data
  }

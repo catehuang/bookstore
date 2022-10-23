@@ -1,6 +1,5 @@
-import { Message } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { GetAllUsers, UpdateRole } from "../api/user";
 
 function UserManagement() {

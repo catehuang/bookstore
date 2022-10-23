@@ -104,6 +104,8 @@ router.post("/login", async (req, res) => {
     }
 });
 
+
+router.post("/logout")
 router.get("/users", verifyToken, isAdmin, async (req, res) => {
     try {
         const users = await User.find();
