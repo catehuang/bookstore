@@ -40,12 +40,12 @@ router.post(
                 }
             });
 
-            const token = jwt.sign({ id: user.id }, config.secret, {
+            const token = jwt.sign({ _id: user._id }, config.secret, {
                 expiresIn: 86400, // 24 hours
             });
 
             res.json({
-                id: user._id,
+                _id: user._id,
                 username: user.username,
                 email: user.email,
                 role: user.role,
@@ -81,7 +81,7 @@ router.post("/login", async (req, res) => {
                 });
             }
 
-            const token = jwt.sign({ id: user.id }, config.secret, {
+            const token = jwt.sign({ _id: user._id }, config.secret, {
                 expiresIn: 86400 * 3,
             });
 
@@ -91,7 +91,7 @@ router.post("/login", async (req, res) => {
                     return;
                 }
                 res.status(200).send({
-                    id: user._id,
+                    _id: user._id,
                     username: user.username,
                     email: user.email,
                     role: user.role,
@@ -106,8 +106,6 @@ router.post("/login", async (req, res) => {
     }
 });
 
-
-router.post("/logout")
 router.get("/users", verifyToken, isAdmin, async (req, res) => {
     try {
         const users = await User.find();
@@ -139,5 +137,20 @@ router.put("/users/:id", verifyToken, isAdmin, async (req, res) => {
     }
 });
 
+router.delete("/users/:id", verifyToken, isAdmin, async (req, res) => {
+    try {
+        User.findByIdAndDelete(req.params.id).exec(function (err, user) {
+            if (err) {
+                res.status(500).json(err);
+                return
+            }
+            else {
+                res.status(200).json(user);
+            }
+        })
+    } catch (error) {
+        res.status(500).json(error);
+    }
+});
 
 module.exports = router;

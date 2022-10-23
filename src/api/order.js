@@ -3,7 +3,7 @@ import { setOrder } from "../reducers/orderSlice";
 
 export const LoadOrders = async (dispatch, user) => {
         try {
-                const userId = user.id;
+                const userId = user._id;
                 const response = await axiosAuth.get(`/orders/find/${userId}`);
                 //console.log(response.data);
                 dispatch(setOrder(response.data));

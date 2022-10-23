@@ -268,7 +268,7 @@ function Payment() {
                 })
                 .then(async (result) => {
                     const response = await axiosAuth.post(`/orders`, {
-                        userId: user.id,
+                        userId: user._id,
                         products: cart.products.map((item) => ({
                             _id: item._id,
                             name: item.name,

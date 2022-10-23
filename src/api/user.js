@@ -52,3 +52,8 @@ export const GetAllUsers = async () => {
 
     return response.data
  }
+
+ export const DeleteUser = async (user) => {
+    const response = await axiosAuth.delete(`/users/${user._id}`)
+    return response.data
+ }
