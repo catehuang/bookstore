@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const config = require("../config/auth");
 const { verifyRegister } = require("../middlewares");
+const { verifyToken, isAdmin } = require("../middlewares/authJwt");
 const User = db.user;
 const Role = db.role;
 
@@ -19,7 +20,6 @@ router.post(
                 { _id: 1 }
             ).distinct("_id");
 
-            console.log(userRole);
             if (userRole) {
                 userRoleId = userRole;
             } else {
@@ -104,8 +104,7 @@ router.post("/login", async (req, res) => {
     }
 });
 
-// Get all users
-router.get("/users", async (req, res) => {
+router.get("/users", verifyToken, isAdmin, async (req, res) => {
     try {
         const users = await User.find();
         res.status(200).json(users);
@@ -114,14 +113,27 @@ router.get("/users", async (req, res) => {
     }
 });
 
-// Get the user
-router.get("/users/:id", async (req, res) => {
+router.put("/users/:id", verifyToken, isAdmin, async (req, res) => {
     try {
-        const users = await User.find();
-        res.status(200).json(users);
+        Role.findOne({name: req.body.role_name}).exec(function (err, role) {
+            if (err) {
+                res.status(500).json(err);
+                return
+              }
+              User.findByIdAndUpdate(req.params.id, {
+                    role: role._id
+                  }).exec(function (err, user) {
+                      if (err) {
+                        res.status(500).json(err);
+                        return
+                      }
+                      res.status(200).json(user)
+                  })
+        })
     } catch (err) {
         res.status(500).json(err);
     }
 });
+
 
 module.exports = router;
