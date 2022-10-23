@@ -22,7 +22,7 @@ export const LoadCart = async (dispatch, user) => {
 
 export const CreateCart = async (dispatch, user) => {
     try {
-        const userId = user._id;
+        const userId = user.id;
         const response = await axiosAuth.post(`carts/new/${userId}`, {
             userId: userId
         });
