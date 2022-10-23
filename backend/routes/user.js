@@ -13,28 +13,29 @@ router.post(
     [verifyRegister.checkDuplicateUsernameOrEmail],
     async (req, res) => {
         try {
-            await Role.findOne(
+            const userRole = await Role.findOne(
                 {
                     name: "user",
                 },
                 { _id: 1 }
             ).distinct("_id");
 
-            if (userRole) {
-                userRoleId = userRole;
-            } else {
+            if (!userRole) {
                 console.log("Role Id not found");
+                res.status(500).send({ message: "Role Id not found"});
+                return
             }
 
             const user = new User({
                 username: req.body.username,
                 email: req.body.email,
                 password: bcrypt.hashSync(req.body.password, 10),
-                role: userRoleId,
+                role: userRole,
             });
 
             user.save((err, user) => {
                 if (err) {
+                    console.log(err)
                     res.status(500).send({ message: err });
                 }
             });
@@ -52,6 +53,7 @@ router.post(
                 accessToken: token,
             });
         } catch (err) {
+            console.log(err)
             res.status(500).send({ message: err });
         }
     }

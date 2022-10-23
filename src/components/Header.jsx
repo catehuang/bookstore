@@ -50,11 +50,7 @@ function Header() {
             >
                 <div id="login_username" className="">
                     {user ? (
-                        user.isAdmin === "admin" ? (
-                            <p>HI, ADMIN</p>
-                        ) : (
-                            <p>Hi, {user.username}</p>
-                        )
+                        <p>Hi, {user.username}</p>
                     ) : (
                         <Link to="/login">
                             <p>Login</p>
