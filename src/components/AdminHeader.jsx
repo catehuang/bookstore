@@ -11,10 +11,10 @@ function AdminHeader() {
                         <Link to="/bookManagement">Book Management</Link>
                     </li>
                     <li>
-                        <Link to="">User Management</Link>
+                        <Link to="/userManagement">User Management</Link>
                     </li>
                     <li>
-                        <Link to="">Analysis</Link>
+                        <Link to="/analysis">Analysis</Link>
                     </li>
                 </ul>
             </div>

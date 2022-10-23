@@ -12,7 +12,9 @@ import { useSelector } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import BookManagement from "./pages/BookManagement";
+import UserManagement from "./pages/UserManagement";
 import AdminHeader from "./components/AdminHeader";
+import Analysis from "./pages/Analysis";
 
 function App() {
     const user = useSelector((state) => state.user.currentUser);
@@ -53,6 +55,18 @@ function App() {
                     path="/bookManagement"
                     element={
                         user?.isAdmin === "admin" ? <BookManagement /> : <Navigate to="/" />
+                    }
+                />
+                                <Route
+                    path="/userManagement"
+                    element={
+                        user?.isAdmin === "admin" ? <UserManagement /> : <Navigate to="/" />
+                    }
+                />
+                                <Route
+                    path="/analysis"
+                    element={
+                        user?.isAdmin === "admin" ? <Analysis /> : <Navigate to="/" />
                     }
                 />
                 <Route exact path="/" element={<Home />} />

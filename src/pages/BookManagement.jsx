@@ -22,7 +22,7 @@ function BookManagement() {
     };
 
     return (
-        <div className="bg-sky-50 my-0 ">
+        <div className="bg-sky-50 my-0">
             <div className="w-3/4 mx-auto py-10">
                 <div className="flex gap-x-10">
                     <button onClick={showAllBooks}>
