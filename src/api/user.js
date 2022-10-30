@@ -40,8 +40,8 @@ export const UserLogin = async (dispatch, user) => {
     }
 };
 
-export const GetAllUsers = async () => {
-    const response = await axiosAuth.get("/users")
+export const GetAllUsers = async (user) => {
+    const response = await axiosAuth.get("/users", user)
     return response.data
  };
 

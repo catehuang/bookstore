@@ -8,7 +8,7 @@ function UserManagement() {
     const [message, setMessage] = useState({});
 
     useEffect(() => {
-        GetAllUsers().then((result) => setUsers(result));
+        GetAllUsers(admin).then((result) => setUsers(result));
     }, []);
 
     const handleRoleChanged = (e, user) => {

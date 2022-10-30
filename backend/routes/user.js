@@ -21,7 +21,7 @@ router.post(
             ).distinct("_id");
 
             if (!userRole) {
-                console.log("Role Id not found");
+                // console.log("Role Id not found");
                 res.status(500).send({ message: "Role Id not found"});
                 return
             }
@@ -35,7 +35,7 @@ router.post(
 
             user.save((err, user) => {
                 if (err) {
-                    console.log(err)
+                    // console.log(err)
                     res.status(500).send({ message: err });
                 }
             });
@@ -53,7 +53,7 @@ router.post(
                 accessToken: token,
             });
         } catch (err) {
-            console.log(err)
+            // console.log(err)
             res.status(500).send({ message: err });
         }
     }
