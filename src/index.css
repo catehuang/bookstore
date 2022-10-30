@@ -1,3 +1,7 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+input[type="radio"]:checked + label{
+  @apply bg-sky-700 text-sky-50
+}

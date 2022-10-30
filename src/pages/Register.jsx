@@ -8,7 +8,7 @@ function Register() {
         const [email, setEmail] = useState("");
         const [username, setUsername] = useState("");
         const [password, setPassword] = useState("");
-        const [passwordShown, setPsswordShown] = useState(false);
+        const [passwordShown, setPasswordShown] = useState(false);
         const { registerError, registerErrorCode } = useSelector(
                 (state) => state.user
         );
@@ -47,17 +47,44 @@ function Register() {
 
         const togglePassword = (e) => {
                 e.preventDefault();
-                setPsswordShown(!passwordShown);
+                setPasswordShown(!passwordShown);
         };
 
         return (
                 <div className="flex flex-col">
+                        <div className="text-sm text-center font-bold w-fit mx-auto text-red-600">
+                                {!formValidated && (
+                                        <div className="">
+                                                <p className="text-green-600 bg-green-50 px-5 py-3">
+                                                        Available characters include letters, numbers, at sign(@), dot(.),
+                                                        and hyphen(-). Password must contain at least five characters.
+                                                </p>
+                                        </div>
+                                )}
+                                {registerError && registerErrorCode === 2 && (
+                                        <div className="bg-red-50 px-5 py-3">
+                                                This username exists. Please choose another one.
+                                        </div>
+                                )}
+                                {registerError && registerErrorCode === 3 && (
+                                        <div className="bg-red-50 px-5 py-3">
+                                                This Email already registered.
+                                        </div>
+                                )}
+                                {registerError && registerErrorCode === 1 && (
+                                        <div>
+                                                <p className="bg-red-50 px-5 py-3">
+                                                        Register failed. Please try again.
+                                                </p>
+                                        </div>
+                                )}
+                        </div>
                         <div className="mx-auto w-4/5 sm:w-96 mt-11">
                                 <p className="text-3xl first-letter:font-bold text-center">BookStore</p>
                                 <form className="sm:border rounded-lg mt-5 mb-1 p-5 flex flex-col space-y-5">
                                         <p className="text-xl">Sign Up</p>
 
-                                        <div className="felx flex-col">
+                                        <div className="flex flex-col">
                                                 <p className="pb-1">E-mail address</p>
                                                 <div className="flex border rounded-lg w-full justify-between">
                                                         <input
@@ -72,7 +99,7 @@ function Register() {
                                                 </div>
                                         </div>
 
-                                        <div className="felx flex-col">
+                                        <div className="flex flex-col">
                                                 <p className="pb-1">Username</p>
                                                 <div className="flex border rounded-lg w-full justify-between">
                                                         <input
@@ -87,7 +114,7 @@ function Register() {
                                                 </div>
                                         </div>
 
-                                        <div className="felx flex-col">
+                                        <div className="flex flex-col">
                                                 <p className="pb-1">Password</p>
                                                 <div className="flex border rounded-lg w-full justify-between">
                                                         <input
@@ -136,33 +163,6 @@ function Register() {
                                                 Notice.
                                         </p>
                                 </form>
-                        </div>
-                        <div className="py-5 mb-3 h-26">
-                                {!formValidated && (
-                                        <div className="text-center">
-                                                <p className="text-sm text-green-600 font-bold py-5">
-                                                        Available characters include letters, numbers, at sign(@), dot(.),
-                                                        and hyphen(-). Password must contain at least five characters.
-                                                </p>
-                                        </div>
-                                )}
-                                {registerError && registerErrorCode === 2 && (
-                                        <div className="text-red-600 text-center bg-red-100 py-1">
-                                                This username exists. Please choose another one.
-                                        </div>
-                                )}
-                                {registerError && registerErrorCode === 3 && (
-                                        <div className="text-red-600 text-center bg-red-100 py-1">
-                                                This Email already registered.
-                                        </div>
-                                )}
-                                {registerError && registerErrorCode === 1 && (
-                                        <div>
-                                                <p className="text-red-600 text-center bg-red-100 py-1">
-                                                        Register failed. Please try again.
-                                                </p>
-                                        </div>
-                                )}
                         </div>
                 </div>
         );

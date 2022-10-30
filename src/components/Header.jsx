@@ -4,11 +4,10 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Badge from "@mui/material/Badge";
 import { logoutCart, clearCart } from "../reducers/cartSlice";
-import { UserLogout } from "../api/user";
 import { logout } from "../reducers/userSlice";
 import { UpdateCart } from "../api/cart";
-import { axios } from "../axios";
-import SearchBar from "./SearchBar"
+import SearchBar from "./SearchBar";
+import { GetAllBooks } from "../api/book";
 
 function Header() {
     const user = useSelector((state) => state.user.currentUser);
@@ -17,12 +16,9 @@ function Header() {
     const quantity = cart.quantity;
     const dispatch = useDispatch();
 
+    // for search bar loading
     useEffect(() => {
-        const getBooks = async () => {
-            const response = await axios.get(`/books`);
-            setBooks(response.data);
-        };
-        getBooks();
+        GetAllBooks().then((result) => setBooks(result));
     }, []);
 
     useEffect(() => {
@@ -33,11 +29,6 @@ function Header() {
     }, [cart, user]);
 
     const handleLogout = () => {
-        try {
-            UserLogout();
-        } catch (err) {
-            console.log(err);
-        }
         dispatch(logout());
         dispatch(logoutCart());
         dispatch(clearCart());
@@ -49,9 +40,14 @@ function Header() {
                 <div className="text-xl first-letter:font-bold">
                     <Link to="/">BookStore</Link>
                 </div>
-                <div id="searchBar_normal" className="hidden md:block"><SearchBar books={books}/></div>
+                <div id="searchBar_normal" className="hidden md:block">
+                    <SearchBar books={books} />
+                </div>
             </div>
-            <div id="userInfo" className="flex ml-auto space-x-5 md:space-x-10 my-auto">
+            <div
+                id="userInfo"
+                className="flex ml-auto space-x-5 md:space-x-10 my-auto"
+            >
                 <div id="login_username" className="">
                     {user ? (
                         <p>Hi, {user.username}</p>
@@ -88,7 +84,9 @@ function Header() {
                     </Link>
                 </div>
             </div>
-            <div id="searchBar_mobile" className="md:hidden w-full mt-5"><SearchBar books={books}/></div>
+            <div id="searchBar_mobile" className="md:hidden w-full mt-5">
+                <SearchBar books={books} />
+            </div>
         </div>
     );
 }
