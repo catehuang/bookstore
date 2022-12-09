@@ -50,7 +50,7 @@ function Login() {
         };
 
         return (
-                <div className="flex flex-col">
+                <div className="flex flex-col mb-32">
                         <div className="py-5">
                                 {message && (
                                         <div className="text-sm text-red-500 text-center font-bold w-fit mx-auto">

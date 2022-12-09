@@ -51,7 +51,7 @@ function Register() {
         };
 
         return (
-                <div className="flex flex-col">
+                <div className="flex flex-col mb-32">
                         <div className="text-sm text-center font-bold w-fit mx-auto text-red-600">
                                 {!formValidated && (
                                         <div className="">

@@ -7,13 +7,14 @@ import Suggestion from "../components/Suggestion";
 
 function Orders() {
     const user = useSelector((state) => state.user.currentUser);
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     useEffect(() => {
         LoadOrders(dispatch, user);
         // eslint-disable-next-line
-    }, [user]);
+    });
 
     const orders = useSelector((state) => state.order.orders);
 
