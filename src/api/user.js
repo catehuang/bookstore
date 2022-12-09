@@ -14,7 +14,7 @@ export const UserRegister = async (dispatch, user) => {
         const response = await axiosAuth.post("/register", user);
         dispatch(registerSuccess(response.data));
         dispatch(loginSuccess(response.data));
-        CreateCart(dispatch, response.data);
+        LoadCart(dispatch, response.data);
     } catch (err) {
         if (err.response.data.message === "Failed! Username is already in use!")
             dispatch(registerFailure(2)); // user exists

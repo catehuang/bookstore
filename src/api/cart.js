@@ -7,14 +7,19 @@ export const LoadCart = async (dispatch, user) => {
         const userId = user._id;
         const response = await axiosAuth.get(`/carts/find/${userId}`);
 
-        if (response.data === null) {
-            CreateCart(dispatch, user);
-        } else {
-            dispatch(adoptCart(response.data));
-            response.data.products.map((product) => (
-                dispatch(addProduct(product))
-            ))
-        }
+        dispatch(adoptCart(response.data));
+        response.data.products.map((product) => (
+            dispatch(addProduct(product))
+        ))        
+
+        // if (response.data === null) {
+        //     CreateCart(dispatch, user);
+        // } else {
+        //     dispatch(adoptCart(response.data));
+        //     response.data.products.map((product) => (
+        //         dispatch(addProduct(product))
+        //     ))
+        // }
     } catch (error) {
         console.log(error);
     }
